@@ -1,0 +1,1252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+</head>
+<style>
+    * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #2d970d;
+            --primary-dark: #2d9c21;
+            --secondary-color: #4ff054;
+            --accent-color: #0f550b;
+            --light-blue-bg: #e6f2ff;
+            --dark-bg: #0f1419;
+            --light-bg: #ffffff;
+            --text-dark: #1a1a1a;
+            --text-light: #666666;
+            --border-color: #e0e0e0;
+            --shadow: 0 4px 20px rgba(32, 180, 42, 0.801);
+            --shadow-hover: 0 8px 30px rgba(35, 189, 96, 0.805);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--light-bg);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Navigation Bar */
+        nav {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-decoration: none;
+            animation: slideInDown 0.6s ease;
+        }
+
+        .logo-img {
+            width: 55px;
+            height: 55px;
+            object-fit: contain;
+            background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-color);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        nav{
+            margin-bottom: 30px;
+        }
+
+        .cta-btn {
+            background: linear-gradient(135deg, var(--secondary-color), #16a085);
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(26, 188, 156, 0.3);
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            background: var(--light-blue-bg);
+            padding: 1rem 2rem;
+            margin-top: 60px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .breadcrumb a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--secondary-color);
+        }
+
+        .breadcrumb span {
+            color: var(--text-light);
+            margin: 0 0.5rem;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 110px 2rem 40px;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Contact Container */
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        /* Contact Grid */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        /* Contact Info */
+        .contact-info {
+            background: var(--light-blue-bg);
+            padding: 2rem;
+            border-radius: 15px;
+        }
+
+        .contact-info h2 {
+            color: var(--text-dark);
+            margin-bottom: 2rem;
+            font-size: 1.8rem;
+        }
+
+        .info-item {
+            background: white;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-radius: 10px;
+            border-left: 4px solid var(--primary-color);
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(77, 166, 255, 0.1);
+        }
+
+        .info-item:hover {
+            border-left-color: var(--secondary-color);
+            box-shadow: var(--shadow-hover);
+            transform: translateX(5px);
+        }
+
+        .info-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .info-title {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .info-content {
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+
+        .info-content a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .info-content a:hover {
+            color: var(--secondary-color);
+        }
+
+        /* Office Hours */
+        .office-hours {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-top: 4px solid var(--secondary-color);
+            box-shadow: 0 2px 10px rgba(77, 166, 255, 0.1);
+        }
+
+        .office-hours h3 {
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .hours-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.7rem 0;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-light);
+        }
+
+        .hours-item:last-child {
+            border-bottom: none;
+        }
+
+        .hours-day {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        /* Contact Form */
+        .contact-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+        }
+
+        .contact-form h2 {
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group.row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="phone"],
+        input[type="date"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            color: var(--text-dark);
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="phone"]:focus,
+        input[type="date"]:focus,
+        textarea:focus,
+        select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(77, 166, 255, 0.1);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-note {
+            color: var(--text-light);
+            font-size: 0.85rem;
+            margin-top: 0.3rem;
+        }
+
+        .required {
+            color: var(--error-color);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(77, 166, 255, 0.3);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        /* Response Message */
+        .response-message {
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            display: none;
+            animation: slideDown 0.3s ease;
+        }
+
+        .response-message.success {
+            background: rgba(39, 174, 96, 0.1);
+            color: var(--success-color);
+            border: 2px solid var(--success-color);
+            display: block;
+        }
+
+        .response-message.error {
+            background: rgba(231, 76, 60, 0.1);
+            color: var(--error-color);
+            border: 2px solid var(--error-color);
+            display: block;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Map Section */
+        .map-section {
+            background: var(--light-blue-bg);
+            padding: 3rem 2rem;
+            margin-top: 3rem;
+            border-radius: 15px;
+        }
+
+        .map-section h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: var(--text-dark);
+        }
+
+        .map-container {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow-hover);
+            height: 400px;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Social Links */
+        .social-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            margin-top: 2rem;
+            box-shadow: 0 2px 10px rgba(77, 166, 255, 0.1);
+        }
+
+        .social-section h3 {
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .social-link {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            background: white;
+            padding: 3rem 2rem;
+            margin-top: 3rem;
+            border-radius: 15px;
+        }
+
+        .faq-section h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: var(--text-dark);
+        }
+
+        .faq-grid {
+            max-width: 900px;
+            margin: 0 auto;
+            display: grid;
+            gap: 1rem;
+        }
+
+        .faq-item {
+            border: 2px solid var(--border-color);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            background: linear-gradient(135deg, rgba(77, 166, 255, 0.05), rgba(230, 242, 255, 0.3));
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: var(--text-dark);
+            transition: all 0.3s ease;
+            border-bottom: 2px solid transparent;
+        }
+
+        .faq-question:hover {
+            background: linear-gradient(135deg, rgba(77, 166, 255, 0.1), rgba(26, 188, 156, 0.1));
+        }
+
+        .faq-toggle {
+            width: 30px;
+            height: 30px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item.active .faq-toggle {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            padding: 1.5rem;
+            background: var(--light-blue-bg);
+            color: var(--text-light);
+            line-height: 1.8;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s ease, padding 0.35s ease;
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 400px; /* large enough to show typical answers */
+            padding-top: 1.5rem;
+            padding-bottom: 1.5rem;
+        }
+
+        /* Why Choose Us Section */
+        .why-choose-section {
+            background: white;
+            padding: 3rem 2rem;
+            margin-top: 3rem;
+            border-radius: 15px;
+        }
+
+        .why-choose-section h2 {
+            text-align: center;
+            font-size: 2rem;
+            color: var(--text-dark);
+            margin-bottom: 2.5rem;
+        }
+
+        .why-choose-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
+        }
+
+        .why-choose-item {
+            text-align: center;
+            padding: 2rem;
+            background: var(--light-blue-bg);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            border-top: 3px solid var(--primary-color);
+        }
+
+        .why-choose-item:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+            border-top-color: var(--secondary-color);
+        }
+
+        .why-choose-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .why-choose-item h3 {
+            color: var(--text-dark);
+            margin-bottom: 0.8rem;
+            font-size: 1.2rem;
+        }
+
+        .why-choose-item p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Testimonials Section */
+        .testimonials-section {
+            background: linear-gradient(135deg, var(--light-blue-bg) 0%, white 100%);
+            padding: 3rem 2rem;
+            margin-top: 3rem;
+        }
+
+        .testimonials-section h2 {
+            text-align: center;
+            font-size: 2rem;
+            color: var(--text-dark);
+            margin-bottom: 2.5rem;
+        }
+
+        .testimonials-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 15px rgba(77, 166, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-5px);
+        }
+
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            margin-right: 1rem;
+            font-weight: bold;
+        }
+
+        .testimonial-info h4 {
+            color: var(--text-dark);
+            font-size: 1rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .testimonial-info p {
+            color: var(--text-light);
+            font-size: 0.85rem;
+        }
+
+        .testimonial-stars {
+            color: #ffc107;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .testimonial-text {
+            color: var(--text-light);
+            font-style: italic;
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 60px 2rem;
+            text-align: center;
+            border-radius: 15px;
+            margin-top: 3rem;
+        }
+
+        .cta-section h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-section-btn {
+            padding: 1rem 2rem;
+            background: white;
+            color: var(--primary-color);
+            border: none;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .cta-section-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-bg);
+            color: white;
+            padding: 40px 2rem;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            text-align: left;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--primary-color);
+            margin-left: 5px;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(77, 166, 255, 0.2);
+            padding-top: 2rem;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+</style>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="hoome.html" class="logo">
+                <img src="Lab Logo.png" alt="Lab Logo" class="logo-img">
+                <span>The Medicare Laboratory & Diagnostic Center</span>
+            </a>
+            <ul>
+                <li><a href="hoome.html">Home</a></li>
+                <li><a href="service.html">Services</a></li>
+                <li><a href="hoome.html#about">About</a></li>
+                <li><a href="schedule%20your%20payment.html" class="cta-btn">Book Test</a></li>
+            </ul>
+        </div>
+    </nav>
+
+
+
+    <!-- Page Header -->
+    <section class="page-header" style="position:relative;overflow:hidden;">
+      <div class="sec-bubbles" id="conHeaderBubbles"></div>
+        <h1>Contact Us</h1>
+        <p>Get in touch with our team for inquiries, appointments, and support. We're here to help!</p>
+    </section>
+
+    <!-- Contact Container -->
+    <div class="contact-container">
+        <!-- Contact Grid -->
+        <div class="contact-grid">
+            <!-- Contact Information -->
+            <div class="contact-info">
+                <h2>Get In Touch</h2>
+
+                <div class="info-item scroll-fade">
+                    <div class="info-icon">📞</div>
+                    <div class="info-title">Phone Number</div>
+                    <div class="info-content">
+                        <p><strong>Main Line:</strong></p>
+                        <a href="tel:+923001234567">+92 (300) 123-4567</a><br>
+                        <a href="tel:+923012345678">+92 (301) 234-5678</a>
+                        <p style="margin-top: 0.8rem;"><strong>WhatsApp:</strong></p>
+                        <a href="https://wa.me/923001234567">+92 (300) 123-4567</a>
+                    </div>
+                </div>
+
+                <div class="info-item scroll-fade">
+                    <div class="info-icon">📧</div>
+                    <div class="info-title">Email Address</div>
+                    <div class="info-content">
+                        <p><strong>General Inquiries:</strong></p>
+                        <a href="mailto:info@medicare.com">info@medicare.com</a><br>
+                        <p style="margin-top: 0.8rem;"><strong>Appointments:</strong></p>
+                        <a href="mailto:appointments@medicare.com">appointments@medicare.com</a><br>
+                        <p style="margin-top: 0.8rem;"><strong>Support:</strong></p>
+                        <a href="mailto:support@medicare.com">support@medicare.com</a>
+                    </div>
+                </div>
+
+                <div class="info-item scroll-fade">
+                    <div class="info-icon">📍</div>
+                    <div class="info-title">Location</div>
+                    <div class="info-content">
+                        <p><strong>Headquarters:</strong></p>
+                        The Medicare & Diagnostic Laboratory<br>
+                        123 Medical Street, Suite 100<br>
+                        Karachi, Sindh 75000<br>
+                        Pakistan
+                    </div>
+                </div>
+
+                <div class="office-hours">
+                    <h3>⏰ Office Hours</h3>
+                    <div class="hours-item">
+                        <span class="hours-day">Monday</span>
+                        <span>8:00 AM - 8:00 PM</span>
+                    </div>
+                    <div class="hours-item">
+                        <span class="hours-day">Tuesday</span>
+                        <span>8:00 AM - 8:00 PM</span>
+                    </div>
+                    <div class="hours-item">
+                        <span class="hours-day">Wednesday</span>
+                        <span>8:00 AM - 8:00 PM</span>
+                    </div>
+                    <div class="hours-item">
+                        <span class="hours-day">Thursday</span>
+                        <span>8:00 AM - 8:00 PM</span>
+                    </div>
+                    <div class="hours-item">
+                        <span class="hours-day">Friday</span>
+                        <span>8:00 AM - 8:00 PM</span>
+                    </div>
+                    <div class="hours-item">
+                        <span class="hours-day">Saturday</span>
+                        <span>9:00 AM - 6:00 PM</span>
+                    </div>
+                    <div class="hours-item">
+                        <span class="hours-day">Sunday</span>
+                        <span>10:00 AM - 4:00 PM</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="contact-form">
+                <h2>Send us a Message</h2>
+                
+                <div id="responseMessage" class="response-message"></div>
+
+                <form id="contactForm">
+                    <div class="form-group row">
+                        <div>
+                            <label for="name">Full Name <span class="required">*</span></label>
+                            <input type="text" id="name" name="name" required placeholder="Enter your full name">
+                            <span class="form-note">We'll use this to address you properly</span>
+                        </div>
+                        <div>
+                            <label for="email">Email Address <span class="required">*</span></label>
+                            <input type="email" id="email" name="email" required placeholder="Enter your email">
+                            <span class="form-note">We'll send reply to this email</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div>
+                            <label for="phone">Phone Number <span class="required">*</span></label>
+                            <input type="text" id="phone" name="phone" required placeholder="+92 (300) 123-4567">
+                            <span class="form-note">Include country code</span>
+                        </div>
+                        <div>
+                            <label for="subject">Subject <span class="required">*</span></label>
+                            <select id="subject" name="subject" required>
+                                <option value="">Select a subject</option>
+                                <option value="appointment">Book an Appointment</option>
+                                <option value="inquiry">General Inquiry</option>
+                                <option value="pricing">Pricing Information</option>
+                                <option value="report">Test Report Query</option>
+                                <option value="corporate">Corporate Services</option>
+                                <option value="feedback">Feedback</option>
+                                <option value="other">Other</option>
+                            </select>
+                            <span class="form-note">Choose the most relevant option</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Message <span class="required">*</span></label>
+                        <textarea id="message" name="message" required placeholder="Write your message here..."></textarea>
+                        <span class="form-note">Please provide details about your inquiry</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" id="agree" name="agree" required>
+                            <span>I agree to receive communications from The Medicare & Diagnostic Laboratory</span>
+                        </label>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Map Section -->
+        <div class="map-section scroll-fade">
+            <h2>📍 Our Location</h2>
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3620.5487220374647!2d67.02446!3d24.909859!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3eb33e3e3e3e3e3d%3A0x3e3e3e3e3e3e3e3e!2sKarachi!5e0!3m2!1sen!2spk!4v1234567890" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+
+        <!-- Social Links -->
+        <div class="social-section scroll-fade">
+            <h3>Follow Us On Social Media</h3>
+            <div class="social-links">
+                <a href="https://facebook.com/medicare" class="social-link" title="Facebook">f</a>
+                <a href="https://twitter.com/medicare" class="social-link" title="Twitter">𝕏</a>
+                <a href="https://instagram.com/medicare" class="social-link" title="Instagram">📷</a>
+                <a href="https://linkedin.com/company/medicare" class="social-link" title="LinkedIn">in</a>
+                <a href="https://youtube.com/medicare" class="social-link" title="YouTube">▶️</a>
+            </div>
+        </div>
+
+        <!-- FAQ Section -->
+        <div class="faq-section scroll-fade">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <div class="faq-question" tabindex="0" role="button" aria-controls="faq1">
+                        <span>How do I book an appointment?</span>
+                        <div class="faq-toggle" aria-expanded="false">+</div>
+                    </div>
+                    <div id="faq1" class="faq-answer">
+                        You may book an appointment by calling +92 (300) 123-4567, emailing appointments@medicare.com, or using the contact form above. We also offer walk-in visits and home collection. Our team will confirm your booking within 24 hours and provide any preparation instructions.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" tabindex="0" role="button" aria-controls="faq2">
+                        <span>What is the turnaround time for test results?</span>
+                        <div class="faq-toggle" aria-expanded="false">+</div>
+                    </div>
+                    <div id="faq2" class="faq-answer">
+                        Routine blood test results are typically available within 24 hours. Specialized pathology tests may require 3–5 working days. Imaging reports are usually delivered the same day or within 24 hours. You will receive an email and SMS notification when your report is ready.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" tabindex="0" role="button" aria-controls="faq3">
+                        <span>Do you offer home sample collection?</span>
+                        <div class="faq-toggle" aria-expanded="false">+</div>
+                    </div>
+                    <div id="faq3" class="faq-answer">
+                        Yes. We provide professional home sample collection for most tests. To schedule, please provide your preferred date, time and address when booking. Our certified phlebotomists follow strict safety and infection-control protocols.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" tabindex="0" role="button" aria-controls="faq4">
+                        <span>What payment methods do you accept?</span>
+                        <div class="faq-toggle" aria-expanded="false">+</div>
+                    </div>
+                    <div id="faq4" class="faq-answer">
+                        We accept cash, major credit and debit cards, bank transfers, and mobile wallets (EasyPaisa, JazzCash). For corporate clients we offer tailored invoicing and payment terms—please contact our corporate services team for arrangements.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" tabindex="0" role="button" aria-controls="faq6">
+                        <span>Can I access my reports online?</span>
+                        <div class="faq-toggle" aria-expanded="false">+</div>
+                    </div>
+                    <div id="faq6" class="faq-answer">
+                        Yes. When your tests are complete you will receive an email with a secure link to access your report via our patient portal. If you need assistance accessing your report, contact support@medicare.com.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA Section -->
+        <div class="cta-section scroll-fade" style="position:relative;overflow:hidden;">
+          <div class="sec-bubbles" id="conCtaBubbles"></div>
+            <h2>Ready to Schedule Your Test?</h2>
+            <p>Don't wait, book your appointment today and take charge of your health</p>
+            <a href="schedule%20your%20payment.html" class="cta-section-btn" style="display:inline-block;">Book Now</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>About Us</h4>
+                <ul>
+                    <li><a href="#">Our Story</a></li>
+                    <li><a href="#">Team</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="services.html">Blood Tests</a></li>
+                    <li><a href="services.html">Health Packages</a></li>
+                    <li><a href="services.html">Home Collection</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="#">FAQs</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 The Medicare & Diagnostic Laboratory. All rights reserved. | Designed by Tahami Tech for your health</p>
+        </div>
+    </footer>
+
+    <script>
+        // Navigation smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                }
+            });
+        });
+
+        // Scroll fade animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.scroll-fade').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Contact Form Handling
+        const contactForm = document.getElementById('contactForm');
+        const responseMessage = document.getElementById('responseMessage');
+
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Get form values
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value.trim();
+
+            // Validation
+            if (!name || !email || !phone || !subject || !message) {
+                showResponse('Please fill in all required fields', 'error');
+                return;
+            }
+
+            // Email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                showResponse('Please enter a valid email address', 'error');
+                return;
+            }
+
+            // Phone validation
+            if (phone.length < 10) {
+                showResponse('Please enter a valid phone number', 'error');
+                return;
+            }
+
+            // If validation passes (in real app, this would send to server)
+            showResponse('Thank you! Your message has been sent successfully. We\'ll get back to you within 24 hours.', 'success');
+            contactForm.reset();
+
+            // Log form data (in real app, this would be sent to server)
+            console.log({
+                name,
+                email,
+                phone,
+                subject,
+                message,
+                timestamp: new Date()
+            });
+
+            // Clear message after 5 seconds
+            setTimeout(() => {
+                responseMessage.style.display = 'none';
+            }, 5000);
+        });
+
+        function showResponse(message, type) {
+            responseMessage.textContent = message;
+            responseMessage.className = 'response-message ' + type;
+            responseMessage.style.display = 'block';
+            responseMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        // FAQ Toggle with accessibility and keyboard support
+        const faqItems = document.querySelectorAll('.faq-item');
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            const toggle = item.querySelector('.faq-toggle');
+            // make question keyboard-focusable
+            question.setAttribute('tabindex', '0');
+            if (toggle) toggle.setAttribute('aria-expanded', 'false');
+
+            function toggleFaq() {
+                // Close other items
+                faqItems.forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.classList.remove('active');
+                        const otherToggle = otherItem.querySelector('.faq-toggle');
+                        if (otherToggle) otherToggle.setAttribute('aria-expanded', 'false');
+                    }
+                });
+                const isActive = item.classList.toggle('active');
+                if (toggle) toggle.setAttribute('aria-expanded', isActive ? 'true' : 'false');
+            }
+
+            question.addEventListener('click', toggleFaq);
+            question.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    toggleFaq();
+                }
+            });
+        });
+
+        // Button click effects
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', function() {
+                if (!this.classList.contains('faq-question')) {
+                    this.style.transform = 'scale(0.98)';
+                    setTimeout(() => {
+                        this.style.transform = 'scale(1)';
+                    }, 100);
+                }
+            });
+        });
+
+        // Page load
+        window.addEventListener('load', function() {
+            console.log('Contact page loaded successfully!');
+        });
+    </script>
+  <script src="loader-nav.js"></script>
+
+<!-- ═══ SECTION BUBBLES (contact.html) ═══ -->
+<style>
+.sec-bubbles{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:1;}
+.sb{position:absolute;border-radius:50%;background:radial-gradient(circle at 35% 35%,rgba(255,255,255,.52) 0%,rgba(255,255,255,.16) 40%,rgba(255,255,255,.04) 70%,transparent 100%);border:1px solid rgba(255,255,255,.28);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);box-shadow:inset 0 0 10px rgba(255,255,255,.14),0 0 14px rgba(79,240,84,.14);will-change:transform;pointer-events:auto;transition:box-shadow .3s,border-color .3s,transform .3s;}
+.sb::before{content:'';position:absolute;top:18%;left:20%;width:28%;height:17%;background:rgba(255,255,255,.5);border-radius:50%;filter:blur(2px);}
+.sb:hover{box-shadow:inset 0 0 22px rgba(255,255,255,.45),0 0 32px rgba(79,240,84,.55);border-color:rgba(79,240,84,.75);transform:scale(1.18) !important;z-index:3;}
+@keyframes sbFloat{0%{transform:translateY(0) translateX(0) scale(1);}25%{transform:translateY(-18px) translateX(6px) scale(1.03);}50%{transform:translateY(-8px) translateX(-8px) scale(.97);}75%{transform:translateY(-24px) translateX(4px) scale(1.04);}100%{transform:translateY(0) translateX(0) scale(1);}}
+.page-header>*:not(.sec-bubbles),.cta-section>*:not(.sec-bubbles){position:relative;z-index:2;}
+@media(max-width:600px){.sec-bubbles{display:none;}}
+</style>
+<script>
+(function(){
+  function rnd(a,b){return a+Math.random()*(b-a);}
+  var bands=[[8,16,.4,.65],[17,30,.28,.5],[31,48,.16,.36],[49,70,.1,.24]];
+  var cnts=[8,6,4,2];
+  function seedBubbles(cid){
+    var wrap=document.getElementById(cid);if(!wrap)return;
+    var section=wrap.parentElement;
+    var bubs=[],raf=false,mX=-9999,mY=-9999;
+    var REPEL=100,FORCE=38;
+    bands.forEach(function(b,bi){
+      for(var i=0;i<cnts[bi];i++){
+        var sz=rnd(b[0],b[1]),op=rnd(b[2],b[3]);
+        var dur=rnd(5,18),del=rnd(0,dur);
+        var lx=rnd(2,97),ly=rnd(3,94);
+        var el=document.createElement('div');el.className='sb';
+        el.style.cssText='width:'+sz+'px;height:'+sz+'px;left:'+lx+'%;top:'+ly+'%;opacity:'+op+';animation:sbFloat '+dur+'s ease-in-out -'+del+'s infinite';
+        wrap.appendChild(el);bubs.push({el:el,lx:lx,ly:ly,sz:sz,ox:0,oy:0});
+      }
+    });
+    section.addEventListener('mousemove',function(e){var r=section.getBoundingClientRect();mX=e.clientX-r.left;mY=e.clientY-r.top;if(!raf){raf=true;requestAnimationFrame(rep);}},{passive:true});
+    section.addEventListener('mouseleave',function(){mX=-9999;mY=-9999;});
+    function rep(){raf=false;var W=section.offsetWidth,H=section.offsetHeight;bubs.forEach(function(b){var bx=(b.lx/100)*W,by=(b.ly/100)*H;var dx=bx-mX,dy=by-mY;var d=Math.sqrt(dx*dx+dy*dy);var tx=0,ty=0;if(d<REPEL&&d>0){var rv=1-d/REPEL;var p=FORCE*rv*rv;tx=(dx/d)*p;ty=(dy/d)*p;}b.ox+=(tx-b.ox)*.18;b.oy+=(ty-b.oy)*.18;b.el.style.transform='translate('+b.ox.toFixed(1)+'px,'+b.oy.toFixed(1)+'px)';});}
+    (function drift(){bubs.forEach(function(b){if(Math.abs(b.ox)>.05||Math.abs(b.oy)>.05){b.ox*=.94;b.oy*=.94;b.el.style.transform='translate('+b.ox.toFixed(1)+'px,'+b.oy.toFixed(1)+'px)';}});requestAnimationFrame(drift);})();
+  }
+  ['conHeaderBubbles','conCtaBubbles'].forEach(seedBubbles);
+})();
+</script>
+
+</body>
+</html>

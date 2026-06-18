@@ -1,0 +1,197 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Collection � The Medicare Lab</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --primary-color: #2d970d;
+            --primary-dark: #2d9c21;
+            --secondary-color: #4ff054;
+            --accent-color: #0f550b;
+            --light-bg: #ffffff;
+            --text-dark: #1a1a1a;
+            --text-muted: #666666;
+            --border-color: #e0e0e0;
+            --card-shadow: 0 6px 20px rgba(34,197,94,0.12);
+        }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: var(--light-bg); color: var(--text-dark); line-height:1.7; }
+        .page { max-width:1100px; margin:120px auto 60px; padding:24px; }
+        nav { background: linear-gradient(135deg, var(--primary-color), var(--primary-dark)); padding:1rem 0; position:fixed; width:100%; top:0; z-index:1000; box-shadow:0 6px 22px rgba(0,0,0,0.12); }
+        .nav-container { max-width:1200px; margin:0 auto; padding:0 2rem; display:flex; justify-content:space-between; align-items:center; }
+        .logo { display:flex; align-items:center; gap:0.6rem; color:white; font-size:1.35rem; font-weight:700; text-decoration:none; }
+        .logo-img { width:55px; height:55px; object-fit:contain; border-radius:50%; background: linear-gradient(135deg, var(--secondary-color), var(--accent-color)); display:flex; align-items:center; justify-content:center; color:white; font-weight:800; }
+        nav ul { list-style:none; display:flex; gap:1.5rem; align-items:center; }
+        nav a { color:white; text-decoration:none; font-weight:500; position:relative; }
+        nav a::after { content:''; position:absolute; bottom:-5px; left:0; width:0; height:2px; background:white; transition: width 0.25s ease; }
+        nav a:hover::after { width:100%; }
+        .cta-btn { background: linear-gradient(135deg, var(--secondary-color), var(--accent-color)); color:white; padding:0.75rem 1.4rem; border-radius:24px; border:none; cursor:pointer; font-weight:600; }
+        .hero { display:grid; grid-template-columns:1.1fr 0.9fr; gap:28px; align-items:center; background:linear-gradient(180deg, rgba(45,151,13,0.08), rgba(255,255,255,0)); padding:30px; border-radius:18px; box-shadow:var(--card-shadow); }
+        .hero h1 { font-size:2.6rem; margin-bottom:16px; letter-spacing:0.3px; }
+        .hero p { color:var(--text-muted); font-size:1.05rem; line-height:1.8; }
+        .hero img { width:100%; border-radius:18px; object-fit:cover; box-shadow:0 14px 30px rgba(0,0,0,0.08); }
+        .section-title { font-size:1.7rem; margin-bottom:16px; color:var(--text-dark); }
+        .intro { max-width:760px; color:var(--text-muted); margin-bottom:20px; }
+        .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:18px; }
+        .card { background:white; border-radius:16px; padding:24px; box-shadow:var(--card-shadow); transition:transform 0.3s ease, box-shadow 0.3s ease; }
+        .card:hover { transform:translateY(-6px); box-shadow:0 18px 32px rgba(34,197,94,0.16); }
+        .card h3 { margin-bottom:12px; font-size:1.2rem; }
+        .card p { color:var(--text-muted); line-height:1.75; }
+        .stats-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:18px; margin-top:30px; }
+        .stat-box { background:#f9fff5; border-radius:16px; padding:26px; text-align:center; box-shadow:var(--card-shadow); }
+        .stat-number { font-size:2.3rem; font-weight:700; color:var(--primary-color); margin-bottom:10px; }
+        .stat-label { color:var(--text-muted); font-size:1rem; }
+        .gallery { margin-top:32px; display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:14px; }
+        .gallery img { width:100%; height:180px; object-fit:cover; border-radius:14px; box-shadow:0 12px 24px rgba(0,0,0,0.08); }
+        footer { background:#0f1419; color:white; padding:42px 2rem; margin-top:40px; }
+        .footer-content { max-width:1200px; margin:0 auto; display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:2rem; text-align:left; margin-bottom:2rem; }
+        .footer-section h4 { color: var(--primary-color); margin-bottom:1rem; }
+        .footer-section ul { list-style:none; padding:0; }
+        .footer-section li { margin-bottom:0.8rem; }
+        .footer-section a { color: rgba(255,255,255,0.85); text-decoration:none; transition: color 0.25s ease; }
+        .footer-section a:hover { color: var(--secondary-color); }
+        .footer-bottom { border-top:1px solid rgba(58,185,53,0.22); padding-top:18px; text-align:center; color: rgba(255,255,255,0.72); }
+        .loading-screen { position:fixed; inset:0; display:flex; flex-direction:column; justify-content:center; align-items:center; background:#ffffff; z-index:2000; }
+        .spinner { width:72px; height:72px; border:10px solid rgba(45,151,13,0.18); border-top-color:var(--primary-color); border-radius:50%; animation:spin 1s linear infinite; margin-bottom:22px; }
+        .loading-text { color:var(--text-dark); font-size:1rem; text-align:center; max-width:320px; line-height:1.6; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        @media (max-width: 860px) { .hero { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script>
+        const e = React.createElement;
+
+        const Nav = () => e('nav', null,
+            e('div', { className: 'nav-container' },
+                e('a', { href: 'hoome.html', className: 'logo' },
+                    e('img', { src: 'Lab Logo.png', alt: 'Lab Logo', className: 'logo-img' }),
+                    e('span', null, 'The Medicare Laboratory & Diagnostic Center')
+                ),
+                e('ul', null,
+                    e('li', null, e('a', { href: 'service.html' }, 'Services')),
+                    e('li', null, e('a', { href: 'hoome.html#about' }, 'About')),
+                    e('li', null, e('a', { href: 'contact.html' }, 'Contact')),
+                    e('li', null, e('a', { href: 'schedule%20your%20payment.html', className: 'cta-btn' }, 'Book Test'))
+                )
+            )
+        );
+
+        const FeatureCard = ({ title, text }) =>
+            e('div', { className: 'card' },
+                e('h3', null, title),
+                e('p', null, text)
+            );
+
+        const StatBox = ({ value, label }) =>
+            e('div', { className: 'stat-box' },
+                e('div', { className: 'stat-number' }, value),
+                e('div', { className: 'stat-label' }, label)
+            );
+
+        const FooterSection = ({ title, items }) =>
+            e('div', { className: 'footer-section' },
+                e('h4', null, title),
+                e('ul', null, items.map(item => e('li', { key: item.text },
+                    e('a', { href: item.href }, item.text)
+                )))
+            );
+
+        const App = () => {
+            return e(React.Fragment, null,
+                e(Nav, null),
+                e('main', { className: 'page' },
+                    e('section', { className: 'hero' },
+                        e('div', null,
+                            e('h1', null, 'Home Collection Services'),
+                            e('p', { className: 'intro' }, 'Reliable home sample collection from certified technicians, with safe pickup, professional handling and fast lab delivery for accurate results.'),
+                            e('p', { className: 'intro' }, 'We make diagnostic testing comfortable and convenient by collecting samples at your doorstep, whether at home, work or in the community. Enjoy a seamless service experience with strong safety standards and clear communication.'),
+                            e('div', { className: 'grid' },
+                                e(FeatureCard, { title: 'Book at Your Convenience', text: 'Choose your preferred appointment time and let our team come to you for fast, reliable sample collection.' }),
+                                e(FeatureCard, { title: 'Certified Collection Team', text: 'Our trained phlebotomists follow strict hygiene protocols and collect samples with care and precision.' }),
+                                e(FeatureCard, { title: 'Safe Transport', text: 'Every sample is packaged securely and transferred to the lab quickly so your results stay accurate and dependable.' }),
+                                e(FeatureCard, { title: 'Patient-friendly Support', text: 'We answer your questions, coordinate updates and make the whole home collection process easy to follow.' })
+                            )
+                        ),
+                        e('div', null,
+                            e('img', { src: 'home collection sample pickup by a technician pic.png', alt: 'Home collection sample pickup by a technician' })
+                        )
+                    ),
+                    e('section', { style: { marginTop: '36px' } },
+                        e('h2', { className: 'section-title' }, 'How it Works'),
+                        e('div', { className: 'grid' },
+                            e('div', { className: 'card' },
+                                e('h3', null, '1. Schedule a Visit'),
+                                e('p', null, 'Call or book through our website and select the time and address for sample pickup.')
+                            ),
+                            e('div', { className: 'card' },
+                                e('h3', null, '2. Technician Arrives'),
+                                e('p', null, 'Our trained specialist arrives on time with all necessary supplies and safety equipment.')
+                            ),
+                            e('div', { className: 'card' },
+                                e('h3', null, '3. Secure Sample Handling'),
+                                e('p', null, 'Samples are collected carefully, labeled accurately and transported under controlled conditions.' )
+                            )
+                        )
+                    ),
+                    e('section', { className: 'stats-grid' },
+                        e(StatBox, { value: '95%', label: 'On-time home collection service' }),
+                        e(StatBox, { value: '4.8/5', label: 'Patient satisfaction rating' }),
+                        e(StatBox, { value: '24 hrs', label: 'Support & scheduling availability' }),
+                        e(StatBox, { value: '100%', label: 'Safe collection and transport standards' })
+                    ),
+                    e('section', { className: 'gallery', 'aria-label': 'Home collection images' },
+                        e('img', { src: 'Technician collecting blood sample at home pic.png', alt: 'Technician collecting blood sample at home' }),
+                        e('img', { src: 'Patient receiving home sample collection service pic.png', alt: 'Patient receiving home sample collection service' }),
+                        e('img', { src: 'Samples being prepared for lab transport pic.png', alt: 'Samples being prepared for lab transport' }),
+                        e('img', { src: 'Professional home collection team pic.png', alt: 'Professional home collection team' })
+                    )
+                ),
+                e('footer', null,
+                    e('div', { className: 'footer-content' },
+                        e('div', { className: 'footer-section' },
+                            e('h4', null, 'About Us'),
+                            e('ul', null,
+                                e('li', null, e('a', { href: '#' }, 'Our Story')),
+                                e('li', null, e('a', { href: '#' }, 'Team'))
+                            )
+                        ),
+                        e('div', { className: 'footer-section' },
+                            e('h4', null, 'Services'),
+                            e('ul', null,
+                                e('li', null, e('a', { href: '#' }, 'Blood Tests')),
+                                e('li', null, e('a', { href: '#' }, 'Health Packages')),
+                                e('li', null, e('a', { href: '#' }, 'Home Collection'))
+                            )
+                        ),
+                        e('div', { className: 'footer-section' },
+                            e('h4', null, 'Contact Us'),
+                            e('ul', null,
+                                e('li', null, e('a', { href: 'tel:+92300123456' }, '?? +92 (300) 123-456')),
+                                e('li', null, e('a', { href: 'mailto:info@medicare.com' }, '?? info@medicare.com')),
+                                e('li', null, e('a', { href: '#' }, '?? 123 Medical Street')),
+                                e('li', null, e('a', { href: '#' }, 'Karachi, Pakistan'))
+                            )
+                        )
+                    ),
+                    e('div', { className: 'footer-bottom' },
+                        e('p', null, '� 2026 The Medicare Laboratory & Diagnostic Center. All rights reserved. | Designed by Tahami Tech for your health')
+                    )
+                )
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(e(App));
+    </script>
+  <script src="loader-nav.js"></script>
+</body>
+</html>
+
+

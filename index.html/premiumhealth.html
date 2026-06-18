@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Healthcare</title>
+</head>
+<style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #2d970d;
+            --primary-dark: #2d9c21;
+            --secondary-color: #4ff054;
+            --accent-color: #0f550b;
+            --light-blue-bg: #e6f2ff;
+            --dark-bg: #0f1419;
+            --light-bg: #ffffff;
+            --text-dark: #1a1a1a;
+            --text-light: #666666;
+            --border-color: #e0e0e0;
+            --shadow: 0 4px 20px rgba(32, 180, 42, 0.801);
+            --shadow-hover: 0 8px 30px rgba(35, 189, 96, 0.805);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--light-bg);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Navigation Bar */
+        nav {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-decoration: none;
+            animation: slideInDown 0.6s ease;
+        }
+
+        .logo-img {
+            width: 55px;
+            height: 55px;
+            object-fit: contain;
+            background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-color);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .cta-btn {
+            background: linear-gradient(135deg, var(--secondary-color), s#175308f3);
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(15, 96, 19, 0.904);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Main Grid */
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        /* Card */
+        .card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+            border: 3px solid #e8f5f1;
+        }
+
+        .card-header {
+            background: linear-gradient(135deg, #22a65b 0%, #1f8f4a 100%);
+            color: white;
+            padding: 50px 40px;
+            text-align: center;
+            position: relative;
+        }
+
+        .badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            color: #22a65b;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .card-header h1 {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .card-header p {
+            font-size: 1.1em;
+            opacity: 0.95;
+        }
+
+        .card-body {
+            padding: 40px;
+        }
+
+        .card-body h2 {
+            font-size: 2em;
+            color: #22a65b;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #22a65b;
+            padding-bottom: 15px;
+        }
+
+        .card-body h3 {
+            font-size: 1.3em;
+            color: #1f8f4a;
+            margin-top: 30px;
+            margin-bottom: 20px;
+        }
+
+        .card-body p {
+            font-size: 1.05em;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        /* Tests List */
+        .tests-list {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .test-item {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 20px;
+            padding: 15px;
+            margin-bottom: 12px;
+            background: #f9f9f9;
+            border-radius: 10px;
+            border-left: 5px solid #22a65b;
+            align-items: center;
+        }
+
+        .test-item:hover {
+            background: #f0f8f5;
+            transform: translateX(5px);
+            transition: all 0.3s ease;
+        }
+
+        .test-name {
+            font-size: 1.05em;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .test-price {
+            font-size: 1.05em;
+            color: #22a65b;
+            font-weight: 700;
+            text-align: right;
+            min-width: 100px;
+        }
+
+        /* Price Breakdown */
+        .price-breakdown {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+            border: 3px solid #e8f5f1;
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+        }
+
+        .price-breakdown h3 {
+            font-size: 1.2em;
+            color: #22a65b;
+            margin-bottom: 20px;
+            text-align: center;
+            border-bottom: 2px solid #22a65b;
+            padding-bottom: 15px;
+        }
+
+        .individual-prices {
+            list-style: none;
+            margin-bottom: 20px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .individual-prices li {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 10px;
+            padding: 10px;
+            font-size: 0.95em;
+            border-bottom: 1px solid #eee;
+            color: #555;
+        }
+
+        .individual-prices li:last-child {
+            border-bottom: none;
+        }
+
+        .individual-price {
+            color: #666;
+            font-weight: 500;
+        }
+
+        .breakdown-divider {
+            height: 2px;
+            background: linear-gradient(135deg, #22a65b 0%, #1f8f4a 100%);
+            margin: 20px 0;
+        }
+
+        .total-section {
+            background: linear-gradient(135deg, #f0f8f5 0%, #e8f5f1 100%);
+            padding: 20px;
+            border-radius: 15px;
+            border: 2px solid #22a65b;
+        }
+
+        .total-label {
+            font-size: 0.95em;
+            color: #555;
+            margin-bottom: 8px;
+        }
+
+        .total-price {
+            font-size: 2em;
+            color: #22a65b;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 8px;
+        }
+
+        .total-unit {
+            text-align: center;
+            color: #999;
+            font-size: 0.9em;
+        }
+
+        .savings-badge {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ff5252 100%);
+            color: white;
+            padding: 12px;
+            border-radius: 10px;
+            text-align: center;
+            margin-top: 15px;
+            font-weight: 600;
+            font-size: 0.95em;
+        }
+
+        .book-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #22a65b 0%, #1f8f4a 100%);
+            color: white;
+            padding: 15px;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 600;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(34, 166, 91, 0.3);
+        }
+
+        .book-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(34, 166, 91, 0.4);
+        }
+
+        /* Benefits Section */
+        .benefits-section {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            margin-top: 40px;
+        }
+
+        .benefits-section h2 {
+            font-size: 2em;
+            color: #22a65b;
+            margin-bottom: 30px;
+            border-bottom: 3px solid #22a65b;
+            padding-bottom: 15px;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .benefit-card {
+            background: linear-gradient(135deg, #f0f8f5 0%, #e8f5f1 100%);
+            padding: 25px;
+            border-radius: 15px;
+            border-left: 5px solid #22a65b;
+            transition: all 0.3s ease;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(34, 166, 91, 0.15);
+        }
+
+        .benefit-icon {
+            font-size: 45px;
+            margin-bottom: 15px;
+        }
+
+        .benefit-title {
+            font-size: 1.2em;
+            color: #22a65b;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .benefit-desc {
+            color: #666;
+            font-size: 0.95em;
+            line-height: 1.6;
+        }
+
+        /* Info Box */
+        .info-box {
+            background: linear-gradient(135deg, #f0f8f5 0%, #e8f5f1 100%);
+            border-left: 5px solid #22a65b;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 10px;
+        }
+
+        .info-box h3 {
+            color: #22a65b;
+            margin-bottom: 15px;
+        }
+
+        .info-box ul {
+            list-style: none;
+            margin-left: 0;
+        }
+
+        .info-box li {
+            padding: 10px 0;
+            color: #555;
+            border-bottom: 1px solid rgba(34, 166, 91, 0.1);
+        }
+
+        .info-box li:last-child {
+            border-bottom: none;
+        }
+
+        .info-box li::before {
+            content: '✓ ';
+            color: #22a65b;
+            font-weight: bold;
+        }
+
+        /* Comparison Table */
+        .comparison-section {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            margin-top: 40px;
+        }
+
+        .comparison-section h2 {
+            font-size: 2em;
+            color: #22a65b;
+            margin-bottom: 30px;
+            border-bottom: 3px solid #22a65b;
+            padding-bottom: 15px;
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th {
+            background: linear-gradient(135deg, #22a65b 0%, #1f8f4a 100%);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        tr:hover {
+            background: #f9f9f9;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #22a65b 0%, #1f8f4a 100%);
+            color: white;
+            padding: 50px 40px;
+            border-radius: 20px;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .cta-section h2 {
+            font-size: 2.2em;
+            margin-bottom: 15px;
+            color: white;
+        }
+
+        .cta-section p {
+            font-size: 1.1em;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+
+        .cta-btn {
+            background: white;
+            color: #22a65b;
+            padding: 16px 50px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .main-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .price-breakdown {
+                position: static;
+            }
+
+            header {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px;
+            }
+
+            nav {
+                flex-direction: column;
+                gap: 10px;
+                width: 100%;
+            }
+
+            .card-header {
+                padding: 30px 20px;
+            }
+
+            .card-header h1 {
+                font-size: 1.8em;
+            }
+
+            .card-body {
+                padding: 20px;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card {
+            animation: fadeIn 0.6s ease;
+        }
+
+        .price-breakdown {
+            animation: fadeIn 0.6s ease 0.2s both;
+        }
+    </style>
+<body>
+    <!-- Navigation (matches home.html) -->
+    <nav style="background:linear-gradient(135deg,#2d970d 0%,#2d9c21 100%);padding:1rem 0;position:fixed;width:100%;top:0;z-index:1000;box-shadow:0 4px 20px rgba(32,180,42,0.8);">
+        <div style="max-width:1200px;margin:0 auto;padding:0 2rem;display:flex;justify-content:space-between;align-items:center;">
+            <a href="hoome.html" style="display:flex;align-items:center;gap:0.5rem;color:white;font-size:1.5rem;font-weight:700;text-decoration:none;">
+                <img src="Lab Logo.png" alt="Lab Logo" style="width:55px;height:55px;object-fit:contain;border-radius:50%;">
+                <span>The Medicare Laboratory & Diagnostic Center</span>
+            </a>
+            <ul style="list-style:none;display:flex;gap:2rem;align-items:center;margin:0;">
+                <li><a href="service.html" style="color:white;text-decoration:none;font-weight:500;">Services</a></li>
+                <li><a href="about.html" style="color:white;text-decoration:none;font-weight:500;">About</a></li>
+                <li><a href="contact.html" style="color:white;text-decoration:none;font-weight:500;">Contact</a></li>
+                <li><a href="schedule%20your%20payment.html" style="background:linear-gradient(135deg,#4ff054,#175308);color:white;padding:0.7rem 1.5rem;border-radius:25px;font-weight:600;text-decoration:none;">Book Test</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div style="height:72px;"></div>
+
+    <!-- Container -->
+    <div class="container">
+        <!-- Main Grid -->
+        <div class="main-grid">
+            <!-- Card Section -->
+            <div>
+                <div class="card">
+                    <div class="card-header">
+                        <div class="badge">Popular</div>
+                        <h1>Premium Health Package</h1>
+                        <p>Comprehensive Health Screening Package</p>
+                    </div>
+
+                    <div class="card-body">
+                        <h2>What's Included in Premium Health?</h2>
+                        <p>
+                            The Premium Health Package is our most popular comprehensive health screening package. It includes all essential 
+                            blood tests, organ function tests, and metabolic screening. Perfect for individuals who want a thorough health 
+                            checkup without the imaging components.
+                        </p>
+
+                        <h3>📋 Complete Blood Tests Included</h3>
+                        <ul class="tests-list">
+                            <li class="test-item">
+                                <div class="test-name">🩸 Complete Blood Count (CBC)</div>
+                                <div class="test-price">Rs. 800</div>
+                            </li>
+                            <li class="test-item">
+                                <div class="test-name">🧬 Thyroid Profile (TSH, T3, T4)</div>
+                                <div class="test-price">Rs. 1,200</div>
+                            </li>
+                            <li class="test-item">
+                                <div class="test-name">🫀 Liver Function Tests</div>
+                                <div class="test-price">Rs. 800</div>
+                            </li>
+                            <li class="test-item">
+                                <div class="test-name">🫘 Kidney Function Tests</div>
+                                <div class="test-price">Rs. 700</div>
+                            </li>
+                            <li class="test-item">
+                                <div class="test-name">🍗 Lipid Profile (Cholesterol)</div>
+                                <div class="test-price">Rs. 1,000</div>
+                            </li>
+                            <li class="test-item">
+                                <div class="test-name">🍬 Diabetes Screening (Glucose, HbA1C)</div>
+                                <div class="test-price">Rs. 800</div>
+                            </li>
+                        </ul>
+
+                        <h3>Why Choose Premium Health Package?</h3>
+                        <div class="info-box">
+                            <h3>Key Benefits</h3>
+                            <ul>
+                                <li><strong>Comprehensive Blood Work:</strong> Complete analysis of all vital organs</li>
+                                <li><strong>Disease Prevention:</strong> Early detection of health problems</li>
+                                <li><strong>Cost Effective:</strong> Better value than booking tests individually</li>
+                                <li><strong>Time Saving:</strong> Single appointment for multiple tests</li>
+                                <li><strong>Professional Analysis:</strong> Expert interpretation of results</li>
+                                <li><strong>Detailed Report:</strong> Comprehensive health assessment</li>
+                                <li><strong>Risk Assessment:</strong> Identify health risks specific to you</li>
+                                <li><strong>Annual Checkup:</strong> Perfect for routine health monitoring</li>
+                            </ul>
+                        </div>
+
+                        <h3>Who Should Get This Package?</h3>
+                        <div class="info-box">
+                            <h3>Recommended For</h3>
+                            <ul>
+                                <li>Annual routine health checkup</li>
+                                <li>Age 20 and above</li>
+                                <li>Family history of chronic diseases</li>
+                                <li>Pre-existing health conditions</li>
+                                <li>Sedentary lifestyle</li>
+                                <li>High-stress occupation</li>
+                                <li>Anyone wanting comprehensive blood screening</li>
+                            </ul>
+                        </div>
+
+                        <h3>Preparation Guidelines</h3>
+                        <div class="info-box">
+                            <h3>Before Your Test</h3>
+                            <ul>
+                                <li>8-10 hours fasting (for accurate blood work)</li>
+                                <li>Avoid strenuous exercise 24 hours before</li>
+                                <li>Stay hydrated with water only</li>
+                                <li>Wear loose-sleeved clothing</li>
+                                <li>Arrive 10-15 minutes early</li>
+                                <li>Bring valid ID and any medical documents</li>
+                                <li>Continue regular medications unless advised otherwise</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Benefits Section -->
+                <div class="benefits-section">
+                    <h2>🎯 Premium Package Benefits</h2>
+                    <div class="benefits-grid">
+                        <div class="benefit-card">
+                            <div class="benefit-icon">✅</div>
+                            <div class="benefit-title">Complete Analysis</div>
+                            <div class="benefit-desc">All vital organs and systems analyzed in one comprehensive check</div>
+                        </div>
+                        <div class="benefit-card">
+                            <div class="benefit-icon">💰</div>
+                            <div class="benefit-title">Great Value</div>
+                            <div class="benefit-desc">Save significant amount compared to individual test bookings</div>
+                        </div>
+                        <div class="benefit-card">
+                            <div class="benefit-icon">⏱️</div>
+                            <div class="benefit-title">Time Efficient</div>
+                            <div class="benefit-desc">Complete package in single visit - no multiple appointments needed</div>
+                        </div>
+                        <div class="benefit-card">
+                            <div class="benefit-icon">📊</div>
+                            <div class="benefit-title">Detailed Report</div>
+                            <div class="benefit-desc">Comprehensive report with expert analysis and recommendations</div>
+                        </div>
+                        <div class="benefit-card">
+                            <div class="benefit-icon">🛡️</div>
+                            <div class="benefit-title">Early Detection</div>
+                            <div class="benefit-desc">Identify health problems early for better treatment outcomes</div>
+                        </div>
+                        <div class="benefit-card">
+                            <div class="benefit-icon">👨‍⚕️</div>
+                            <div class="benefit-title">Expert Care</div>
+                            <div class="benefit-desc">Certified technicians and experienced professionals handling your tests</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Comparison Section -->
+                <div class="comparison-section">
+                    <h2>📊 Premium vs Individual Tests Comparison</h2>
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Feature</th>
+                                    <th>Individual Tests</th>
+                                    <th>Premium Package</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Total Cost</strong></td>
+                                    <td>Rs. 6,300 (individual)</td>
+                                    <td>Rs. 5,999 (package)</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Savings</strong></td>
+                                    <td>-</td>
+                                    <td>Save Rs. 301 (5% off)</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Appointments</strong></td>
+                                    <td>6 separate visits</td>
+                                    <td>1 single visit</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Time Required</strong></td>
+                                    <td>3-4 hours (multiple days)</td>
+                                    <td>30-45 minutes</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Comprehensive Report</strong></td>
+                                    <td>Separate reports</td>
+                                    <td>Integrated analysis</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Doctor Consultation</strong></td>
+                                    <td>Additional cost</td>
+                                    <td>Included in package</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Follow-up Support</strong></td>
+                                    <td>Limited</td>
+                                    <td>Full support provided</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- CTA Section -->
+                <div class="cta-section">
+                    <h2>Ready for Your Premium Health Checkup?</h2>
+                    <p>Book now and get comprehensive health assessment with expert analysis and personalized recommendations</p>
+                    <button class="cta-btn" onclick="bookPremiumPackage()">Book Premium Package Now</button>
+                </div>
+            </div>
+
+            <!-- Price Breakdown Sidebar -->
+            <div class="price-breakdown">
+                <h3>💰 Price Breakdown</h3>
+                
+                <ul class="individual-prices">
+                    <li>
+                        <span>CBC Test</span>
+                        <span class="individual-price">Rs. 800</span>
+                    </li>
+                    <li>
+                        <span>Thyroid Profile</span>
+                        <span class="individual-price">Rs. 1,200</span>
+                    </li>
+                    <li>
+                        <span>Liver Tests</span>
+                        <span class="individual-price">Rs. 800</span>
+                    </li>
+                    <li>
+                        <span>Kidney Tests</span>
+                        <span class="individual-price">Rs. 700</span>
+                    </li>
+                    <li>
+                        <span>Lipid Profile</span>
+                        <span class="individual-price">Rs. 1,000</span>
+                    </li>
+                    <li>
+                        <span>Diabetes Screening</span>
+                        <span class="individual-price">Rs. 800</span>
+                    </li>
+                </ul>
+
+                <div class="breakdown-divider"></div>
+
+                <div class="total-section">
+                    <div class="total-label">Individual Total Cost</div>
+                    <div class="total-price">Rs. 6,300</div>
+                    
+                    <div class="breakdown-divider" style="margin: 15px 0;"></div>
+                    
+                    <div class="total-label">Premium Package Price</div>
+                    <div class="total-price" style="color: #4caf50;">Rs. 5,999</div>
+                    <div class="total-unit">/person</div>
+
+                    <div class="savings-badge">
+                        💚 Save Rs. 301 (5% OFF)
+                    </div>
+
+                    <button class="book-btn" onclick="bookPremiumPackage()">Book Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer (matches home.html) -->
+    <footer style="background:#0f1419;color:white;padding:40px 2rem;margin-top:60px;">
+        <div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2rem;text-align:left;margin-bottom:2rem;">
+            <div><h4 style="color:#2d970d;margin-bottom:1rem;">About Us</h4><ul style="list-style:none;"><li><a href="about.html" style="color:rgba(255,255,255,0.7);text-decoration:none;">Our Story</a></li><li><a href="#" style="color:rgba(255,255,255,0.7);text-decoration:none;">Team</a></li></ul></div>
+            <div><h4 style="color:#2d970d;margin-bottom:1rem;">Services</h4><ul style="list-style:none;"><li><a href="service.html" style="color:rgba(255,255,255,0.7);text-decoration:none;">Blood Tests</a></li><li><a href="service.html" style="color:rgba(255,255,255,0.7);text-decoration:none;">Health Packages</a></li><li><a href="homecollection.html" style="color:rgba(255,255,255,0.7);text-decoration:none;">Home Collection</a></li></ul></div>
+            <div><h4 style="color:#2d970d;margin-bottom:1rem;">Contact Us</h4><ul style="list-style:none;"><li><a href="tel:+92300123456" style="color:rgba(255,255,255,0.7);text-decoration:none;">📞 +92 (300) 123-456</a></li><li><a href="mailto:info@medicare.com" style="color:rgba(255,255,255,0.7);text-decoration:none;">📧 info@medicare.com</a></li><li style="color:rgba(255,255,255,0.7);">📍 123 Medical Street, Karachi</li></ul></div>
+        </div>
+        <div style="border-top:1px solid rgba(58,185,53,0.779);padding-top:2rem;text-align:center;color:rgba(255,255,255,0.7);">© 2026 The Medicare Laboratory & Diagnostic Center. All rights reserved. | Designed by Tahami Tech for your health</div>
+    </footer>
+
+    <script>
+        function bookPremiumPackage() {
+            const params = new URLSearchParams({
+                step: '3',
+                package: 'premium',
+                packageName: 'Premium Health Package',
+                price: '5999',
+                service: 'Health Checkup',
+                serviceId: '3',
+                tests: JSON.stringify([
+                    {name:'CBC Test',price:800},
+                    {name:'Thyroid Profile (TSH, T3, T4)',price:1200},
+                    {name:'Liver Function Tests',price:800},
+                    {name:'Kidney Function Tests',price:700},
+                    {name:'Lipid Profile (Cholesterol)',price:1000},
+                    {name:'Diabetes Screening (Glucose, HbA1C)',price:800}
+                ])
+            });
+            window.location.href = 'schedule%20your%20payment.html?' + params.toString();
+        }
+    </script>
+  <script src="loader-nav.js"></script>
+</body>
+</html>

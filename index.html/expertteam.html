@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expert Team — The Medicare Lab</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --primary-color: #2d970d;
+            --primary-dark: #2d9c21;
+            --secondary-color: #4ff054;
+            --accent-color: #0f550b;
+            --light-blue-bg: #e6f2ff;
+            --dark-bg: #0f1419;
+            --light-bg: #ffffff;
+            --text-dark: #1a1a1a;
+            --text-light: #666666;
+            --border-color: #e0e0e0;
+            --shadow: 0 4px 20px rgba(32, 180, 42, 0.801);
+            --shadow-hover: 0 8px 30px rgba(35, 189, 96, 0.805);
+        }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--light-bg); color: var(--text-dark); line-height: 1.6; overflow-x: hidden; }
+        nav { background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%); padding: 1rem 0; position: fixed; width: 100%; top: 0; z-index: 1000; box-shadow: var(--shadow); }
+        .nav-container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; display:flex; justify-content:space-between; align-items:center; }
+        .logo { display:flex; align-items:center; gap:0.5rem; color:white; font-size:1.5rem; font-weight:700; text-decoration:none; }
+        .logo-img { width:55px; height:55px; object-fit:contain; background: linear-gradient(135deg, var(--secondary-color), var(--accent-color)); border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:bold; color:white; font-size:1.2rem; }
+        nav ul { list-style:none; display:flex; gap:2rem; align-items:center; }
+        nav a { color:white; text-decoration:none; font-weight:500; transition: all 0.3s ease; position:relative }
+        nav a::after { content:''; position:absolute; bottom:-5px; left:0; width:0; height:2px; background:var(--accent-color); transition: width 0.3s ease }
+        nav a:hover::after { width:100% }
+        .cta-btn { background: linear-gradient(135deg, var(--secondary-color), s#175308f3); color:white; padding:0.7rem 1.5rem; border-radius:25px; border:none; cursor:pointer; font-weight:600 }
+        .container{ max-width:1000px; margin:80px auto 40px; padding:20px }
+        .card{ background:#fff; border-radius:12px; padding:24px; box-shadow:0 6px 20px rgba(34,197,94,0.12); display:flex; gap:16px; align-items:center }
+        .why-icon{ font-size:2.25rem }
+        h3{ margin:0; font-size:1.5rem }
+        p{ margin:6px 0 0; color:#555 }
+        footer { background: var(--dark-bg); color: white; padding: 40px 2rem; text-align: center }
+        .footer-content { max-width:1200px; margin:0 auto; display:grid; grid-template-columns: repeat(auto-fit, minmax(250px,1fr)); gap:2rem; text-align:left; margin-bottom:2rem }
+        .footer-section h4 { margin-bottom:1rem; color: var(--primary-color) }
+        .footer-section a { color: rgba(255,255,255,0.9); text-decoration:none }
+        .footer-bottom { border-top:1px solid rgba(58,185,53,0.779); padding-top:2rem; text-align:center; color: rgba(255,255,255,0.7) }
+        @media (max-width:768px){ .container{ margin-top:100px } }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="hoome.html" class="logo">
+                <img src="Lab Logo.png" alt="Lab Logo" class="logo-img">
+                <span>The Medicare Laboratory & Diagnostic Center</span>
+            </a>
+            <ul>
+                <li><a href="service.html">Services</a></li>
+                <li><a href="hoome.html#about">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="schedule%20your%20payment.html" class="cta-btn">Book Test</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div style="height:40px"></div>
+
+        <header style="margin-bottom:18px">
+            <div style="display:flex;align-items:center;gap:14px">
+                <div class="why-icon">👨‍⚕️</div>
+                <div>
+                    <h1 style="font-size:1.6rem;margin:0">Expert Team</h1>
+                    <p style="margin:6px 0 0;color:#555">Highly qualified medical and laboratory professionals dedicated to accurate diagnostics and patient care.</p>
+                </div>
+            </div>
+        </header>
+
+        <section style="margin-bottom:22px">
+            <p style="color:#444;line-height:1.6">The Medicare & Diagnostic Laboratory team combines clinical expertise, advanced laboratory skills and strict quality-control procedures to deliver reliable test results. Below are brief profiles of our core team — education, professional skills and experience are listed for each member.</p>
+        </section>
+
+        <section class="profiles-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px">
+
+            <!-- Owner -->
+            <article class="card" aria-label="Owner">
+                <div style="font-size:2rem">👔</div>
+                <div>
+                    <h3>Mrs. Misha Khan — Owner & Founder</h3>
+                    <p style="margin:6px 0 8px;color:#666">Founder of The Medicare Lab with overall clinical and strategic oversight.</p>
+                    <ul style="margin:0;padding-left:18px;color:#444">
+                        <li><strong>Education:</strong> MBBS, Clinical Pathology Diploma</li>
+                        <li><strong>Professional skills:</strong> Laboratory management, clinical governance, result interpretation</li>
+                        <li><strong>Experience:</strong> 18 years (clinical practice & lab operations)</li>
+                    </ul>
+                </div>
+            </article>
+
+            <!-- Director -->
+            <article class="card">
+                <div style="font-size:2rem">🎓</div>
+                <div>
+                    <h3>Mr. Junaid Ahmed — Lab Director</h3>
+                    <p style="margin:6px 0 8px;color:#666">Leads clinical quality, test validation and reporting standards.</p>
+                    <ul style="margin:0;padding-left:18px;color:#444">
+                        <li><strong>Education:</strong> MBBS, FCPS (Pathology)</li>
+                        <li><strong>Professional skills:</strong> Histopathology, test validation, clinical audit</li>
+                        <li><strong>Experience:</strong> 14 years (pathology & laboratory leadership)</li>
+                    </ul>
+                </div>
+            </article>
+
+            <!-- Lab Manager -->
+            <article class="card">
+                <div style="font-size:2rem">🔧</div>
+                <div>
+                    <h3>Mr. Faraz Hussain — Sr. Lab Technician</h3>
+                    <p style="margin:6px 0 8px;color:#666">Manages day-to-day lab operations and personnel.</p>
+                    <ul style="margin:0;padding-left:18px;color:#444">
+                        <li><strong>Education:</strong> B.Sc. Medical Laboratory Technology</li>
+                        <li><strong>Professional skills:</strong> Workflow optimisation, instrumentation upkeep, staff training</li>
+                        <li><strong>Experience:</strong> 10 years (laboratory operations)</li>
+                    </ul>
+                </div>
+            </article>
+
+            <!-- Head Technician -->
+            <article class="card">
+                <div style="font-size:2rem">🧪</div>
+                <div>
+                    <h3>Ms. Fatima Raza —  Technician</h3>
+                    <p style="margin:6px 0 8px;color:#666">Oversees sample processing and equipment calibration.</p>
+                    <ul style="margin:0;padding-left:18px;color:#444">
+                        <li><strong>Education:</strong> DMLT (Diploma in Medical Lab Technology)</li>
+                        <li><strong>Professional skills:</strong> Hematology, biochemistry assays, QC procedures</li>
+                        <li><strong>Experience:</strong> 9 years (technical lead)</li>
+                    </ul>
+                </div>
+            </article>
+
+            <!-- Microbiology Specialist -->
+            <article class="card">
+                <div style="font-size:2rem">🦠</div>
+                <div>
+                    <h3>Dr. Kamran Malik — Microbiology Specialist</h3>
+                    <p style="margin:6px 0 8px;color:#666">Leads culture and sensitivity testing and infection control protocols.</p>
+                    <ul style="margin:0;padding-left:18px;color:#444">
+                        <li><strong>Education:</strong> MBBS, Diploma in Microbiology</li>
+                        <li><strong>Professional skills:</strong> Culture techniques, antimicrobial susceptibility testing</li>
+                        <li><strong>Experience:</strong> 11 years (microbiology)</li>
+                    </ul>
+                </div>
+            </article>
+
+            <!-- Radiology/Imaging Lead -->
+            <article class="card">
+                <div style="font-size:2rem">📡</div>
+                <div>
+                    <h3>Mr. Naveed Khan — Imaging Lead</h3>
+                    <p style="margin:6px 0 8px;color:#666">Responsible for ultrasound and imaging coordination.</p>
+                    <ul style="margin:0;padding-left:18px;color:#444">
+                        <li><strong>Education:</strong> Diploma in Radiology Technology</li>
+                        <li><strong>Professional skills:</strong> Ultrasound operation, image quality assurance</li>
+                        <li><strong>Experience:</strong> 8 years (imaging services)</li>
+                    </ul>
+                </div>
+            </article>
+
+            <!-- Quality Officer -->
+            <article class="card">
+                <div style="font-size:2rem">✅</div>
+                <div>
+                    <h3>Ms. Ayesha Qureshi — Quality & Compliance Officer</h3>
+                    <p style="margin:6px 0 8px;color:#666">Ensures QA, accreditation readiness and SOP compliance.</p>
+                    <ul style="margin:0;padding-left:18px;color:#444">
+                        <li><strong>Education:</strong> M.Sc. Medical Laboratory Science</li>
+                        <li><strong>Professional skills:</strong> Quality systems, internal audits, documentation</li>
+                        <li><strong>Experience:</strong> 7 years (quality assurance)</li>
+                    </ul>
+                </div>
+            </article>
+
+            <!-- Customer Care Manager -->
+            <article class="card">
+                <div style="font-size:2rem">📞</div>
+                <div>
+                    <h3>Mr. Omar Siddiqui — Customer Care Manager</h3>
+                    <p style="margin:6px 0 8px;color:#666">Handles patient communications, bookings and follow-ups.</p>
+                    <ul style="margin:0;padding-left:18px;color:#444">
+                        <li><strong>Education:</strong> BBA (Hospital Management)</li>
+                        <li><strong>Professional skills:</strong> Patient services, appointment coordination, CRM</li>
+                        <li><strong>Experience:</strong> 6 years (patient services)</li>
+                    </ul>
+                </div>
+            </article>
+
+        </section>
+
+        <footer style="margin-top:22px;color:#666;font-size:0.95rem">Want photos or detailed bios for any team member? I can add them.</footer>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>About Us</h4>
+                <ul>
+                    <li><a href="#">Our Story</a></li>
+                    <li><a href="#">Team</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="#">Blood Tests</a></li>
+                    <li><a href="#">Health Packages</a></li>
+                    <li><a href="#">Home Collection</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact Us</h4>
+                <ul>
+                    <li><a href="tel:+92300123456">📞 +92 (300) 123-456</a></li>
+                    <li><a href="mailto:info@medicare.com">📧 info@medicare.com</a></li>
+                    <li><a href="#">📍 123 Medical Street</a></li>
+                    <li><a href="#">Karachi, Pakistan</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 The Medicare Laboratory & Diagnostic Center. All rights reserved. | Designed by Tahami Tech for your health</p>
+        </div>
+    </footer>
+
+    <script>
+        // Dynamic year in footer
+        const currentYear = new Date().getFullYear();
+        const footerP = document.querySelector('.footer-bottom p');
+        if (footerP) footerP.textContent = footerP.textContent.replace('2024', currentYear);
+    </script>
+    </div>
+  <script src="loader-nav.js"></script>
+</body>
+</html>
+
+

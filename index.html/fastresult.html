@@ -1,0 +1,173 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fast Results � The Medicare Lab</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --primary-color: #2d970d;
+            --primary-dark: #2d9c21;
+            --secondary-color: #4ff054;
+            --accent-color: #0f550b;
+            --light-blue-bg: #e6f2ff;
+            --light-bg: #ffffff;
+            --text-dark: #1a1a1a;
+            --text-muted: #666666;
+            --card-shadow: 0 6px 20px rgba(34,197,94,0.12);
+        }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--light-bg); color: var(--text-dark); line-height:1.7; }
+        nav { background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%); padding:1rem 0; position:fixed; width:100%; top:0; z-index:1000; box-shadow: var(--card-shadow); }
+        .nav-container { max-width:1200px; margin:0 auto; padding:0 2rem; display:flex; justify-content:space-between; align-items:center; }
+        .logo { display:flex; align-items:center; gap:0.5rem; color:white; font-size:1.35rem; font-weight:700; text-decoration:none; }
+        .logo-img { width:55px; height:55px; object-fit:contain; border-radius:50%; background: linear-gradient(135deg, var(--secondary-color), var(--accent-color)); display:flex; align-items:center; justify-content:center; color:white; font-weight:800; }
+        nav ul { list-style:none; display:flex; gap:1.5rem; align-items:center; }
+        nav a { color:white; text-decoration:none; font-weight:500; position:relative; }
+        nav a::after { content:''; position:absolute; bottom:-5px; left:0; width:0; height:2px; background: rgba(255,255,255,0.85); transition: width 0.25s ease; }
+        nav a:hover::after { width:100%; }
+        .cta-btn { background: linear-gradient(135deg, var(--secondary-color), var(--accent-color)); color:white; padding:0.75rem 1.4rem; border-radius:24px; border:none; cursor:pointer; font-weight:600; }
+        .page { max-width:1100px; margin:110px auto 60px; padding:24px; }
+        .hero { display:grid; grid-template-columns: 1.2fr 0.8fr; gap:28px; align-items:center; background:linear-gradient(180deg, rgba(45,151,13,0.08), rgba(255,255,255,0)); padding:28px; border-radius:18px; }
+        .hero h1 { font-size:2.4rem; margin-bottom:16px; letter-spacing:0.3px; }
+        .hero p { color: var(--text-muted); font-size:1.05rem; line-height:1.8; }
+        .hero img { width:100%; border-radius:16px; object-fit:cover; box-shadow:0 14px 30px rgba(0,0,0,0.08); }
+        .section-title { font-size:1.7rem; margin-bottom:16px; color: var(--text-dark); }
+        .intro { max-width:760px; color: var(--text-muted); margin-bottom:24px; }
+        .highlights { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:18px; margin-top:20px; }
+        .highlight-card { background:white; border-radius:16px; padding:24px; box-shadow:var(--card-shadow); transition:transform 0.3s ease, box-shadow 0.3s ease; }
+        .highlight-card:hover { transform: translateY(-6px); box-shadow:0 18px 32px rgba(34,197,94,0.16); }
+        .highlight-card h3 { margin-bottom:12px; font-size:1.2rem; }
+        .highlight-card p { color: var(--text-muted); line-height:1.75; }
+        .stats-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:18px; margin-top:30px; }
+        .stat-box { background: #f9fff5; border-radius:16px; padding:26px; text-align:center; box-shadow:var(--card-shadow); }
+        .stat-number { font-size:2.4rem; font-weight:700; color:var(--primary-color); margin-bottom:10px; }
+        .stat-label { color:var(--text-muted); font-size:1rem; }
+        .gallery { margin-top:32px; display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:14px; }
+        .gallery img { width:100%; height:180px; object-fit:cover; border-radius:14px; box-shadow:0 12px 24px rgba(0,0,0,0.08); }
+        footer { background:#0f1419; color:white; padding:42px 2rem; margin-top:40px; }
+        .footer-content { max-width:1200px; margin:0 auto; display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:18px; }
+        .footer-section h4 { color: var(--primary-color); margin-bottom:1rem; }
+        .footer-section ul { list-style:none; padding:0; margin:0; }
+        .footer-section li { margin-bottom:0.75rem; }
+        .footer-section a { color: rgba(255,255,255,0.85); text-decoration:none; transition: color 0.25s ease; }
+        .footer-section a:hover { color: var(--secondary-color); }
+        .footer-bottom { border-top:1px solid rgba(58,185,53,0.22); padding-top:18px; margin-top:18px; text-align:center; color: rgba(255,255,255,0.72); }
+        @media (max-width: 860px) { .hero { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script>
+        const e = React.createElement;
+
+        const FeatureCard = ({ title, text }) =>
+            e('div', { className: 'highlight-card' },
+                e('h3', null, title),
+                e('p', null, text)
+            );
+
+        const StatBox = ({ value, label }) =>
+            e('div', { className: 'stat-box' },
+                e('div', { className: 'stat-number' }, value),
+                e('div', { className: 'stat-label' }, label)
+            );
+
+        const FooterSection = ({ title, text }) =>
+            e('div', { className: 'footer-section' },
+                e('h4', null, title),
+                e('p', null, text)
+            );
+
+        const App = () =>
+            e(React.Fragment, null,
+                e('nav', null,
+                    e('div', { className: 'nav-container' },
+                        e('a', { href: 'hoome.html', className: 'logo' },
+                            e('img', { src: 'Lab Logo.png', alt: 'Lab Logo', className: 'logo-img' }),
+                            e('span', null, 'The Medicare Laboratory & Diagnostic Center')
+                        ),
+                        e('ul', null,
+                            e('li', null, e('a', { href: 'service.html' }, 'Services')),
+                            e('li', null, e('a', { href: 'hoome.html#about' }, 'About')),
+                            e('li', null, e('a', { href: 'contact.html' }, 'Contact')),
+                            e('li', null, e('a', { href: 'schedule%20your%20payment.html', className: 'cta-btn' }, 'Book Test'))
+                        )
+                    )
+                ),
+                e('main', { className: 'page' },
+                    e('section', { className: 'hero' },
+                        e('div', null,
+                            e('h1', null, 'Fast Results for Better Care'),
+                            e('p', { className: 'intro' }, 'At The Medicare Lab, we understand time is critical. Our advanced testing process is designed to deliver accurate diagnostic reports quickly, so patients and doctors can make informed decisions without delay.'),
+                            e('div', { className: 'highlights' },
+                                e(FeatureCard, { title: 'Rapid Turnaround', text: 'Same-day and next-day report options are available for most routine lab tests, helping doctors start treatment sooner.' }),
+                                e(FeatureCard, { title: 'Automated Precision', text: 'Modern analyzers and validated workflows reduce processing delays while maintaining the highest level of accuracy.' }),
+                                e(FeatureCard, { title: 'Fast Digital Delivery', text: 'Secure electronic results are sent quickly to patients and clinicians, cutting waiting time and improving communication.' })
+                            )
+                        ),
+                        e('div', null,
+                            e('img', { src: 'Lab technician reviewing fast test results pic.png', alt: 'Lab technician reviewing fast test results' })
+                        )
+                    ),
+                    e('section', { style: { marginTop: '40px' } },
+                        e('h2', { className: 'section-title' }, 'Why Fast Results Matter'),
+                        e('p', { className: 'intro' }, 'Quick laboratory reporting means faster diagnoses, less uncertainty and better patient outcomes. Our team optimizes every stepfrom sample pickup to final verificationso you receive reliable results when they matter most.')
+                    ),
+                    e('section', { className: 'stats-grid' },
+                        e(StatBox, { value: '3-6 hrs', label: 'Average urgent test delivery' }),
+                        e(StatBox, { value: '99.7%', label: 'Quality-checked report accuracy' }),
+                        e(StatBox, { value: '95%', label: 'Results delivered digitally' }),
+                        e(StatBox, { value: '24/7', label: 'Support for urgent inquiries' })
+                    ),
+                    e('section', { className: 'gallery', 'aria-label': 'Fast result images' },
+                        e('img', { src: 'A lab technician preparing samples quickly pic.png', alt: 'A lab technician preparing samples quickly' }),
+                        e('img', { src: 'Digital lab report on a tablet screen pic.png', alt: 'Digital lab report on a tablet screen' }),
+                        e('img', { src: 'Quick blood sample processing in lab pic.png', alt: 'Quick blood sample processing in lab' }),
+                        e('img', { src: 'Laboratory equipment delivering fast results pic.png', alt: 'Laboratory equipment delivering fast results' })
+                    )
+                ),
+                e('footer', null,
+                    e('div', { className: 'footer-content' },
+                        e('div', { className: 'footer-section' },
+                            e('h4', null, 'About Us'),
+                            e('ul', null,
+                                e('li', null, e('a', { href: '#' }, 'Our Story')),
+                                e('li', null, e('a', { href: '#' }, 'Team'))
+                            )
+                        ),
+                        e('div', { className: 'footer-section' },
+                            e('h4', null, 'Services'),
+                            e('ul', null,
+                                e('li', null, e('a', { href: '#' }, 'Blood Tests')),
+                                e('li', null, e('a', { href: '#' }, 'Health Packages')),
+                                e('li', null, e('a', { href: '#' }, 'Home Collection'))
+                            )
+                        ),
+                        e('div', { className: 'footer-section' },
+                            e('h4', null, 'Contact Us'),
+                            e('ul', null,
+                                e('li', null, e('a', { href: 'tel:+92300123456' }, '?? +92 (300) 123-456')),
+                                e('li', null, e('a', { href: 'mailto:info@medicare.com' }, '?? info@medicare.com')),
+                                e('li', null, e('a', { href: '#' }, '?? 123 Medical Street')),
+                                e('li', null, e('a', { href: '#' }, 'Karachi, Pakistan'))
+                            )
+                        )
+                    ),
+                    e('div', { className: 'footer-bottom' },
+                        e('p', null, '� 2026 The Medicare Laboratory & Diagnostic Center. All rights reserved. | Designed by Tahami Tech for your health')
+                    )
+                )
+            );
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(e(App));
+    </script>
+  <script src="loader-nav.js"></script>
+</body>
+</html>
+
+

@@ -1,0 +1,173 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Affordable Pricing — The Medicare Lab</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --primary-color: #2d970d;
+            --primary-dark: #2d9c21;
+            --secondary-color: #4ff054;
+            --accent-color: #0f550b;
+            --light-blue-bg: #e6f2ff;
+            --dark-bg: #0f1419;
+            --light-bg: #ffffff;
+            --text-dark: #1a1a1a;
+            --text-light: #666666;
+            --border-color: #e0e0e0;
+            --shadow: 0 4px 20px rgba(32, 180, 42, 0.801);
+            --shadow-hover: 0 8px 30px rgba(35, 189, 96, 0.805);
+        }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--light-bg); color: var(--text-dark); line-height: 1.6; overflow-x: hidden; }
+        nav { background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%); padding: 1rem 0; position: fixed; width: 100%; top: 0; z-index: 1000; box-shadow: var(--shadow); }
+        .nav-container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; display:flex; justify-content:space-between; align-items:center; }
+        .logo { display:flex; align-items:center; gap:0.5rem; color:white; font-size:1.5rem; font-weight:700; text-decoration:none; }
+        .logo-img { width:55px; height:55px; object-fit:contain; background: linear-gradient(135deg, var(--secondary-color), var(--accent-color)); border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:bold; color:white; font-size:1.2rem; }
+        nav ul { list-style:none; display:flex; gap:2rem; align-items:center; }
+        nav a { color:white; text-decoration:none; font-weight:500; transition: all 0.3s ease; position:relative; }
+        nav a::after { content:''; position:absolute; bottom:-5px; left:0; width:0; height:2px; background:var(--accent-color); transition: width 0.3s ease; }
+        nav a:hover::after { width:100%; }
+        .cta-btn { background: linear-gradient(135deg, var(--secondary-color), var(--primary-dark)); color:white; padding:0.7rem 1.5rem; border-radius:25px; border:none; cursor:pointer; font-weight:600; }
+        .container{ max-width:1000px; margin:80px auto 40px; padding:20px; }
+        .hero-card { background:#fff; border-radius:16px; padding:32px; box-shadow:0 6px 24px rgba(34,197,94,0.12); }
+        .hero-card h1 { margin-bottom:14px; font-size:2.1rem; }
+        .hero-card p { color:#555; margin-bottom:16px; line-height:1.75; }
+        .pricing-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:18px; margin-top:24px; }
+        .pricing-card { background:#f7fff7; border:1px solid rgba(45,151,13,0.16); border-radius:16px; padding:22px; box-shadow:0 10px 24px rgba(34,197,94,0.08); transition:transform 0.3s ease, box-shadow 0.3s ease; }
+        .pricing-card:hover { transform:translateY(-6px); box-shadow:0 18px 32px rgba(34,197,94,0.16); }
+        .pricing-card h3 { margin-bottom:12px; font-size:1.3rem; }
+        .pricing-card p { color:#555; line-height:1.75; margin-bottom:14px; }
+        .pricing-card .price { font-size:2rem; color:var(--primary-color); margin-bottom:10px; font-weight:700; }
+        .pricing-card ul { list-style:disc; padding-left:18px; color:#444; }
+        .pricing-card li { margin-bottom:8px; }
+        footer { background: var(--dark-bg); color: white; padding: 40px 2rem; text-align: center; }
+        .footer-content { max-width:1200px; margin:0 auto; display:grid; grid-template-columns: repeat(auto-fit, minmax(250px,1fr)); gap:2rem; text-align:left; margin-bottom:2rem; }
+        .footer-section h4 { margin-bottom:1rem; color: var(--primary-color); }
+        .footer-section a { color: rgba(255,255,255,0.9); text-decoration:none; }
+        .footer-bottom { border-top:1px solid rgba(58,185,53,0.779); padding-top:2rem; text-align:center; color: rgba(255,255,255,0.7); }
+        .footer-section ul { list-style:none; padding:0; }
+        .footer-section li { margin-bottom:0.8rem; }
+        @media (max-width:768px){ .container{ margin-top:120px; } nav ul { flex-wrap:wrap; gap:1rem; } }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="hoome.html" class="logo">
+                <img src="Lab Logo.png" alt="Lab Logo" class="logo-img">
+                <span>The Medicare Laboratory & Diagnostic Center</span>
+            </a>
+            <ul>
+                <li><a href="service.html">Services</a></li>
+                <li><a href="hoome.html#about">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="schedule%20your%20payment.html" class="cta-btn">Book Test</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div style="height:40px"></div>
+        <header style="margin-bottom:24px; display:flex; align-items:center; gap:14px;">
+            <div style="font-size:2rem;">💳</div>
+            <div>
+                <h1>Affordable Pricing</h1>
+                <p style="color:#555; margin-top:8px; max-width:720px;">Transparent and budget-friendly diagnostic plans designed for every patient. Enjoy reliable lab services without surprise fees and with package options that suit your needs.</p>
+            </div>
+        </header>
+
+        <section class="hero-card">
+            <p>At The Medicare Lab, we believe quality diagnostics should be accessible. Our affordable pricing plans combine accuracy, convenience and value so patients can get the tests they need without high costs.</p>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="price">₹999</div>
+                    <h3>Basic Wellness Panel</h3>
+                    <p>Ideal for general health screening and routine follow-up.</p>
+                    <ul>
+                        <li>Complete Blood Count</li>
+                        <li>Blood Sugar</li>
+                        <li>Lipid Profile</li>
+                        <li>Liver Function</li>
+                    </ul>
+                </div>
+                <div class="pricing-card">
+                    <div class="price">₹1,699</div>
+                    <h3>Advanced Health Check</h3>
+                    <p>Includes additional metabolic and organ function tests.</p>
+                    <ul>
+                        <li>Basic Wellness Panel</li>
+                        <li>Kidney Function</li>
+                        <li>Thyroid Profile</li>
+                        <li>Vitamin D</li>
+                    </ul>
+                </div>
+                <div class="pricing-card">
+                    <div class="price">₹2,499</div>
+                    <h3>Comprehensive Care Pack</h3>
+                    <p>Best for complete preventive screening and peace of mind.</p>
+                    <ul>
+                        <li>Advanced Health Check</li>
+                        <li>Cardiac Risk Markers</li>
+                        <li>Hormonal Profile</li>
+                        <li>Infection Screening</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section style="margin-top:32px;">
+            <h2 style="font-size:1.6rem; margin-bottom:16px;">Why Choose Our Pricing?</h2>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>Transparent Rates</h3>
+                    <p>Every price is clear and easy to understand. No hidden charges, no surprises.</p>
+                </div>
+                <div class="pricing-card">
+                    <h3>Flexible Packages</h3>
+                    <p>Choose a package that matches your health goals and budget.</p>
+                </div>
+                <div class="pricing-card">
+                    <h3>Senior & Family Savings</h3>
+                    <p>Special discounts for families and senior citizen patients.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>About Us</h4>
+                <ul>
+                    <li><a href="#">Our Story</a></li>
+                    <li><a href="#">Team</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="#">Blood Tests</a></li>
+                    <li><a href="#">Health Packages</a></li>
+                    <li><a href="homecollection.html">Home Collection</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact Us</h4>
+                <ul>
+                    <li><a href="tel:+92300123456">📞 +92 (300) 123-456</a></li>
+                    <li><a href="mailto:info@medicare.com">📧 info@medicare.com</a></li>
+                    <li><a href="#">📍 123 Medical Street</a></li>
+                    <li><a href="#">Karachi, Pakistan</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy;2026 The Medicare Laboratory & Diagnostic Center. All rights reserved. | Designed by Tahami Tech for your health</p>
+        </div>
+    </footer>
+
+    <script src="loader-nav.js"></script>
+</body>
+</html>

@@ -1,0 +1,2156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>schedule your payment</title>
+</head>
+<style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-green: #22c55e;
+            --green-dark: #16a34a;
+            --green-light: #f0fdf4;
+            --green-border: #bbf7d0;
+            --white: #ffffff;
+            --gray-dark: #1a1a1a;
+            --gray-text: #666666;
+            --gray-light: #f3f4f6;
+            --success: #10b981;
+            --error: #ef4444;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to bottom right, var(--green-light), var(--white), #c8e6c9);
+            min-height: 100vh;
+            padding: 20px;
+            color: var(--gray-dark);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 20px;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            animation: slideDown 0.6s ease;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            color: var(--gray-dark);
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            color: var(--gray-text);
+        }
+
+        /* Progress Bar */
+        .progress-section {
+            margin-bottom: 50px;
+            animation: fadeIn 0.6s ease;
+        }
+
+        .progress-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 900px;
+            margin: 0 auto;
+            gap: 10px;
+        }
+
+        .progress-step {
+            display: flex;
+            align-items: center;
+            flex: 1;
+            gap: 10px;
+        }
+
+        .step-circle {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: #666;
+            background: #e0e0e0;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .step-circle.active {
+            background: linear-gradient(135deg, var(--primary-green), var(--green-dark));
+            color: white;
+            box-shadow: 0 0 20px rgba(34, 197, 94, 0.5);
+            transform: scale(1.2);
+        }
+
+        .step-circle.completed {
+            background: linear-gradient(135deg, var(--primary-green), var(--green-dark));
+            color: white;
+        }
+
+        .step-line {
+            flex: 1;
+            height: 3px;
+            background: #ddd;
+            transition: all 0.3s ease;
+        }
+
+        .step-line.completed {
+            background: linear-gradient(to right, var(--primary-green), var(--green-dark));
+        }
+
+        /* Main Content */
+        .content-wrapper {
+            max-width: 1000px;
+            margin: 0 auto;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .step-content {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .step-content.active {
+            display: block;
+            opacity: 1;
+            animation: fadeInUp 0.5s ease;
+        }
+
+        /* Step 1: Service Selection */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .service-card {
+            background: white;
+            border: 2px solid var(--green-border);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(34, 197, 94, 0.1);
+        }
+
+        .service-card:hover {
+            box-shadow: 0 8px 25px rgba(34, 197, 94, 0.25);
+            transform: translateY(-5px);
+        }
+
+        .service-card.selected {
+            background: linear-gradient(135deg, var(--primary-green), var(--green-dark));
+            color: white;
+            border-color: var(--primary-green);
+            box-shadow: 0 10px 30px rgba(34, 197, 94, 0.4);
+        }
+
+        .service-icon {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+        }
+
+        .service-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+        }
+
+        .service-card p {
+            font-size: 0.95rem;
+            opacity: 0.8;
+        }
+
+        /* Step 2: Package Selection */
+        .packages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .package-card {
+            background: white;
+            border: 2px solid var(--green-border);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(34, 197, 94, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .package-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(34, 197, 94, 0.25);
+        }
+
+        .package-card.selected {
+            border: 3px solid var(--primary-green);
+            box-shadow: 0 10px 30px rgba(34, 197, 94, 0.4);
+            transform: scale(1.05);
+        }
+
+        .package-badge {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: linear-gradient(135deg, var(--primary-green), var(--green-dark));
+            color: white;
+            padding: 8px 20px;
+            border-radius: 0 0 0 15px;
+            font-weight: bold;
+            font-size: 0.85rem;
+        }
+
+        .package-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--gray-dark);
+            margin-bottom: 10px;
+        }
+
+        .package-price {
+            font-size: 2.5rem;
+            color: var(--primary-green);
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .package-price small {
+            font-size: 1rem;
+            color: var(--gray-text);
+        }
+
+        .package-duration {
+            color: var(--gray-text);
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--green-border);
+        }
+
+        .test-list {
+            list-style: none;
+        }
+
+        .test-list li {
+            padding: 8px 0;
+            color: var(--gray-text);
+            font-size: 0.95rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--green-border);
+        }
+
+        .test-list li:last-child {
+            border-bottom: none;
+        }
+
+        .test-name {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .test-name::before {
+            content: "✓";
+            color: var(--primary-green);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .test-price {
+            font-weight: bold;
+            color: var(--primary-green);
+            background: var(--green-light);
+            padding: 3px 10px;
+            border-radius: 5px;
+            font-size: 0.85rem;
+        }
+
+        /* Step 3: Date & Time */
+        .datetime-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            background: white;
+            border: 2px solid var(--green-border);
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 2px 10px rgba(34, 197, 94, 0.1);
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            color: var(--gray-dark);
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .form-group input[type="date"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid var(--green-border);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input[type="date"]:focus {
+            outline: none;
+            border-color: var(--primary-green);
+            box-shadow: 0 0 10px rgba(34, 197, 94, 0.2);
+        }
+
+        .time-slots {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        .time-slot {
+            padding: 12px;
+            border: 2px solid var(--green-border);
+            background: var(--green-light);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            font-weight: 500;
+            color: var(--gray-dark);
+        }
+
+        .time-slot:hover:not(:disabled) {
+            background: var(--primary-green);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .time-slot.selected {
+            background: linear-gradient(135deg, var(--primary-green), var(--green-dark));
+            color: white;
+            box-shadow: 0 5px 15px rgba(34, 197, 94, 0.3);
+        }
+
+        .time-slot:disabled {
+            background: #e0e0e0;
+            color: #999;
+            cursor: not-allowed;
+            opacity: 0.5;
+        }
+
+        /* Step 4: Personal Information */
+        .form-fields {
+            background: white;
+            border: 2px solid var(--green-border);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(34, 197, 94, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .form-row.full {
+            grid-template-columns: 1fr;
+        }
+
+        .form-row input,
+        .form-row select,
+        .form-row textarea {
+            padding: 12px;
+            border: 2px solid var(--green-border);
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .form-row input:focus,
+        .form-row select:focus,
+        .form-row textarea:focus {
+            outline: none;
+            border-color: var(--primary-green);
+            box-shadow: 0 0 10px rgba(34, 197, 94, 0.2);
+        }
+
+        .form-row textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        /* Step 5: Payment */
+        .payment-summary {
+            background: white;
+            border: 2px solid var(--green-border);
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(34, 197, 94, 0.1);
+        }
+
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--green-border);
+        }
+
+        .summary-item:last-child {
+            border-bottom: none;
+        }
+
+        .summary-label {
+            color: var(--gray-text);
+            font-weight: 500;
+        }
+
+        .summary-value {
+            font-weight: bold;
+            color: var(--gray-dark);
+        }
+
+        .total-amount {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(135deg, var(--green-light), white);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            border-top: 2px solid var(--green-border);
+        }
+
+        .total-label {
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+
+        .total-value {
+            font-size: 2rem;
+            color: var(--primary-green);
+            font-weight: bold;
+        }
+
+        .tests-breakdown {
+            background: var(--green-light);
+            border-left: 4px solid var(--primary-green);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .tests-breakdown h4 {
+            font-weight: bold;
+            margin-bottom: 12px;
+            color: var(--gray-dark);
+        }
+
+        .test-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 6px 0;
+            font-size: 0.95rem;
+            color: var(--gray-text);
+            border-bottom: 1px solid var(--green-border);
+        }
+
+        .test-item:last-child {
+            border-bottom: none;
+        }
+
+        /* Payment Methods */
+        .payment-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .payment-btn {
+            background: white;
+            border: 2px solid var(--green-border);
+            border-radius: 10px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .payment-btn:hover {
+            box-shadow: 0 5px 15px rgba(34, 197, 94, 0.2);
+            border-color: var(--primary-green);
+        }
+
+        .payment-btn.selected {
+            background: var(--green-light);
+            border: 2px solid var(--primary-green);
+            box-shadow: 0 5px 15px rgba(34, 197, 94, 0.3);
+        }
+
+        .payment-btn strong {
+            display: block;
+            color: var(--gray-dark);
+            margin-bottom: 5px;
+            font-size: 1.1rem;
+        }
+
+        .payment-btn span {
+            font-size: 0.85rem;
+            color: var(--gray-text);
+        }
+
+        /* Bank Account Display */
+        .account-details {
+            background: linear-gradient(135deg, var(--green-light), white);
+            border: 2px solid var(--primary-green);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(34, 197, 94, 0.1);
+            display: none;
+        }
+
+        .account-details.show {
+            display: block;
+            animation: slideDown 0.3s ease;
+        }
+
+        .account-details h4 {
+            font-weight: bold;
+            color: var(--gray-dark);
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .account-info {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .account-info p {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--green-border);
+        }
+
+        .account-info p:last-child {
+            border-bottom: none;
+        }
+
+        .account-label {
+            font-weight: bold;
+            color: var(--gray-text);
+        }
+
+        .account-value {
+            font-weight: bold;
+            font-family: 'Courier New', monospace;
+            color: var(--gray-dark);
+            font-size: 1.1rem;
+        }
+
+        /* Screenshot Upload */
+        .screenshot-section {
+            background: white;
+            border: 2px solid var(--green-border);
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(34, 197, 94, 0.1);
+        }
+
+        .upload-area {
+            border: 3px dashed var(--primary-green);
+            border-radius: 12px;
+            padding: 40px;
+            text-align: center;
+            background: var(--green-light);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 20px;
+        }
+
+        .upload-area:hover {
+            border-color: var(--green-dark);
+            background: #c8e6c9;
+        }
+
+        .upload-area input {
+            display: none;
+        }
+
+        .upload-icon {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .upload-text {
+            font-weight: bold;
+            color: var(--gray-dark);
+            margin-bottom: 5px;
+        }
+
+        .upload-hint {
+            color: var(--gray-text);
+            font-size: 0.9rem;
+        }
+
+        .screenshot-preview {
+            position: relative;
+            background: #f0f0f0;
+            border-radius: 12px;
+            overflow: hidden;
+            max-height: 400px;
+            margin-bottom: 15px;
+            display: none;
+        }
+
+        .screenshot-preview.show {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .screenshot-preview img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+        }
+
+        .screenshot-remove {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #ef4444;
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .screenshot-remove:hover {
+            background: #dc2626;
+            transform: scale(1.1);
+        }
+
+        .upload-success {
+            background: var(--green-light);
+            border: 1px solid var(--primary-green);
+            color: var(--primary-green);
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 0.95rem;
+            font-weight: bold;
+            display: none;
+        }
+
+        .upload-success.show {
+            display: block;
+        }
+
+        /* Transaction ID */
+        .transaction-section {
+            background: white;
+            border: 2px solid var(--green-border);
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(34, 197, 94, 0.1);
+        }
+
+        .transaction-section label {
+            display: block;
+            font-weight: bold;
+            color: var(--gray-dark);
+            margin-bottom: 10px;
+            font-size: 1rem;
+        }
+
+        .transaction-section input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid var(--green-border);
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 1rem;
+            margin-bottom: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .transaction-section input:focus {
+            outline: none;
+            border-color: var(--primary-green);
+            box-shadow: 0 0 10px rgba(34, 197, 94, 0.2);
+        }
+
+        .transaction-hint {
+            font-size: 0.85rem;
+            color: var(--gray-text);
+        }
+
+        /* Verify Button */
+        .verify-section {
+            background: white;
+            border: 2px solid var(--green-border);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(34, 197, 94, 0.1);
+            display: none;
+        }
+
+        .verify-section.show {
+            display: block;
+            animation: slideDown 0.3s ease;
+        }
+
+        .verify-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, var(--primary-green), var(--green-dark));
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            }
+
+        .verify-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(34, 197, 94, 0.3);
+        }
+
+        .verify-badge {
+            background: linear-gradient(135deg, var(--green-light), white);
+            border: 2px solid var(--success);
+            border-radius: 12px;
+            padding: 20px;
+            display: none;
+            animation: slideDown 0.3s ease;
+        }
+
+        .verify-badge.show {
+            display: block;
+        }
+
+        .verify-badge-content {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .verify-checkmark {
+            background: var(--success);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .verify-text h4 {
+            color: var(--success);
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .verify-text p {
+            color: var(--gray-text);
+            font-size: 0.95rem;
+        }
+
+        /* Terms */
+        .terms-section {
+            background: var(--green-light);
+            border-left: 4px solid var(--primary-green);
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 30px;
+        }
+
+        .terms-section label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+
+        .terms-section input {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .terms-text {
+            font-size: 0.95rem;
+            color: var(--gray-text);
+        }
+
+        /* Buttons */
+        .button-group {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        .btn-back {
+            background: #e0e0e0;
+            color: var(--gray-dark);
+        }
+
+        .btn-back:hover {
+            background: #bdbdbd;
+            transform: translateY(-2px);
+        }
+
+        .btn-next {
+            background: linear-gradient(135deg, var(--primary-green), var(--green-dark));
+            color: white;
+        }
+
+        .btn-next:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(34, 197, 94, 0.3);
+        }
+
+        .btn-next:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Confirmation Page */
+        .confirmation-page {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .confirmation-page.show {
+            display: block;
+        }
+
+        .confirmation-header {
+            text-align: center;
+            background: white;
+            border: 2px solid var(--green-border);
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(34, 197, 94, 0.1);
+        }
+
+        .checkmark-circle {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary-green), var(--green-dark));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+            margin: 0 auto 20px;
+            animation: scaleIn 0.5s ease;
+        }
+
+        .confirmation-title {
+            font-size: 2.5rem;
+            color: var(--gray-dark);
+            margin-bottom: 10px;
+        }
+
+        .confirmation-text {
+            font-size: 1.1rem;
+            color: var(--gray-text);
+        }
+
+        .confirmation-code {
+            background: linear-gradient(135deg, var(--green-light), white);
+            border: 2px solid var(--primary-green);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(34, 197, 94, 0.1);
+        }
+
+        .code-label {
+            color: var(--gray-text);
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .code-value {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary-green);
+            font-family: 'Courier New', monospace;
+            letter-spacing: 3px;
+        }
+
+        .details-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .details-box {
+            background: white;
+            border: 2px solid var(--green-border);
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 2px 10px rgba(34, 197, 94, 0.1);
+        }
+
+        .details-box h3 {
+            font-size: 1.3rem;
+            color: var(--gray-dark);
+            margin-bottom: 15px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--green-border);
+        }
+
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--green-border);
+            font-size: 0.95rem;
+        }
+
+        .detail-item:last-child {
+            border-bottom: none;
+        }
+
+        .detail-label {
+            color: var(--gray-text);
+            font-weight: 500;
+        }
+
+        .detail-value {
+            font-weight: bold;
+            color: var(--gray-dark);
+            text-align: right;
+        }
+
+        .lab-info {
+            background: var(--green-light);
+            border-left: 4px solid var(--primary-green);
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 5px;
+        }
+
+        .lab-info p {
+            font-size: 0.9rem;
+            margin: 5px 0;
+            color: var(--gray-text);
+        }
+
+        .lab-info strong {
+            color: var(--gray-dark);
+        }
+
+        .confirmation-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-home, .btn-print, .btn-download {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-home {
+            background: linear-gradient(135deg, var(--primary-green), var(--green-dark));
+            color: white;
+        }
+
+        .btn-home:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(34, 197, 94, 0.3);
+        }
+
+        .btn-print {
+            background: #e0e0e0;
+            color: var(--gray-dark);
+        }
+
+        .btn-print:hover {
+            background: #bdbdbd;
+        }
+
+        .btn-download {
+            background: linear-gradient(135deg, var(--primary-green), var(--green-dark));
+            color: white;
+        }
+
+        .btn-download:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(34, 197, 94, 0.3);
+        }
+
+        /* Animations */
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .services-grid,
+            .packages-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .datetime-section {
+                grid-template-columns: 1fr;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .time-slots {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .payment-methods {
+                grid-template-columns: 1fr;
+            }
+
+            .details-section {
+                grid-template-columns: 1fr;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+        }
+    </style>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>📅 Schedule Your Test</h1>
+            <p>Easy booking in just 5 simple steps</p>
+        </div>
+
+        <!-- Progress Bar -->
+        <div class="progress-section">
+            <div class="progress-bar">
+                <div class="progress-step">
+                    <div class="step-circle active" id="step1Circle">1</div>
+                    <div class="step-line"></div>
+                </div>
+                <div class="progress-step">
+                    <div class="step-circle" id="step2Circle">2</div>
+                    <div class="step-line"></div>
+                </div>
+                <div class="progress-step">
+                    <div class="step-circle" id="step3Circle">3</div>
+                    <div class="step-line"></div>
+                </div>
+                <div class="progress-step">
+                    <div class="step-circle" id="step4Circle">4</div>
+                    <div class="step-line"></div>
+                </div>
+                <div class="progress-step">
+                    <div class="step-circle" id="step5Circle">5</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="content-wrapper">
+            <!-- STEP 1: Service Selection -->
+            <div class="step-content active" id="step1">
+                <h2 style="font-size: 1.8rem; margin-bottom: 25px; color: var(--gray-dark);">Step 1: Select Service</h2>
+                <div class="services-grid" id="servicesGrid"></div>
+                <div class="button-group">
+                    <button class="btn btn-back" onclick="previousStep()">← Back</button>
+                    <button class="btn btn-next" onclick="nextStep()" id="step1Btn">Continue to Packages →</button>
+                </div>
+            </div>
+
+            <!-- STEP 2: Package Selection -->
+            <div class="step-content" id="step2">
+                <h2 style="font-size: 1.8rem; margin-bottom: 25px; color: var(--gray-dark);">Step 2: Select Package</h2>
+                <div class="packages-grid" id="packagesGrid"></div>
+                <div class="button-group">
+                    <button class="btn btn-back" onclick="previousStep()">← Back</button>
+                    <button class="btn btn-next" onclick="nextStep()" id="step2Btn">Continue to Schedule →</button>
+                </div>
+            </div>
+
+            <!-- STEP 3: Date & Time -->
+            <div class="step-content" id="step3">
+                <h2 style="font-size: 1.8rem; margin-bottom: 25px; color: var(--gray-dark);">Step 3: Select Date & Time</h2>
+                <div class="datetime-section">
+                    <div class="form-group">
+                        <label>📅 Select Date</label>
+                        <input type="date" id="dateInput" min="">
+                    </div>
+                    <div class="form-group">
+                        <label>⏰ Select Time Slot</label>
+                        <div class="time-slots" id="timeSlotsContainer"></div>
+                    </div>
+                </div>
+                <div class="button-group">
+                    <button class="btn btn-back" onclick="previousStep()">← Back</button>
+                    <button class="btn btn-next" onclick="nextStep()" id="step3Btn">Continue to Personal Info →</button>
+                </div>
+            </div>
+
+            <!-- STEP 4: Personal Information -->
+            <div class="step-content" id="step4">
+                <h2 style="font-size: 1.8rem; margin-bottom: 25px; color: var(--gray-dark);">Step 4: Personal Information</h2>
+                <div class="form-fields">
+                    <div class="form-row">
+                        <input type="text" id="fullName" placeholder="Full Name" />
+                        <input type="email" id="email" placeholder="Email Address" />
+                    </div>
+                    <div class="form-row">
+                        <input type="tel" id="phone" placeholder="Phone Number" />
+                        <select id="gender">
+                            <option value="">Select Gender</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-row">
+                        <input type="number" id="age" placeholder="Age" />
+                        <input type="text" id="address" placeholder="Address" />
+                    </div>
+                    <div class="form-row full">
+                        <textarea id="notes" placeholder="Any special notes or allergies?"></textarea>
+                    </div>
+                </div>
+                <div class="button-group">
+                    <button class="btn btn-back" onclick="previousStep()">← Back</button>
+                    <button class="btn btn-next" onclick="nextStep()" id="step4Btn">Continue to Payment →</button>
+                </div>
+            </div>
+
+            <!-- STEP 5: Payment -->
+            <div class="step-content" id="step5">
+                <h2 style="font-size: 1.8rem; margin-bottom: 25px; color: var(--gray-dark);">Step 5: Payment Verification</h2>
+
+                <!-- Order Summary -->
+                <div class="payment-summary">
+                    <h3 style="font-size: 1.2rem; margin-bottom: 15px; color: var(--gray-dark);">📋 Order Summary</h3>
+                    <div class="summary-item">
+                        <span class="summary-label">Service:</span>
+                        <span class="summary-value" id="summaryService">-</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="summary-label">Package:</span>
+                        <span class="summary-value" id="summaryPackage">-</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="summary-label">Date & Time:</span>
+                        <span class="summary-value" id="summaryDateTime">-</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="summary-label">Patient Name:</span>
+                        <span class="summary-value" id="summaryPatient">-</span>
+                    </div>
+
+                    <!-- Tests Breakdown -->
+                    <div class="tests-breakdown">
+                        <h4>✓ Tests Included:</h4>
+                        <div id="testsList"></div>
+                    </div>
+
+                    <div class="total-amount">
+                        <span class="total-label">💰 Total Amount:</span>
+                        <span class="total-value" id="totalAmount">Rs. 0</span>
+                    </div>
+                </div>
+
+                <!-- Payment Methods -->
+                <div style="background: white; border: 2px solid var(--green-border); border-radius: 12px; padding: 25px; margin-bottom: 30px; box-shadow: 0 2px 10px rgba(34, 197, 94, 0.1);">
+                    <h3 style="font-size: 1.2rem; margin-bottom: 15px; color: var(--gray-dark);">💳 Payment Method</h3>
+                    <div class="payment-methods">
+                        <button class="payment-btn selected" onclick="selectPaymentMethod('card', this)">
+                            <strong>💳 Credit Card</strong>
+                            <span>Visa, Mastercard</span>
+                        </button>
+                        <button class="payment-btn" onclick="selectPaymentMethod('bank', this)">
+                            <strong>🏦 Bank Transfer</strong>
+                            <span>Direct deposit</span>
+                        </button>
+                        <button class="payment-btn" onclick="selectPaymentMethod('easypaisa', this)">
+                            <strong>📱 EasyPaisa</strong>
+                            <span>Mobile wallet</span>
+                        </button>
+                        <button class="payment-btn" onclick="selectPaymentMethod('jazz', this)">
+                            <strong>📱 JazzCash</strong>
+                            <span>Mobile wallet</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Bank Account Details -->
+                <div class="account-details" id="accountDetails">
+                    <h4>✓ Payment Account Details</h4>
+                    <div class="account-info" id="accountInfo"></div>
+                </div>
+
+                <!-- Screenshot Upload -->
+                <div class="screenshot-section">
+                    <h3 style="font-size: 1.2rem; margin-bottom: 15px; color: var(--gray-dark);">📸 Upload Payment Proof / Screenshot</h3>
+                    <label class="upload-area" onclick="document.getElementById('screenshotInput').click()">
+                        <div class="upload-icon">📤</div>
+                        <div class="upload-text">Upload your screenshot</div>
+                        <div class="upload-hint">Click here to upload payment proof.</div>
+                        <input type="file" id="screenshotInput" accept="image/*" onchange="handleScreenshot(event)" />
+                    </label>
+                    <div id="screenshotNote" style="font-size: 0.9rem; color: var(--gray-text); margin-bottom: 15px;"></div>
+                    <div class="screenshot-preview" id="screenshotPreview">
+                        <img id="screenshotImage" src="" alt="Payment Screenshot" />
+                        <button class="screenshot-remove" onclick="removeScreenshot()">✕</button>
+                    </div>
+                    <div class="upload-success" id="uploadSuccess">✓ Screenshot uploaded successfully</div>
+                </div>
+
+                <!-- Transaction ID -->
+                <div class="transaction-section">
+                    <label>📝 Transaction/Reference ID</label>
+                    <p style="color: var(--gray-text); margin-bottom: 10px; font-size: 0.95rem;">
+                        Enter the transaction reference number from your receipt or bank confirmation
+                    </p>
+                    <input type="text" id="transactionId" placeholder="e.g., TXN123456789 or Reference ID" />
+                    <p class="transaction-hint">This will help confirm your payment quickly</p>
+                </div>
+
+                <!-- Terms -->
+                <div class="terms-section">
+                    <label>
+                        <input type="checkbox" id="agreeTerms" checked />
+                        <span class="terms-text">I agree to the terms and conditions, privacy policy, and confirm that I have completed the payment</span>
+                    </label>
+                </div>
+
+                <div class="button-group">
+                    <button class="btn btn-back" onclick="previousStep()">← Back</button>
+                    <button class="btn btn-next" onclick="completeBooking()" id="step5Btn">✓ Complete Booking</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Confirmation Page -->
+        <div class="confirmation-page" id="confirmationPage">
+            <div class="confirmation-header">
+                <div class="checkmark-circle">✓</div>
+                <h1 class="confirmation-title">✅ Booking Confirmed!</h1>
+                <p class="confirmation-text">Your appointment has been successfully scheduled and payment verified.</p>
+            </div>
+
+            <div class="confirmation-code">
+                <div class="code-label">Confirmation Code</div>
+                <div class="code-value" id="confirmationCode">MED000000</div>
+            </div>
+
+            <!-- Verification Badge -->
+            <div style="background: linear-gradient(135deg, var(--green-light), white); border: 2px solid var(--success); border-radius: 12px; padding: 20px; margin-bottom: 30px; box-shadow: 0 2px 10px rgba(34, 197, 94, 0.1);">
+                <div style="display: flex; align-items: center; gap: 15px;">
+                    <div style="background: var(--success); color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; flex-shrink: 0;">✓</div>
+                    <div>
+                        <h4 style="color: var(--success); font-weight: bold; margin-bottom: 5px;">✓ Payment Verified</h4>
+                        <p style="color: var(--gray-text); font-size: 0.95rem;">Transaction ID: <span id="confirmTransactionId">-</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Appointment Details -->
+            <div class="details-section">
+                <div class="details-box">
+                    <h3>📅 Appointment Details</h3>
+                    <div class="detail-item">
+                        <span class="detail-label">Service:</span>
+                        <span class="detail-value" id="confirmService">-</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Package:</span>
+                        <span class="detail-value" id="confirmPackage">-</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Date:</span>
+                        <span class="detail-value" id="confirmDate">-</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Time:</span>
+                        <span class="detail-value" id="confirmTime">-</span>
+                    </div>
+                    <div style="background: var(--green-light); border-left: 4px solid var(--primary-green); padding: 12px; margin-top: 15px; border-radius: 5px;">
+                        <p style="font-size: 0.9rem; margin: 5px 0; color: var(--gray-text);">
+                            Amount: <strong style="color: var(--primary-green);" id="confirmAmount">Rs. 0</strong><br>
+                            Method: <strong id="confirmMethod">-</strong><br>
+                            Status: <strong style="color: var(--success);">✓ Verified</strong>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="details-box">
+                    <h3>👤 Your Details</h3>
+                    <div class="detail-item">
+                        <span class="detail-label">Name:</span>
+                        <span class="detail-value" id="confirmName">-</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Email:</span>
+                        <span class="detail-value" id="confirmEmail">-</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Phone:</span>
+                        <span class="detail-value" id="confirmPhone">-</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Gender:</span>
+                        <span class="detail-value" id="confirmGender">-</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Age:</span>
+                        <span class="detail-value" id="confirmAge">-</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Address:</span>
+                        <span class="detail-value" id="confirmAddress">-</span>
+                    </div>
+                    <div class="lab-info">
+                        <strong>🏥 Lab Full Address</strong><br>
+                        <p>The Medicare & Diagnostic Laboratory</p>
+                        <p>📍 123 Medical Street, Suite 100</p>
+                        <p>Karachi, Sindh 75000, Pakistan</p>
+                        <p><strong>📞</strong> +92 (300) 123-4567</p>
+                        <p><strong>📧</strong> info@medicare.com</p>
+                        <p><strong>🕐</strong> Mon-Sat: 8 AM - 8 PM</p>
+                        <p style="margin-top: 5px;">Sunday: 10 AM - 4 PM</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tests Breakdown -->
+            <div class="details-box">
+                <h3>🔬 Tests Included</h3>
+                <div id="confirmTestsList"></div>
+            </div>
+
+            <!-- Payment Proof -->
+            <div class="details-box" id="paymentProofBox" style="display: none;">
+                <h3>📸 Payment Proof</h3>
+                <div style="background: #f0f0f0; border-radius: 12px; overflow: hidden; max-height: 400px;">
+                    <img id="confirmScreenshot" src="" alt="Payment Screenshot" style="width: 100%; height: auto; object-fit: contain;" />
+                </div>
+                <p style="font-size: 0.85rem; color: var(--success); font-weight: bold; margin-top: 10px;">✓ Payment screenshot verified and stored</p>
+            </div>
+
+            <!-- Notifications -->
+            <div style="background: var(--green-light); border-left: 4px solid var(--primary-green); border-radius: 8px; padding: 15px; margin-bottom: 30px;">
+                <p style="font-size: 0.9rem; color: var(--gray-text); line-height: 1.6;">
+                    📧 Confirmation email sent to <strong id="notifyEmail">-</strong><br>
+                    📱 SMS reminder will be sent 24 hours before your appointment<br>
+                    📍 Lab Address: 123 Medical Street, Suite 100, Karachi, Sindh 75000, Pakistan<br>
+                    ✓ Your payment has been verified and recorded
+                </p>
+            </div>
+
+            <div class="confirmation-buttons">
+                <button class="btn-home" onclick="goHome()">Back to Home</button>
+                <button class="btn-print" onclick="printConfirmation()">Print Confirmation</button>
+                <button class="btn-download" onclick="alert('Download functionality coming soon!')">Download Receipt</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Data
+        const services = [
+            { id: 1, name: 'Blood Tests', icon: '🩸', description: 'Complete blood work analysis' },
+            { id: 2, name: 'Microbiology', icon: '🦠', description: 'Microorganism testing' },
+            { id: 3, name: 'Health Checkup', icon: '💪', description: 'Comprehensive health screening' },
+            { id: 4, name: 'Ultrasound', icon: '📡', description: 'Advanced ultrasound imaging' },
+            { id: 5, name: 'Urine Test', icon: '🧪', description: 'Complete urine analysis and screening' }
+        ];
+
+        const packages = [
+            {
+                id: 1,
+                name: 'Basic Package',
+                price: 2500,
+                tests: [
+                    { name: 'CBC Test', price: 800 },
+                    { name: 'Blood Sugar', price: 500 },
+                    { name: 'Blood Pressure Check', price: 200 },
+                    { name: 'Urine Test', price: 900 }
+                ],
+                duration: '30 mins',
+                popular: false
+            },
+            {
+                id: 2,
+                name: 'Premium Package',
+                price: 5999,
+                tests: [
+                    { name: 'Complete Blood Work', price: 1500 },
+                    { name: 'Urine Test', price: 900 },
+                    { name: 'ECG', price: 1500 },
+                    { name: 'Abdominal Ultrasound', price: 2000 }
+                ],
+                duration: '45 mins',
+                popular: true
+            },
+            {
+                id: 3,
+                name: 'Executive Package',
+                price: 9999,
+                tests: [
+                    { name: 'Complete Blood Work', price: 1500 },
+                    { name: 'ECG', price: 1500 },
+                    { name: 'Abdominal Ultrasound', price: 2000 },
+                    { name: 'Comprehensive Health Assessment', price: 1500 }
+                ],
+                duration: '2 hours',
+                popular: false
+            }
+        ];
+        const serviceTests = {
+            1: [
+                { name: 'CBC Test', price: 800 },
+                { name: 'Blood Sugar', price: 500 },
+                { name: 'Blood Pressure Check', price: 200 },
+                { name: 'Complete Blood Work', price: 1500 }
+            ],
+            2: [
+                { name: 'Blood Culture', price: 1600 },
+                { name: 'Urine Culture', price: 900 },
+                { name: 'Stool Analysis', price: 800 },
+                { name: 'Throat Culture', price: 1200 }
+            ],
+            3: [
+                { name: 'Complete Blood Work', price: 1500 },
+                { name: 'ECG', price: 1500 },
+                { name: 'Abdominal Ultrasound', price: 2000 },
+                { name: 'Comprehensive Health Assessment', price: 1500 }
+            ],
+            4: [
+                { name: 'Abdominal Ultrasound', price: 2000 },
+                { name: 'Pelvic Ultrasound', price: 1800 },
+                { name: 'Thyroid Ultrasound', price: 1700 },
+                { name: 'Doppler Ultrasound', price: 2200 }
+            ],
+            5: [
+                { name: 'Urinalysis', price: 800 },
+                { name: 'Urine DR Screening', price: 900 },
+                { name: 'Urine Culture', price: 1200 },
+                { name: 'Microalbumin', price: 700 },
+                { name: 'Urine Protein Test', price: 650 }
+            ]
+        };
+
+        const bankAccounts = {
+            card: {
+                name: '💳 Credit Card',
+                info: 'Visa, Mastercard cards accepted'
+            },
+            bank: {
+                banks: [
+                    {
+                        name: '🏦 HBL Bank',
+                        account: '1234567890123456',
+                        iban: 'PK36HBLC0001234567890123456'
+                    },
+                    {
+                        name: '🏦 UBL Bank',
+                        account: '9876543210987654',
+                        iban: 'PK99UMLC9876543210987654321'
+                    }
+                ]
+            },
+            easypaisa: {
+                name: '📱 EasyPaisa',
+                account: '03001234567',
+                holder: 'The Medicare & Diagnostic Lab',
+                description: 'Send payment to this EasyPaisa number'
+            },
+            jazz: {
+                name: '📱 JazzCash',
+                account: '03119876543',
+                holder: 'The Medicare & Diagnostic Lab',
+                description: 'Send payment to this JazzCash number'
+            }
+        };
+
+        const timeSlots = [
+            '09:00 AM', '09:30 AM', '10:00 AM', '10:30 AM',
+            '11:00 AM', '11:30 AM', '02:00 PM', '02:30 PM',
+            '03:00 PM', '03:30 PM', '04:00 PM', '04:30 PM'
+        ];
+
+        const disabledTimes = ['10:30 AM', '03:30 PM'];
+
+        // Admin email to receive booking confirmations
+        const adminEmail = 'tahamitech@gmail.com';
+
+        // State
+        let currentStep = 1;
+        let selectedService = null;
+        let selectedPackage = null;
+        let selectedDate = null;
+        let selectedTime = null;
+        let selectedPaymentMethod = 'card';
+        let paymentScreenshot = null;
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeServices();
+            initializeTimeSlots();
+            setMinDate();
+            updateCompleteBookingBtn();
+
+            // URL parameters se pre-fill karo
+            const params = new URLSearchParams(window.location.search);
+            const urlStep = params.get('step');
+            const urlServiceId = params.get('serviceId');
+            const urlPackageName = params.get('packageName');
+            const urlPrice = params.get('price');
+            const urlTests = params.get('tests');
+
+            if (urlStep === '3' && urlPackageName && urlPrice) {
+                selectedService = parseInt(urlServiceId) || 3;
+                let parsedTests = [{name: urlPackageName, price: parseInt(urlPrice)}];
+                try { if (urlTests) parsedTests = JSON.parse(urlTests); } catch(e) {}
+
+                selectedPackage = {
+                    id: 'url-' + params.get('package'),
+                    name: urlPackageName,
+                    price: parseInt(urlPrice),
+                    tests: parsedTests
+                };
+
+                currentStep = 3;
+                updateProgressBar();
+                showStep(3);
+            } else {
+                initializePackages();
+                updateSummary();
+            }
+        });
+
+        function initializeServices() {
+            const container = document.getElementById('servicesGrid');
+            container.innerHTML = services.map(service => `
+                <div class="service-card" onclick="selectService(${service.id})">
+                    <div class="service-icon">${service.icon}</div>
+                    <h3>${service.name}</h3>
+                    <p>${service.description}</p>
+                </div>
+            `).join('');
+        }
+
+        function initializePackages() {
+            const container = document.getElementById('packagesGrid');
+
+            // If a service is selected, show all individual tests (unique) with price,
+            // then append the Premium Package at the end.
+            if (selectedService) {
+                const tests = serviceTests[selectedService] || [];
+                let html = '';
+                tests.forEach(test => {
+                    const safeName = test.name.replace(/'/g, "\\'");
+                    html += `
+                        <div class="package-card" data-test-name="${safeName}" onclick="selectTest('${safeName}', ${test.price}, this)">
+                            <div class="package-name">${test.name}</div>
+                            <div class="package-price">Rs. ${test.price.toLocaleString()}</div>
+                            <div class="package-duration">Single test</div>
+                        </div>
+                    `;
+                });
+
+                if (tests.length > 0) {
+                    const totalPrice = tests.reduce((sum, test) => sum + test.price, 0);
+                    const service = services.find(s => s.id === selectedService);
+                    const serviceLabel = service ? service.name : 'Service';
+                    html += `
+                        <div class="package-card" data-pkg-id="${900 + selectedService}" onclick="selectPackage(${900 + selectedService})">
+                            <div class="package-badge">✅ Complete ${serviceLabel} Package</div>
+                            <div class="package-name">Complete ${serviceLabel} Package</div>
+                            <div class="package-price">Rs. ${totalPrice.toLocaleString()}<small>/package</small></div>
+                            <div class="package-duration">Includes all ${serviceLabel.toLowerCase()} tests</div>
+                            <ul class="test-list">
+                                ${tests.map(test => `
+                                    <li>
+                                        <span class="test-name">${test.name}</span>
+                                        <span class="test-price">Rs. ${test.price.toLocaleString()}</span>
+                                    </li>
+                                `).join('')}
+                            </ul>
+                        </div>
+                    `;
+                }
+
+                // Append the Premium Package last (if exists)
+                const premium = packages.find(p => p.popular) || packages.find(p => /premium/i.test(p.name));
+                if (premium) {
+                    html += `
+                        <div class="package-card" data-pkg-id="${premium.id}" onclick="selectPackage(${premium.id})">
+                            <div class="package-badge">⭐ Popular</div>
+                            <div class="package-name">${premium.name}</div>
+                            <div class="package-price">Rs. ${premium.price.toLocaleString()}<small>/package</small></div>
+                            <div class="package-duration">⏱️ ${premium.duration}</div>
+                            <ul class="test-list">
+                                ${premium.tests.map(test => `
+                                    <li>
+                                        <span class="test-name">${test.name}</span>
+                                        <span class="test-price">Rs. ${test.price.toLocaleString()}</span>
+                                    </li>
+                                `).join('')}
+                            </ul>
+                        </div>
+                    `;
+                }
+
+                container.innerHTML = html;
+            } else {
+                // Default behaviour when no service is selected: show packages as before
+                container.innerHTML = packages.map(pkg => `
+                    <div class="package-card" data-pkg-id="${pkg.id}" onclick="selectPackage(${pkg.id})">
+                        ${pkg.popular ? '<div class="package-badge">⭐ Popular</div>' : ''}
+                        <div class="package-name">${pkg.name}</div>
+                        <div class="package-price">Rs. ${pkg.price.toLocaleString()}<small>/package</small></div>
+                        <div class="package-duration">⏱️ ${pkg.duration}</div>
+                        <ul class="test-list">
+                            ${pkg.tests.map(test => `
+                                <li>
+                                    <span class="test-name">${test.name}</span>
+                                    <span class="test-price">Rs. ${test.price.toLocaleString()}</span>
+                                </li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                `).join('');
+            }
+        }
+
+        function initializeTimeSlots() {
+            const container = document.getElementById('timeSlotsContainer');
+            container.innerHTML = timeSlots.map((time, index) => {
+                const isDisabled = disabledTimes.includes(time);
+                return `
+                    <button class="time-slot ${isDisabled ? 'disabled' : ''}" 
+                            onclick="selectTime('${time}')" 
+                            ${isDisabled ? 'disabled' : ''}>
+                        ${time}${isDisabled ? '<br><span style="font-size: 0.7rem;">✕</span>' : ''}
+                    </button>
+                `;
+            }).join('');
+        }
+
+        function setMinDate() {
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('dateInput').setAttribute('min', today);
+            document.getElementById('dateInput').addEventListener('change', function() {
+                selectedDate = this.value;
+                updateSummary();
+            });
+        }
+
+        function selectService(id) {
+            selectedService = id;
+            document.querySelectorAll('.service-card').forEach((card, index) => {
+                if (services[index].id === id) {
+                    card.classList.add('selected');
+                } else {
+                    card.classList.remove('selected');
+                }
+            });
+            selectedPackage = null;
+            updateSummary();
+            // Re-render packages view based on selected service
+            initializePackages();
+        }
+
+        function selectPackage(id) {
+            if (id >= 900 && id < 1000 && selectedService) {
+                const serviceId = id - 900;
+                const tests = serviceTests[serviceId] || [];
+                const service = services.find(s => s.id === serviceId);
+                selectedPackage = {
+                    id: id,
+                    name: `Complete ${service ? service.name : 'Service'} Package`,
+                    price: tests.reduce((sum, test) => sum + test.price, 0),
+                    tests: tests
+                };
+            } else {
+                selectedPackage = packages.find(p => p.id === id);
+            }
+
+            document.querySelectorAll('.package-card').forEach(card => {
+                const pkgId = card.dataset.pkgId ? Number(card.dataset.pkgId) : null;
+                if (pkgId && pkgId === id) {
+                    card.classList.add('selected');
+                } else {
+                    card.classList.remove('selected');
+                }
+            });
+            updateSummary();
+        }
+
+        function selectTest(testName, price, el) {
+            // create a lightweight selectedPackage for a single test
+            selectedPackage = {
+                id: 'test-' + testName.replace(/\s+/g, '_'),
+                name: testName,
+                price: price,
+                tests: [{ name: testName, price: price }]
+            };
+            document.querySelectorAll('.package-card').forEach(card => card.classList.remove('selected'));
+            if (el && el.classList) el.classList.add('selected');
+            updateSummary();
+        }
+      
+        function selectDate(date) {
+            selectedDate = date;
+            document.getElementById('dateInput').value = date;
+            updateSummary();
+        }
+
+        function selectTime(time) {
+            selectedTime = time;
+            document.querySelectorAll('.time-slot').forEach(btn => {
+                if (btn.textContent.includes(time)) {
+                    btn.classList.add('selected');
+                } else {
+                    btn.classList.remove('selected');
+                }
+            });
+            updateSummary();
+        }
+
+        function selectPaymentMethod(method, button) {
+            selectedPaymentMethod = method;
+            document.querySelectorAll('.payment-btn').forEach(btn => {
+                btn.classList.remove('selected');
+            });
+            if (button) {
+                button.classList.add('selected');
+            }
+
+            // Show account details
+            const accountDetails = document.getElementById('accountDetails');
+            if (method !== 'card') {
+                accountDetails.classList.add('show');
+                updateAccountDetails(method);
+            } else {
+                accountDetails.classList.remove('show');
+            }
+        }
+
+        function updateAccountDetails(method) {
+            const accountInfo = document.getElementById('accountInfo');
+            let html = '';
+
+            if (method === 'easypaisa') {
+                html = `
+                    <p>
+                        <span class="account-label">Service:</span>
+                        <span class="account-value">${bankAccounts.easypaisa.name}</span>
+                    </p>
+                    <p>
+                        <span class="account-label">Account Number:</span>
+                        <span class="account-value">${bankAccounts.easypaisa.account}</span>
+                    </p>
+                    <p>
+                        <span class="account-label">Account Holder:</span>
+                        <span class="account-value">${bankAccounts.easypaisa.holder}</span>
+                    </p>
+                    <p style="background: var(--green-light); padding: 8px 5px; margin-top: 8px; border-radius: 4px;">
+                        ${bankAccounts.easypaisa.description}
+                    </p>
+                `;
+            } else if (method === 'jazz') {
+                html = `
+                    <p>
+                        <span class="account-label">Service:</span>
+                        <span class="account-value">${bankAccounts.jazz.name}</span>
+                    </p>
+                    <p>
+                        <span class="account-label">Account Number:</span>
+                        <span class="account-value">${bankAccounts.jazz.account}</span>
+                    </p>
+                    <p>
+                        <span class="account-label">Account Holder:</span>
+                        <span class="account-value">${bankAccounts.jazz.holder}</span>
+                    </p>
+                    <p style="background: var(--green-light); padding: 8px 5px; margin-top: 8px; border-radius: 4px;">
+                        ${bankAccounts.jazz.description}
+                    </p>
+                `;
+            } else if (method === 'bank') {
+                html = bankAccounts.bank.banks.map(bank => `
+                    <p style="border: 1px solid var(--green-border); padding: 10px; margin-bottom: 10px; border-radius: 5px;">
+                        <strong>${bank.name}</strong><br>
+                        Account: <span class="account-value">${bank.account}</span><br>
+                        IBAN: <span class="account-value">${bank.iban}</span>
+                    </p>
+                `).join('');
+            }
+
+            accountInfo.innerHTML = html;
+        }
+
+        function handleScreenshot(event) {
+            const file = event.target.files[0];
+            if (file) {
+                paymentScreenshot = file;
+                document.getElementById('screenshotInput').disabled = true;
+                document.getElementById('screenshotNote').textContent = 'Screenshot uploaded. Remove it if you need to change the proof.';
+                updateCompleteBookingBtn();
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('screenshotImage').src = e.target.result;
+                    document.getElementById('screenshotPreview').classList.add('show');
+                    document.getElementById('uploadSuccess').classList.add('show');
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function removeScreenshot() {
+            paymentScreenshot = null;
+            document.getElementById('screenshotPreview').classList.remove('show');
+            document.getElementById('uploadSuccess').classList.remove('show');
+            document.getElementById('screenshotInput').value = '';
+            document.getElementById('screenshotInput').disabled = false;
+            document.getElementById('screenshotNote').textContent = '';
+        }
+
+        // verification removed: verifySection and verifyBadge removed from markup and logic
+
+        function updateCompleteBookingBtn() {
+            const btn = document.getElementById('step5Btn');
+            if (paymentScreenshot) {
+                btn.disabled = false;
+            } else {
+                btn.disabled = true;
+            }
+        }
+
+        function updateSummary() {
+            const serviceName = selectedService ? (services.find(s => s.id === selectedService) || {name:'-'}).name : '-';
+            const packageName = selectedPackage ? selectedPackage.name : '-';
+            const amount = selectedPackage ? selectedPackage.price : 0;
+
+            document.getElementById('summaryService').textContent = serviceName;
+            document.getElementById('summaryPackage').textContent = packageName;
+            document.getElementById('summaryDateTime').textContent = selectedDate && selectedTime ? `${selectedDate} at ${selectedTime}` : '-';
+            document.getElementById('summaryPatient').textContent = document.getElementById('fullName').value || '-';
+            document.getElementById('totalAmount').textContent = `Rs. ${amount.toLocaleString()}`;
+
+            const testsList = document.getElementById('testsList');
+            if (selectedPackage && selectedPackage.tests) {
+                testsList.innerHTML = selectedPackage.tests.map(test => `
+                    <div class="test-item">
+                        <span>• ${test.name}</span>
+                        <span style="color: var(--primary-green); font-weight: bold;">Rs. ${test.price.toLocaleString()}</span>
+                    </div>
+                `).join('');
+            }
+        }
+
+        function nextStep() {
+            if (validateStep()) {
+                currentStep++;
+                updateProgressBar();
+                showStep(currentStep);
+            }
+        }
+
+        function previousStep() {
+            if (currentStep > 1) {
+                currentStep--;
+                updateProgressBar();
+                showStep(currentStep);
+            }
+        }
+
+        function validateStep() {
+            switch(currentStep) {
+                case 1:
+                    if (!selectedService) {
+                        alert('Please select a service');
+                        return false;
+                    }
+                    break;
+                case 2:
+                    if (!selectedPackage) {
+                        alert('Please select a package');
+                        return false;
+                    }
+                    break;
+                case 3:
+                    if (!selectedDate || !selectedTime) {
+                        alert('Please select date and time');
+                        return false;
+                    }
+                    break;
+                case 4:
+                    const name = document.getElementById('fullName').value;
+                    const email = document.getElementById('email').value;
+                    const phone = document.getElementById('phone').value;
+                    const gender = document.getElementById('gender').value;
+                    const age = document.getElementById('age').value;
+                    if (!name || !email || !phone || !gender || !age) {
+                        alert('Please fill all required fields');
+                        return false;
+                    }
+                    break;
+                case 5:
+                    if (!paymentScreenshot) {
+                        alert('Please upload a payment screenshot first');
+                        return false;
+                    }
+                    break;
+            }
+            return true;
+        }
+
+        function showStep(step) {
+            document.querySelectorAll('.step-content').forEach(el => {
+                el.classList.remove('active');
+            });
+            document.getElementById(`step${step}`).classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            updateSummary();
+        }
+
+        function updateProgressBar() {
+            for (let i = 1; i <= 5; i++) {
+                const circle = document.getElementById(`step${i}Circle`);
+                const line = circle.parentElement.querySelector('.step-line');
+
+                if (i < currentStep) {
+                    circle.classList.add('completed');
+                    circle.classList.remove('active');
+                    if (line) line.classList.add('completed');
+                } else if (i === currentStep) {
+                    circle.classList.add('active');
+                    circle.classList.remove('completed');
+                    if (line) line.classList.remove('completed');
+                } else {
+                    circle.classList.remove('completed', 'active');
+                    if (line) line.classList.remove('completed');
+                }
+            }
+        }
+
+        function completeBooking() {
+            const confirmationCode = 'MED' + Math.random().toString(36).substr(2, 9).toUpperCase();
+            const serviceObj = services.find(s => s.id === selectedService);
+
+            document.getElementById('confirmationCode').textContent = confirmationCode;
+            document.getElementById('confirmService').textContent = serviceObj ? serviceObj.name : (selectedPackage ? selectedPackage.name : '-');
+            document.getElementById('confirmPackage').textContent = selectedPackage.name;
+            document.getElementById('confirmDate').textContent = selectedDate;
+            document.getElementById('confirmTime').textContent = selectedTime;
+            document.getElementById('confirmAmount').textContent = `Rs. ${selectedPackage.price.toLocaleString()}`;
+            document.getElementById('confirmMethod').textContent = selectedPaymentMethod;
+            document.getElementById('confirmTransactionId').textContent = document.getElementById('transactionId').value;
+
+            document.getElementById('confirmName').textContent = document.getElementById('fullName').value;
+            document.getElementById('confirmEmail').textContent = document.getElementById('email').value;
+            document.getElementById('confirmPhone').textContent = document.getElementById('phone').value;
+            document.getElementById('confirmGender').textContent = document.getElementById('gender').value;
+            document.getElementById('confirmAge').textContent = document.getElementById('age').value + ' years';
+            document.getElementById('confirmAddress').textContent = document.getElementById('address').value || 'Home Collection';
+            document.getElementById('notifyEmail').textContent = document.getElementById('email').value;
+
+            // Tests list
+            const testsList = selectedPackage.tests.map(test => `
+                <div class="detail-item">
+                    <span class="detail-label">✓ ${test.name}</span>
+                    <span class="detail-value">Rs. ${test.price.toLocaleString()}</span>
+                </div>
+            `).join('');
+            document.getElementById('confirmTestsList').innerHTML = testsList + `
+                <div style="border-top: 2px solid var(--green-border); padding-top: 12px; margin-top: 12px;">
+                    <div class="detail-item">
+                        <span class="detail-label" style="font-weight: bold;">Total Amount:</span>
+                        <span class="detail-value" style="color: var(--primary-green); font-size: 1.2rem;">Rs. ${selectedPackage.price.toLocaleString()}</span>
+                    </div>
+                </div>
+            `;
+
+            // Payment proof
+            if (paymentScreenshot) {
+                document.getElementById('paymentProofBox').style.display = 'block';
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('confirmScreenshot').src = e.target.result;
+                };
+                reader.readAsDataURL(paymentScreenshot);
+            }
+
+            // Show confirmation page and hide the booking form
+            document.getElementById('confirmationPage').classList.add('show');
+            document.querySelector('.content-wrapper').style.display = 'none';
+            document.querySelector('.progress-section').style.display = 'none';
+            // send confirmation email (opens user's mail client with prefilled message)
+            sendConfirmationEmail(adminEmail, confirmationCode);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function sendConfirmationEmail(toEmail, code) {
+            try {
+                const serviceName = selectedService ? services.find(s => s.id === selectedService).name : '-';
+                const packageName = selectedPackage ? selectedPackage.name : '-';
+                const date = selectedDate || '-';
+                const time = selectedTime || '-';
+                const patientName = document.getElementById('fullName').value || '-';
+                const patientEmail = document.getElementById('email').value || '-';
+                const transactionId = document.getElementById('transactionId').value || '-';
+
+                const subject = `Booking confirmed — ${code}`;
+                const body = `Booking Confirmation Code: ${code}%0D%0A` +
+                    `Service: ${serviceName}%0D%0A` +
+                    `Package: ${packageName}%0D%0A` +
+                    `Date & Time: ${date} ${time}%0D%0A` +
+                    `Patient: ${patientName} (${patientEmail})%0D%0A` +
+                    `Transaction ID: ${transactionId}%0D%0A%0D%0A` +
+                    `Tests included:%0D%0A` + (selectedPackage ? selectedPackage.tests.map(t => `- ${t.name} (Rs. ${t.price})`).join('%0D%0A') : '') +
+                    `%0D%0A%0D%0AThis email was generated from the booking page.`;
+
+                const mailto = `mailto:${encodeURIComponent(toEmail)}?subject=${encodeURIComponent(subject)}&body=${body}`;
+                window.open(mailto, '_blank');
+            } catch (err) {
+                console.error('Failed to open mail client', err);
+            }
+        }
+
+        function goHome() {
+            window.location.href = 'home.html';
+        }
+
+        function printConfirmation() {
+            window.print();
+        }
+
+        // Listen to full name change
+        document.getElementById('fullName').addEventListener('input', updateSummary);
+    </script>
+  <script src="loader-nav.js"></script>
+</body>
+</html>
+

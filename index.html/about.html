@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+</head>
+<style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #2d970d;
+            --primary-dark: #2d9c21;
+            --secondary-color: #4ff054;
+            --accent-color: #0f550b;
+            --light-blue-bg: #e6f2ff;
+            --dark-bg: #0f1419;
+            --light-bg: #ffffff;
+            --text-dark: #1a1a1a;
+            --text-light: #666666;
+            --border-color: #e0e0e0;
+            --shadow: 0 4px 20px rgba(32, 180, 42, 0.801);
+            --shadow-hover: 0 8px 30px rgba(35, 189, 96, 0.805);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--light-bg);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Navigation Bar */
+        nav {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-decoration: none;
+            animation: slideInDown 0.6s ease;
+        }
+
+        .logo-img {
+            width: 55px;
+            height: 55px;
+            object-fit: contain;
+            background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-color);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        nav{
+            margin-bottom: 30px;
+        }
+
+        .cta-btn {
+            background: linear-gradient(135deg, var(--secondary-color), #16a085);
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(26, 188, 156, 0.3);
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            background: var(--light-blue-bg);
+            padding: 1rem 2rem;
+            margin-top: 60px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .breadcrumb a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--secondary-color);
+        }
+
+        .breadcrumb span {
+            color: var(--text-light);
+            margin: 0 0.5rem;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 110px 2rem 60px;
+            text-align: center;
+            margin-top: 0;
+        }
+
+        .page-header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        /* Main Container */
+        .about-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Story Section */
+        .story-section {
+            padding: 4rem 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin-bottom: 3rem;
+        }
+
+        .story-content h2 {
+            font-size: 2.5rem;
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .story-content p {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+.story-image {
+    width: 100%;       /* Container ki width ko adjust karega */
+    height: 400px;     /* Jitni height aapko chahiye (green box ke mutabiq) */
+    overflow: hidden;  /* Agar image badi ho toh container se bahar na nikle */
+    border-radius: 12px; /* Agr aapko edges rounded rakhne hain */
+}
+
+.story-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Yeh property image ko stretch kiye bagair poore box mein fit kar degi */
+}
+
+        /* Mission Vision Section */
+        .mission-vision {
+            background: var(--light-blue-bg);
+            padding: 4rem 2rem;
+            border-radius: 15px;
+            margin-bottom: 3rem;
+        }
+
+        .mission-vision h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--text-dark);
+            margin-bottom: 3rem;
+        }
+
+        .mv-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .mv-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(77, 166, 255, 0.1);
+            transition: all 0.3s ease;
+            border-top: 4px solid var(--primary-color);
+        }
+
+        .mv-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+            border-top-color: var(--secondary-color);
+        }
+
+        .mv-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .mv-card h3 {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .mv-card p {
+            color: var(--text-light);
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+        /* Why Choose Us Section */
+        .why-choose {
+            padding: 4rem 0;
+            margin-bottom: 3rem;
+        }
+
+        .why-choose h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--text-dark);
+            margin-bottom: 3rem;
+        }
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .why-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(108, 254, 89, 0.963);
+            text-align: center;
+            transition: all 0.3s ease;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .why-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+            border-left-color: var(--secondary-color);
+        }
+
+        .why-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .why-card h3 {
+            font-size: 1.3rem;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+
+        .why-card p {
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+
+        /* Team Section */
+        .team-section {
+            background: var(--light-blue-bg);
+            padding: 4rem 2rem;
+            border-radius: 15px;
+            margin-bottom: 3rem;
+        }
+
+        .team-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--text-dark);
+            margin-bottom: 3rem;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
+        }
+
+        .team-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(77, 166, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .team-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .team-image {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .team-info {
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .team-name {
+            font-size: 1.2rem;
+            color: var(--text-dark);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .team-role {
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .team-bio {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* Certifications Section */
+        .certifications {
+            padding: 4rem 0;
+            margin-bottom: 3rem;
+        }
+
+        .certifications h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--text-dark);
+            margin-bottom: 3rem;
+        }
+
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .cert-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(77, 166, 255, 0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+            border-top: 4px solid var(--secondary-color);
+        }
+
+        .cert-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .cert-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .cert-card h3 {
+            font-size: 1.2rem;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .cert-card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        /* Timeline Section */
+        .timeline-section {
+            background: var(--light-blue-bg);
+            padding: 4rem 2rem;
+            border-radius: 15px;
+            margin-bottom: 3rem;
+        }
+
+        .timeline-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--text-dark);
+            margin-bottom: 3rem;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 3px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--primary-color), var(--secondary-color));
+        }
+
+        .timeline-item {
+            margin-bottom: 3rem;
+            width: 45%;
+        }
+
+        .timeline-item:nth-child(odd) {
+            margin-left: 0;
+            text-align: right;
+            padding-right: 3rem;
+        }
+
+        .timeline-item:nth-child(even) {
+            margin-left: 55%;
+            padding-left: 3rem;
+        }
+
+        .timeline-content {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(77, 166, 255, 0.1);
+        }
+
+        .timeline-year {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-description {
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 4rem 2rem;
+            border-radius: 15px;
+            margin-bottom: 3rem;
+        }
+
+        .stats-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 1.5rem;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 60px 2rem;
+            text-align: center;
+            border-radius: 15px;
+            margin: 3rem 0;
+        }
+
+        .cta-section h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-btn-large {
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            background: white;
+            color: var(--primary-color);
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .cta-btn-large:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-bg);
+            color: white;
+            padding: 40px 2rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            text-align: left;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--primary-color);
+            margin-left: 5px;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(77, 166, 255, 0.2);
+            padding-top: 2rem;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Animations */
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .scroll-fade {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .scroll-fade.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .story-section {
+                grid-template-columns: 1fr;
+            }
+
+            .mv-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline::before {
+                left: 30px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                margin-left: 0 !important;
+                padding-left: 80px !important;
+                padding-right: 0 !important;
+                text-align: left !important;
+            }
+
+            nav ul {
+                gap: 1rem;
+            }
+
+            .logo span {
+                display: none;
+            }
+        }
+    </style>
+<body>
+        <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="hoome.html" class="logo">
+                <img src="Lab Logo.png" alt="Lab Logo" class="logo-img">
+                <span>The Medicare Laboratory & Diagnostic Center</span>
+            </a>
+            <ul>
+                <li><a href="hoome.html">Home</a></li>
+                <li><a href="service.html">Services</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="schedule%20your%20payment.html" class="cta-btn">Book Test</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header" style="position:relative;overflow:hidden;">
+      <div class="sec-bubbles" id="aboutHeaderBubbles"></div>
+        <h1>About The Medicare Laboratory & Diagnostic Center</h1>
+        <p>With over 15 years of dedicated service, we have established ourselves as a trusted partner in healthcare excellence, combining cutting-edge technology with compassionate patient care.</p>
+    </section>
+
+    <!-- Main Container -->
+    <div class="about-container">
+        <!-- Story Section -->
+        <section class="story-section scroll-fade">
+            <div class="story-content">
+                <h2>Our Story</h2>
+                <p>With over 15 years of experience, The Medicare Laboratory & Diagnostic Center has been a beacon of trust in the healthcare community. We combine cutting-edge technology with compassionate care to deliver accurate and timely diagnostic solutions.</p>
+                <p>Our state-of-the-art facility is equipped with the latest diagnostic equipment and staffed by highly skilled professionals who are committed to providing the best quality of service to every patient.</p>
+                <p>We believe in making healthcare accessible and affordable while maintaining the highest standards of quality and accuracy in all our tests and reports.</p>
+            </div>
+            <div class="story-image">
+               <a href="about image log.png" target="_blank">
+                 <img src="about image log.png" alt="about image log">
+               </a>
+            </div>
+        </section>
+
+        <!-- Mission & Vision Section -->
+        <section class="mission-vision scroll-fade">
+            <h2>Our Mission & Vision</h2>
+            <div class="mv-grid">
+                <div class="mv-card">
+                    <div class="mv-icon">🎯</div>
+                    <h3>Our Mission</h3>
+                    <p>To provide accurate, reliable, and affordable diagnostic services with the highest standards of quality, utilizing advanced technology and expert professionals to improve patient health outcomes and build trust in the community.</p>
+                </div>
+                <div class="mv-card">
+                    <div class="mv-icon">🌟</div>
+                    <h3>Our Vision</h3>
+                    <p>To be the leading diagnostic laboratory recognized for excellence in healthcare services, innovation, and patient care. We aspire to set benchmarks in the industry while remaining accessible and affordable to all segments of society.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Choose Us Section -->
+        <section class="why-choose scroll-fade">
+            <h2>Why Choose Us?</h2>
+            <div class="why-grid">
+                <a href="advancetech.html" class="why-card" style="text-decoration:none;color:inherit;">
+                    <div class="why-icon">⚙️</div>
+                    <h3>Advanced Technology</h3>
+                    <p>Latest laboratory equipment and automated systems for accurate and fast results</p>
+                </a>
+                <a href="expertteam.html" class="why-card" style="text-decoration:none;color:inherit;">
+                    <div class="why-icon">👨‍⚕️</div>
+                    <h3>Expert Team</h3>
+                    <p>Highly qualified technicians with years of experience in diagnostics</p>
+                </a>
+                <a href="fastresult.html" class="why-card" style="text-decoration:none;color:inherit;">
+                    <div class="why-icon">⚡</div>
+                    <h3>Fast Results</h3>
+                    <p>Quick turnaround time with accurate and reliable diagnostic reports delivered promptly</p>
+                </a>
+                <a href="homecollection.html" class="why-card" style="text-decoration:none;color:inherit;">
+                    <div class="why-icon">🏠</div>
+                    <h3>Home Collection</h3>
+                    <p>Free sample collection at your doorstep for complete convenience and comfort</p>
+                </a>
+            </div>
+        </section>
+
+        <!-- Team Section -->
+        <section class="team-section scroll-fade">
+            <h2>Our Expert Team</h2>
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-image">👨‍⚕️</div>
+                    <div class="team-info">
+                        <div class="team-name">Dr. Tahir Hussain</div>
+                        <div class="team-role">Bones Specialist</div>
+                        <div class="team-bio">MD in Bones Specialist with 20+ years of clinical experience</div>
+                    </div>
+                </div>
+                <div class="team-card">
+                    <div class="team-image">👩‍⚕️</div>
+                    <div class="team-info">
+                        <div class="team-name">Dr. Misha Khan</div>
+                        <div class="team-role">Lab Owner</div>
+                        <div class="team-bio">Specialist in Clinical Chemistry and Quality Management</div>
+                    </div>
+                </div>
+                <div class="team-card">
+                    <div class="team-image">👨‍🔬</div>
+                    <div class="team-info">
+                        <div class="team-name">Mr. Faraz Hussain</div>
+                        <div class="team-role">Senior Technician</div>
+                        <div class="team-bio">Certified in Microbiology with 15+ years expertise</div>
+                    </div>
+                </div>
+                <div class="team-card">
+                    <div class="team-image">👨‍⚕️</div>
+                    <div class="team-info">
+                        <div class="team-name">Mr. Junaid Ahmed</div>
+                        <div class="team-role">Lab Director</div>
+                        <div class="team-bio">Certified in Microbiology with 15+ years expertise</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+                <div class="cert-card">
+                    <div class="cert-icon">✅</div>
+                    <h3>PMDC Registered</h3>
+                    <p>Pakistan Medical and Dental Council registered and fully compliant</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Timeline Section -->
+        <section class="timeline-section scroll-fade">
+            <h2>Our Journey</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2009</div>
+                        <div class="timeline-description">Founded The Medicare & Diagnostic Laboratory with a vision to provide quality healthcare</div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2024</div>
+                        <div class="timeline-description">Celebrating 15 years of excellence with plans for future expansion</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Statistics Section -->
+        <section class="stats-section scroll-fade" style="position:relative;overflow:hidden;">
+          <div class="sec-bubbles" id="aboutStatsBubbles"></div>
+            <h2>By The Numbers</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">10,000+</div>
+                    <div class="stat-label">Tests Monthly</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">98%</div>
+                    <div class="stat-label">Customer Satisfaction</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">15+</div>
+                    <div class="stat-label">Years Experience</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">Corporate Clients</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section scroll-fade" style="position:relative;overflow:hidden;">
+          <div class="sec-bubbles" id="aboutCtaBubbles"></div>
+            <h2>Ready to Experience Excellence?</h2>
+            <p>Schedule your appointment today and discover the difference quality healthcare makes</p>
+            <a href="schedule%20your%20payment.html" class="cta-btn-large" style="display:inline-block;">Book Your Test Now</a>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>About Us</h4>
+                <ul>
+                    <li><a href="about.html">Our Story</a></li>
+                    <li><a href="about.html">Team</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="services.html">Blood Tests</a></li>
+                    <li><a href="services.html">Health Packages</a></li>
+                    <li><a href="services.html">Home Collection</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact Us</h4>
+                <ul>
+                    <li><a href="tel:+92300123456">📞 +92 (300) 123-456</a></li>
+                    <li><a href="mailto:info@medicare.com">📧 info@medicare.com</a></li>
+                    <li><a href="contact.html">📍 Get Directions</a></li>
+                    <li><a href="contact.html">Contact Form</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 The Medicare Laboratory & Diagnostic Center. All rights reserved. | Designed by Tahami Tech for your health</p>
+        </div>
+    </footer>
+
+    <script>
+        // Navigation smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                }
+            });
+        });
+
+        // Scroll fade animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.scroll-fade').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Button click effects
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', function() {
+                this.style.transform = 'scale(0.98)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1)';
+                }, 100);
+            });
+        });
+
+        // Page load
+        window.addEventListener('load', function() {
+            console.log('About page loaded successfully!');
+        });
+    </script>
+
+  <script src="loader-nav.js"></script>
+
+<!-- ═══ SECTION BUBBLES (about.html) ═══ -->
+<style>
+.sec-bubbles{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:1;}
+.sb{position:absolute;border-radius:50%;background:radial-gradient(circle at 35% 35%,rgba(255,255,255,.52) 0%,rgba(255,255,255,.16) 40%,rgba(255,255,255,.04) 70%,transparent 100%);border:1px solid rgba(255,255,255,.28);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);box-shadow:inset 0 0 10px rgba(255,255,255,.14),0 0 14px rgba(79,240,84,.14);will-change:transform;pointer-events:auto;transition:box-shadow .3s,border-color .3s,transform .3s;}
+.sb::before{content:'';position:absolute;top:18%;left:20%;width:28%;height:17%;background:rgba(255,255,255,.5);border-radius:50%;filter:blur(2px);}
+.sb:hover{box-shadow:inset 0 0 22px rgba(255,255,255,.45),0 0 32px rgba(79,240,84,.55);border-color:rgba(79,240,84,.75);transform:scale(1.18) !important;z-index:3;}
+@keyframes sbFloat{0%{transform:translateY(0) translateX(0) scale(1);}25%{transform:translateY(-18px) translateX(6px) scale(1.03);}50%{transform:translateY(-8px) translateX(-8px) scale(.97);}75%{transform:translateY(-24px) translateX(4px) scale(1.04);}100%{transform:translateY(0) translateX(0) scale(1);}}
+.page-header>*:not(.sec-bubbles),.stats-section>*:not(.sec-bubbles),.cta-section>*:not(.sec-bubbles){position:relative;z-index:2;}
+@media(max-width:600px){.sec-bubbles{display:none;}}
+</style>
+<script>
+(function(){
+  function rnd(a,b){return a+Math.random()*(b-a);}
+  var bands=[[8,16,.4,.65],[17,30,.28,.5],[31,48,.16,.36],[49,70,.1,.24]];
+  var cnts=[8,6,4,2];
+  function seedBubbles(cid){
+    var wrap=document.getElementById(cid); if(!wrap)return;
+    var section=wrap.parentElement;
+    var bubs=[],raf=false,mX=-9999,mY=-9999;
+    var REPEL=100,FORCE=38;
+    bands.forEach(function(b,bi){
+      for(var i=0;i<cnts[bi];i++){
+        var sz=rnd(b[0],b[1]),op=rnd(b[2],b[3]);
+        var dur=rnd(5,18),del=rnd(0,dur);
+        var lx=rnd(2,97),ly=rnd(3,94);
+        var el=document.createElement('div');el.className='sb';
+        el.style.cssText='width:'+sz+'px;height:'+sz+'px;left:'+lx+'%;top:'+ly+'%;opacity:'+op+';animation:sbFloat '+dur+'s ease-in-out -'+del+'s infinite';
+        wrap.appendChild(el);bubs.push({el:el,lx:lx,ly:ly,sz:sz,ox:0,oy:0});
+      }
+    });
+    section.addEventListener('mousemove',function(e){var r=section.getBoundingClientRect();mX=e.clientX-r.left;mY=e.clientY-r.top;if(!raf){raf=true;requestAnimationFrame(rep);}},{passive:true});
+    section.addEventListener('mouseleave',function(){mX=-9999;mY=-9999;});
+    function rep(){raf=false;var W=section.offsetWidth,H=section.offsetHeight;bubs.forEach(function(b){var bx=(b.lx/100)*W,by=(b.ly/100)*H;var dx=bx-mX,dy=by-mY;var d=Math.sqrt(dx*dx+dy*dy);var tx=0,ty=0;if(d<REPEL&&d>0){var rv=1-d/REPEL;var p=FORCE*rv*rv;tx=(dx/d)*p;ty=(dy/d)*p;}b.ox+=(tx-b.ox)*.18;b.oy+=(ty-b.oy)*.18;b.el.style.transform='translate('+b.ox.toFixed(1)+'px,'+b.oy.toFixed(1)+'px)';});}
+    (function drift(){bubs.forEach(function(b){if(Math.abs(b.ox)>.05||Math.abs(b.oy)>.05){b.ox*=.94;b.oy*=.94;b.el.style.transform='translate('+b.ox.toFixed(1)+'px,'+b.oy.toFixed(1)+'px)';}});requestAnimationFrame(drift);})();
+  }
+  ['aboutHeaderBubbles','aboutStatsBubbles','aboutCtaBubbles'].forEach(seedBubbles);
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Green Laboratory Loader</title>
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    body{
+      width:100%;
+      height:100vh;
+
+      display:flex;
+      justify-content:center;
+      align-items:center;
+
+      overflow:hidden;
+
+      font-family:Arial, sans-serif;
+
+      background:
+      radial-gradient(circle,#2f8f2f,#041404);
+    }
+
+    .loader-container{
+      text-align:center;
+      position:relative;
+    }
+
+    /* Scientist Image */
+
+    .scientist{
+      width:520px;
+      max-width:100%;
+      height:auto;
+      display:block;
+      margin:0 auto;
+
+      animation:
+      float 2s ease-in-out infinite;
+    }
+
+    @keyframes float{
+
+      0%{
+        transform:translateY(0px);
+      }
+
+      50%{
+        transform:translateY(-12px);
+      }
+
+      100%{
+        transform:translateY(0px);
+      }
+    }
+
+    /* Green Liquid Pour */
+
+    .liquid-stream{
+
+      position:absolute;
+
+      top:128px;
+      left:190px;
+
+      width:8px;
+      height:80px;
+
+      border-radius:20px;
+
+      background:#00ff55;
+
+      box-shadow:
+      0 0 20px #00ff55,
+      0 0 40px #00ff55;
+
+      animation:
+      pour 0.3s infinite alternate;
+    }
+
+    @keyframes pour{
+
+      from{
+        height:40px;
+      }
+
+      to{
+        height:85px;
+      }
+    }
+
+    /* Loading Text */
+
+    .loading-text{
+
+      margin-top:20px;
+
+      color:white;
+
+      font-size:48px;
+
+      font-weight:bold;
+
+      letter-spacing:2px;
+
+      text-shadow:
+      0 0 10px #00ff55;
+
+      animation:
+      blink 1s infinite;
+    }
+
+    .green{
+      color:#00ff55;
+    }
+
+    @keyframes blink{
+
+      0%,100%{
+        opacity:1;
+      }
+
+      50%{
+        opacity:0.7;
+      }
+    }
+
+    /* Progress Bar */
+
+    .progress-bar{
+
+      width:420px;
+      height:12px;
+
+      margin:auto;
+      margin-top:30px;
+
+      border-radius:20px;
+
+      overflow:hidden;
+
+      background:
+      rgba(255,255,255,0.1);
+
+      border:
+      1px solid rgba(0,255,85,0.3);
+    }
+
+    .progress{
+
+      width:0%;
+
+      height:100%;
+
+      border-radius:20px;
+
+      background:
+      linear-gradient(
+      90deg,
+      #00ff55,
+      #5cff99
+      );
+
+      box-shadow:
+      0 0 20px #00ff55,
+      0 0 40px #00ff55;
+
+      animation:
+      loading 1.2s linear infinite;
+    }
+
+    @keyframes loading{
+
+      from{
+        width:0%;
+      }
+
+      to{
+        width:100%;
+      }
+    }
+
+    /* Bubbles */
+
+    .bubble{
+      position:absolute;
+
+      width:14px;
+      height:14px;
+
+      border-radius:50%;
+
+      background:#00ff55;
+
+      box-shadow:
+      0 0 15px #00ff55;
+
+      opacity:0.8;
+
+      animation:
+      rise 3s linear infinite;
+    }
+
+    .bubble1{
+      left:70px;
+      bottom:180px;
+      animation-delay:0s;
+    }
+
+    .bubble2{
+      right:80px;
+      bottom:220px;
+      animation-delay:1s;
+    }
+
+    .bubble3{
+      left:180px;
+      bottom:250px;
+      animation-delay:2s;
+    }
+
+    @keyframes rise{
+
+      0%{
+        transform:
+        translateY(0) scale(1);
+
+        opacity:0;
+      }
+
+      50%{
+        opacity:1;
+      }
+
+      100%{
+        transform:
+        translateY(-120px) scale(1.5);
+
+        opacity:0;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <div class="loader-container">
+
+    <!-- Scientist Image -->
+    <img src="loading lab.png" class="scientist" alt="Loading lab">
+
+    <!-- Liquid -->
+    <div class="liquid-stream"></div>
+
+    <!-- Bubbles -->
+    <div class="bubble bubble1"></div>
+    <div class="bubble bubble2"></div>
+    <div class="bubble bubble3"></div>
+
+    <!-- Text -->
+    <div class="loading-text">
+      Loading <span class="green">Laboratory...</span>
+    </div>
+
+    <!-- Loading Bar -->
+    <div class="progress-bar">
+      <div class="progress"></div>
+    </div>
+
+  </div>
+
+  <script>
+    console.log("Green Laboratory Loading Started");
+
+    const params = new URLSearchParams(window.location.search);
+    const target = params.get('target');
+    if (target) {
+      setTimeout(() => {
+        window.location.replace(target);
+      }, 1200);
+    }
+  </script>
+
+</body>
+</html>

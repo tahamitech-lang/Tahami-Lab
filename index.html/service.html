@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services — The Medicare Laboratory</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+</head>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #2d970d;
+            --primary-dark: #2d9c21;
+            --secondary-color: #4ff054;
+            --accent-color: #0f550b;
+            --light-blue-bg: #e6f2ff;
+            --dark-bg: #0f1419;
+            --light-bg: #ffffff;
+            --text-dark: #1a1a1a;
+            --text-light: #666666;
+            --border-color: #e0e0e0;
+            --shadow: 0 4px 20px rgba(32, 180, 42, 0.801);
+            --shadow-hover: 0 8px 30px rgba(35, 189, 96, 0.805);
+        }
+
+        body {
+            font-family: 'Inter','Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
+            background-color: var(--light-bg);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Navigation Bar */
+        nav {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-decoration: none;
+            animation: slideInDown 0.6s ease;
+        }
+
+        .logo-img {
+            width: 55px;
+            height: 55px;
+            object-fit: contain;
+            background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-color);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        nav { transition: background .4s, box-shadow .4s, padding .4s; }
+        nav.nav-scrolled {
+            background: rgba(10,28,8,.96) !important;
+            backdrop-filter: blur(16px);
+            box-shadow: 0 2px 28px rgba(0,0,0,.4) !important;
+            padding: .65rem 0 !important;
+        }
+        .logo-img {
+            border: 2px solid rgba(79,240,84,.5);
+            box-shadow: 0 0 10px rgba(79,240,84,.3);
+            transition: transform .4s, box-shadow .4s;
+        }
+        .logo:hover .logo-img { transform:rotate(7deg) scale(1.08); box-shadow:0 0 20px rgba(79,240,84,.65); }
+        /* scroll-to-top */
+        #stt{position:fixed;bottom:2rem;right:2rem;z-index:900;width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,var(--primary-color),var(--secondary-color));color:#fff;border:none;cursor:pointer;font-size:1.1rem;box-shadow:0 4px 18px rgba(45,151,13,.5);opacity:0;transform:translateY(20px);transition:opacity .35s,transform .35s;display:flex;align-items:center;justify-content:center;}
+        #stt.show{opacity:1;transform:translateY(0);}
+        #stt:hover{transform:translateY(-4px) scale(1.1);}
+        /* page reveal */
+        #pgReveal{position:fixed;inset:0;z-index:99999;background:var(--primary-color);transform-origin:top;animation:revealOut .85s cubic-bezier(.77,0,.18,1) .05s forwards;}
+        @keyframes revealOut{0%{transform:scaleY(1);}100%{transform:scaleY(0);}}
+        /* section underline bar */
+        .s-bar{display:block;width:56px;height:4px;background:linear-gradient(90deg,var(--primary-color),var(--secondary-color));border-radius:4px;margin:.4rem auto 2.5rem;}
+        @keyframes rippleFx{to{transform:scale(2.5);opacity:0;}}
+
+        .cta-btn {
+            background: linear-gradient(135deg, var(--secondary-color), #16a085);
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(26, 188, 156, 0.3);
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            background: var(--light-blue-bg);
+            padding: 1rem 2rem;
+            margin-top: 60px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .breadcrumb a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--secondary-color);
+        }
+
+        .breadcrumb span {
+            color: var(--text-light);
+            margin: 0 0.5rem;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 110px 2rem 60px;
+            text-align: center;
+            position:relative; overflow:hidden;
+        }
+        .page-header::before{content:'';position:absolute;inset:0;background:url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400"><defs><pattern id="g" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0L0 0 0 40" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1"/></pattern></defs><rect width="1200" height="400" fill="url(%23g)"/></svg>');pointer-events:none;}
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+            animation: hFade .9s ease .2s both;
+        }
+        .page-header p {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            max-width: 700px;
+            margin: 0 auto;
+            animation: hFade .9s ease .4s both;
+        }
+        @keyframes hFade{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
+
+        /* Filter Section */
+        .filter-section {
+            background: white;
+            padding: 2rem;
+            margin: 2rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .filter-btn {
+            padding: 0.8rem 1.5rem;
+            border: 2px solid var(--primary-color);
+            background: white;
+            color: var(--primary-color);
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(45,151,13,.3);
+        }
+
+        /* Services Grid */
+        .services-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 18px rgba(45,151,13,.1);
+            transition: transform .35s cubic-bezier(.4,0,.2,1), box-shadow .35s, border-top-color .3s;
+            border-top: 4px solid var(--primary-color);
+        }
+        .service-card:hover {
+            transform: translateY(-12px) scale(1.01);
+            box-shadow: var(--shadow-hover);
+            border-top-color: var(--secondary-color);
+        }
+
+        .service-card-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-card-header h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .service-card-body {
+            padding: 2rem;
+        }
+
+        .service-card-body p {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .service-features {
+            background: var(--light-blue-bg);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-features h4 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+
+        .feature-list {
+            list-style: none;
+        }
+
+        .feature-list li {
+            padding: 0.5rem 0;
+            color: var(--text-light);
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .feature-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--secondary-color);
+            font-weight: bold;
+        }
+
+        .service-btn {
+            width: 100%;
+            padding: 0.8rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .service-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(77, 166, 255, 0.3);
+        }
+
+        /* Detailed Service Section */
+        .detailed-services {
+            background: var(--light-blue-bg);
+            padding: 3rem 2rem;
+            margin-top: 3rem;
+        }
+
+        .detailed-services h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--text-dark);
+        }
+
+        .detailed-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .detailed-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 18px rgba(45,151,13,.1);
+            transition: transform .3s ease, box-shadow .3s;
+        }
+        .detailed-item:hover { box-shadow: var(--shadow-hover); transform: translateY(-6px); }
+
+        .detailed-item h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .detailed-item p {
+            color: var(--text-light);
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .turnaround-time {
+            background: linear-gradient(135deg, rgba(77, 166, 255, 0.1), rgba(230, 242, 255, 0.5));
+            padding: 1rem;
+            border-left: 4px solid var(--secondary-color);
+            border-radius: 5px;
+            margin-top: 1rem;
+        }
+
+        .turnaround-time strong {
+            color: var(--secondary-color);
+        }
+
+        /* Package Section */
+        .packages-section {
+            background: white;
+            padding: 3rem 2rem;
+        }
+
+        .packages-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--text-dark);
+        }
+
+        .packages-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .package-card {
+            background: white;
+            border: 2px solid var(--light-blue-bg);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: transform .35s cubic-bezier(.4,0,.2,1), box-shadow .35s, border-color .3s;
+        }
+        .package-card:hover {
+            border-color: var(--primary-color);
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-8px);
+        }
+
+        .package-card.popular {
+            border-color: var(--primary-color);
+            box-shadow: var(--shadow-hover);
+            transform: scale(1.05);
+        }
+
+        .package-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .package-name {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .package-price {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .package-price small {
+            font-size: 1rem;
+            color: var(--text-light);
+        }
+
+        .package-description {
+            color: var(--text-light);
+            margin: 1.5rem 0;
+            font-size: 0.95rem;
+        }
+
+        .package-features {
+            text-align: left;
+            margin: 1.5rem 0;
+        }
+
+        .package-features li {
+            padding: 0.5rem 0;
+            color: var(--text-light);
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .package-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--secondary-color);
+            font-weight: bold;
+        }
+
+        .package-btn {
+            width: 100%;
+            padding: 0.8rem;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .package-btn:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 60px 2rem;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-btn-large {
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            background: white;
+            color: var(--primary-color);
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .cta-btn-large:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-bg);
+            color: white;
+            padding: 40px 2rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            text-align: left;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--primary-color);
+            margin-left: 5px;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(77, 166, 255, 0.2);
+            padding-top: 2rem;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Animations */
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .scroll-fade {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .scroll-fade.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .filter-section {
+                flex-direction: column;
+            }
+
+            .filter-btn {
+                width: 100%;
+            }
+
+            nav ul {
+                gap: 1rem;
+            }
+
+            .detailed-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .logo span {
+                display: none;
+            }
+
+            .package-card.popular {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="pgReveal"></div>
+    <button id="stt" title="Back to top"><i class="fas fa-chevron-up"></i></button>
+    <!-- Navigation -->
+    <nav id="svcNav">
+        <div class="nav-container">
+            <a href="hoome.html" class="logo">
+                <img src="Lab Logo.png" alt="Lab Logo" class="logo-img">
+                <span>The Medicare Laboratory & Diagnostic Center</span>
+            </a>
+            <ul>
+                <li><a href="hoome.html">Home</a></li>
+                <li><a href="hoome.html#about">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="schedule%20your%20payment.html" class="cta-btn">Book Test</a></li>
+            </ul>
+        </div>
+    </nav>
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="sec-bubbles" id="svcHeaderBubbles"></div>
+        <h1>Our Services</h1>
+        <p>Comprehensive diagnostic and laboratory services designed to meet all your healthcare needs with precision and care</p>
+    </section>
+
+    <!-- Filter Section -->
+    <div class="filter-section" data-aos="fade-up" data-aos-delay="100">
+        <button class="filter-btn active" onclick="filterServices('all')">All Services</button>
+        <button class="filter-btn" onclick="filterServices('blood')">Blood Tests</button>
+        <button class="filter-btn" onclick="filterServices('wellness')">Health Checkups</button>
+    </div>
+
+    <!-- Services Grid -->
+    <section class="services-container">
+        <div class="services-grid">
+            <!-- Blood Tests -->
+            <div class="service-card scroll-fade" data-category="blood">
+                <div class="service-card-header">
+                    <div class="service-icon">🩸</div>
+                    <h3>Blood Tests</h3>
+                </div>
+                <div class="service-card-body">
+                    <p>Comprehensive blood analysis for accurate health assessment and early disease detection</p>
+                    <div class="service-features">
+                        <h4>What We Test:</h4>
+                        <ul class="feature-list">
+                            <li>Complete Blood Count (CBC)</li>
+                            <li>Lipid Profile</li>
+                            <li>Liver Function Test (LFT)</li>
+                            <li>Kidney Function Test (KFT)</li>
+                            <li>Thyroid Profile</li>
+                            <li>Diabetes Screening</li>
+                        </ul>
+                    </div>
+                    <div class="turnaround-time">
+                        <strong>⏱️ Results:</strong> Within 24 hours
+                    </div>
+                    <a href="schedule%20your%20payment.html" class="cta-btn">Book Now</a>
+                </div>
+            </div>
+
+            <!-- Microbiology -->
+            <div class="service-card scroll-fade" data-category="blood">
+                <div class="service-card-header">
+                    <div class="service-icon">🦠</div>
+                    <h3>Microbiology</h3>
+                </div>
+                <div class="service-card-body">
+                    <p>Identification and testing of microorganisms for infection diagnosis and treatment</p>
+                    <div class="service-features">
+                        <h4>What We Offer:</h4>
+                        <ul class="feature-list">
+                            <li>Bacterial Culture</li>
+                            <li>Sensitivity Testing</li>
+                            <li>Viral Serology</li>
+                            <li>Fungal Testing</li>
+                            <li>Mycobacterial Tests</li>
+                            <li>PCR Tests</li>
+                        </ul>
+                    </div>
+                    <div class="turnaround-time">
+                        <strong>⏱️ Results:</strong> 2-7 days
+                    </div>
+                    <a href="schedule%20your%20payment.html" class="cta-btn">Book Now</a>
+                </div>
+            </div>
+            <!-- Health Checkups -->
+            <div class="service-card scroll-fade" data-category="wellness">
+                <div class="service-card-header">
+                    <div class="service-icon">💪</div>
+                    <h3>Health Checkups</h3>
+                </div>
+                <div class="service-card-body">
+                    <p>Comprehensive preventive health screening packages for your wellness</p>
+                    <div class="service-features">
+                        <h4>Packages Include:</h4>
+                        <ul class="feature-list">
+                            <li>Basic Checkup</li>
+                            <li>Premium Health Package</li>
+                            <li>Executive Checkup</li>
+                            <li>Women's Health Package</li>
+                            <li>Senior Citizen Package</li>
+                            <li>Customized Packages</li>
+                        </ul>
+                    </div>
+                        <div class="turnaround-time">
+                        <strong>⏱️ Results:</strong> 2-7 days
+                        </div>
+                    <a href="schedule%20your%20payment.html" class="cta-btn">Book Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Detailed Services -->
+    <section class="detailed-services">
+        <h2 data-aos="fade-up">Service Details</h2>
+        <span class="s-bar"></span>
+        <div class="detailed-grid">
+            <div class="detailed-item scroll-fade">
+                <h3> <a href="homecollection.html">🏥 Home Sample Collection</a></h3>
+                <p>We understand convenience is important. Our trained phlebotomists visit your home at your preferred time to collect samples. This service is completely free for all tests.</p>
+                <div class="turnaround-time">
+                    <strong>✓</strong> Free service for all patients<br>
+                    <strong>✓</strong> Trained professionals<br>
+                    <strong>✓</strong> Sterile equipment
+                </div>
+            </div>
+
+            <div class="detailed-item scroll-fade">
+                <h3> <a href="fastresult.html">⚡ Quick Results</a></h3>
+                <p>Our advanced automated systems and experienced team ensure fast turnaround times without compromising accuracy. Results are available online and via SMS.</p>
+                <div class="turnaround-time">
+                    <strong>✓</strong> Online results access<br>
+                    <strong>✓</strong> SMS notifications<br>
+                    <strong>✓</strong> Expert consultation
+                </div>
+            </div>
+            <div class="detailed-item scroll-fade">
+                <h3> <a href="affordablepricing.html">💳 Affordable Pricing</a></h3>
+                <p>We offer competitive rates with flexible payment options. Corporate discounts and group packages are available for bulk orders.</p>
+                <div class="turnaround-time">
+                    <strong>✓</strong> Flexible payment plans<br>
+                    <strong>✓</strong> Corporate discounts<br>
+                    <strong>✓</strong> No hidden charges
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Health Packages -->
+    <section class="packages-section">
+        <h2 data-aos="fade-up">Health Packages</h2>
+        <span class="s-bar"></span>
+        <div class="packages-grid">
+            <div class="package-card scroll-fade">
+                <div class="package-badge">Basic</div>
+                <h3 class="package-name">Basic Checkup</h3>
+                <div class="package-price">Rs. 2,500<small>/person</small></div>
+                <p class="package-description">Entry-level health screening for routine check</p>
+                <ul class="package-features">
+                    <li>CBC Test</li>
+                    <li>Blood Sugar</li>
+                    <li>Blood Pressure Check</li>
+                </ul>
+                <a href="basiccheckup.html" class="package-btn" style="display:block;text-align:center;text-decoration:none;">Select Package</a>
+            </div>
+
+            <div class="package-card scroll-fade">
+                <div class="package-badge">Popular</div>
+                <h3 class="package-name">Premium Health</h3>
+                <div class="package-price">Rs. 5,999<small>/person</small></div>
+                <p class="package-description">Comprehensive health screening package</p>
+                <ul class="package-features">
+                    <li>Complete Blood Work</li>
+                    <li>Thyroid Profile</li>
+                    <li>Liver & Kidney Tests</li>
+                    <li>Lipid Profile</li>
+                    <li>Diabetes Screening</li>
+                </ul>
+                <a href="premiumhealth.html" class="package-btn" style="display:block;text-align:center;text-decoration:none;">Select Package</a>
+            </div>
+
+            <div class="package-card scroll-fade">
+                <div class="package-badge">Executive</div>
+                <h3 class="package-name">Full Body Checkup</h3>
+                <div class="package-price">Rs. 9,999<small>/person</small></div>
+                <p class="package-description">Most comprehensive health assessment package</p>
+                <ul class="package-features">
+                    <li>All Premium Tests</li>
+                    <li>ECG</li>
+                    <li>Chest X-Ray</li>
+                    <li>Abdominal Ultrasound</li>
+                    <li>Doctor Consultation</li>
+                </ul>
+                <a href="healthcheckup.html" class="package-btn" style="display:block;text-align:center;text-decoration:none;">Select Package</a>
+            </div>
+
+            <div class="package-card scroll-fade">
+                <div class="package-badge">Women</div>
+                <h3 class="package-name">Women's Health</h3>
+                <div class="package-price">Rs. 6,999<small>/person</small></div>
+                <p class="package-description">Specialized package for women's wellness</p>
+                <ul class="package-features">
+                    <li>Basic Blood Work</li>
+                    <li>Thyroid Profile</li>
+                    <li>Gynecological Ultrasound</li>
+                    <li>Hormone Tests</li>
+                </ul>
+                <a href="womenheath.html" class="package-btn" style="display:block;text-align:center;text-decoration:none;">Select Package</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" data-aos="zoom-in" style="position:relative;overflow:hidden;">
+        <div class="sec-bubbles" id="svcCtaBubbles"></div>
+        <h2>Need Help Choosing the Right Service?</h2>
+        <p>Contact our healthcare advisors for personalized recommendations</p>
+        <button class="cta-btn-large">Consult Now</button>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>About Us</h4>
+                <ul>
+                    <li><a href="#">Our Story</a></li>
+                    <li><a href="#">Team</a></li>
+                    <li><a href="#">Certifications</a></li>
+                    <li><a href="#">Awards</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="#">Blood Tests</a></li>
+                    <li><a href="#">Health Packages</a></li>
+                    <li><a href="#">Home Collection</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact Us</h4>
+                <ul>
+                    <li><a href="tel:+92300123456">📞 +92 (300) 123-456</a></li>
+                    <li><a href="mailto:info@medicare.com">📧 info@medicare.com</a></li>
+                    <li><a href="#">📍 123 Medical Street</a></li>
+                    <li><a href="#">Karachi, Pakistan</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 The Medicare Laboratory & Diagnostic Center. All rights reserved. | Designed by Tahami Tech for your health</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script>
+    /* AOS */
+    AOS.init({ duration:720, once:true, easing:'ease-out-cubic', offset:50 });
+
+    /* GSAP */
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.fromTo('.service-card',{y:50,opacity:0},{y:0,opacity:1,duration:.7,stagger:.12,ease:'power2.out',scrollTrigger:{trigger:'.services-grid',start:'top 82%',once:true}});
+    gsap.fromTo('.package-card',{y:40,opacity:0},{y:0,opacity:1,duration:.65,stagger:.1,ease:'power2.out',scrollTrigger:{trigger:'.packages-grid',start:'top 82%',once:true}});
+    gsap.fromTo('.detailed-item',{x:-30,opacity:0},{x:0,opacity:1,duration:.65,stagger:.15,ease:'power2.out',scrollTrigger:{trigger:'.detailed-grid',start:'top 82%',once:true}});
+    gsap.fromTo('.cta-section h2',{y:28,opacity:0},{y:0,opacity:1,duration:.8,ease:'power3.out',scrollTrigger:{trigger:'.cta-section',start:'top 80%',once:true}});
+
+    /* Navbar scroll */
+    var svcNav=document.getElementById('svcNav');
+    var sttBtn=document.getElementById('stt');
+    window.addEventListener('scroll',function(){
+        svcNav.classList.toggle('nav-scrolled',window.scrollY>60);
+        sttBtn.classList.toggle('show',window.scrollY>400);
+    },{passive:true});
+    sttBtn.addEventListener('click',function(){ window.scrollTo({top:0,behavior:'smooth'}); });
+
+    /* Scroll-fade */
+    var sfObs=new IntersectionObserver(function(entries){
+        entries.forEach(function(e){ if(e.isIntersecting){e.target.classList.add('visible');sfObs.unobserve(e.target);} });
+    },{threshold:0.1,rootMargin:'0px 0px -80px 0px'});
+    document.querySelectorAll('.scroll-fade').forEach(function(el){sfObs.observe(el);});
+
+    /* Button ripple */
+    document.querySelectorAll('.cta-btn,.package-btn,.filter-btn,.cta-btn-large,.service-btn').forEach(function(btn){
+        btn.addEventListener('click',function(e){
+            var r=document.createElement('span');
+            var rc=this.getBoundingClientRect();
+            var sz=Math.max(rc.width,rc.height);
+            r.style.cssText='position:absolute;border-radius:50%;background:rgba(255,255,255,.35);width:'+sz+'px;height:'+sz+'px;left:'+(e.clientX-rc.left-sz/2)+'px;top:'+(e.clientY-rc.top-sz/2)+'px;transform:scale(0);animation:rippleFx .5s linear;pointer-events:none';
+            this.style.position='relative';this.style.overflow='hidden';
+            this.appendChild(r);
+            setTimeout(function(){r.remove();},520);
+        });
+    });
+
+    /* Smooth hash scroll */
+    document.querySelectorAll('a[href^="#"]').forEach(function(anchor){
+        anchor.addEventListener('click',function(e){
+            var href=this.getAttribute('href');
+            if(href!=='#'){
+                var target=document.querySelector(href);
+                if(target){e.preventDefault();target.scrollIntoView({behavior:'smooth',block:'start'});}
+            }
+        });
+    });
+
+        // Filter Services
+        function filterServices(category) {
+            const cards = document.querySelectorAll('.service-card');
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            cards.forEach(card => {
+                if (category === 'all') {
+                    card.style.display = 'block';
+                    setTimeout(() => card.classList.add('visible'), 10);
+                } else if (card.dataset.category === category) {
+                    card.style.display = 'block';
+                    setTimeout(() => card.classList.add('visible'), 10);
+                } else {
+                    card.style.display = 'none';
+                    card.classList.remove('visible');
+                }
+            });
+        }
+
+    window.addEventListener('load',function(){console.log('Services page loaded!');});
+    </script>
+    <style>@keyframes rippleFx{to{transform:scale(2.5);opacity:0;}}</style>
+
+<!-- ═══ SECTION BUBBLES (service.html) ═══ -->
+<style>
+.sec-bubbles{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:1;}
+.sb{position:absolute;border-radius:50%;background:radial-gradient(circle at 35% 35%,rgba(255,255,255,.52) 0%,rgba(255,255,255,.16) 40%,rgba(255,255,255,.04) 70%,transparent 100%);border:1px solid rgba(255,255,255,.28);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);box-shadow:inset 0 0 10px rgba(255,255,255,.14),0 0 14px rgba(79,240,84,.14);will-change:transform;pointer-events:auto;transition:box-shadow .3s,border-color .3s,transform .3s;}
+.sb::before{content:'';position:absolute;top:18%;left:20%;width:28%;height:17%;background:rgba(255,255,255,.5);border-radius:50%;filter:blur(2px);}
+.sb:hover{box-shadow:inset 0 0 22px rgba(255,255,255,.45),0 0 32px rgba(79,240,84,.55);border-color:rgba(79,240,84,.75);transform:scale(1.18) !important;z-index:3;}
+@keyframes sbFloat{0%{transform:translateY(0) translateX(0) scale(1);}25%{transform:translateY(-18px) translateX(6px) scale(1.03);}50%{transform:translateY(-8px) translateX(-8px) scale(.97);}75%{transform:translateY(-24px) translateX(4px) scale(1.04);}100%{transform:translateY(0) translateX(0) scale(1);}}
+.page-header>*:not(.sec-bubbles),.cta-section>*:not(.sec-bubbles){position:relative;z-index:2;}
+@media(max-width:600px){.sec-bubbles{display:none;}}
+/* ── Enhanced scroll-fade ── */
+.scroll-fade{opacity:0;transform:translateY(36px);transition:opacity .7s ease,transform .7s ease !important;}
+.scroll-fade.visible{opacity:1 !important;transform:translateY(0) !important;}
+/* ── Glassmorphism on filter section ── */
+.filter-section{background:rgba(255,255,255,.72) !important;backdrop-filter:blur(14px) !important;-webkit-backdrop-filter:blur(14px) !important;border:1px solid rgba(45,151,13,.18) !important;box-shadow:0 8px 32px rgba(45,151,13,.12) !important;}
+/* ── Enhanced card hover ── */
+.service-card:hover{transform:translateY(-14px) scale(1.02) !important;}
+.package-card:hover{transform:translateY(-10px) !important;}
+</style>
+<script>
+(function(){
+  function rnd(a,b){return a+Math.random()*(b-a);}
+  var bands=[[8,16,.4,.65],[17,30,.28,.5],[31,48,.16,.36],[49,70,.1,.24]];
+  var cnts=[8,6,4,2];
+  function seedBubbles(cid){
+    var wrap=document.getElementById(cid);if(!wrap)return;
+    var section=wrap.parentElement;
+    var bubs=[],raf=false,mX=-9999,mY=-9999;
+    var REPEL=100,FORCE=38;
+    bands.forEach(function(b,bi){
+      for(var i=0;i<cnts[bi];i++){
+        var sz=rnd(b[0],b[1]),op=rnd(b[2],b[3]);
+        var dur=rnd(5,18),del=rnd(0,dur);
+        var lx=rnd(2,97),ly=rnd(3,94);
+        var el=document.createElement('div');el.className='sb';
+        el.style.cssText='width:'+sz+'px;height:'+sz+'px;left:'+lx+'%;top:'+ly+'%;opacity:'+op+';animation:sbFloat '+dur+'s ease-in-out -'+del+'s infinite';
+        wrap.appendChild(el);bubs.push({el:el,lx:lx,ly:ly,sz:sz,ox:0,oy:0});
+      }
+    });
+    section.addEventListener('mousemove',function(e){var r=section.getBoundingClientRect();mX=e.clientX-r.left;mY=e.clientY-r.top;if(!raf){raf=true;requestAnimationFrame(rep);}},{passive:true});
+    section.addEventListener('mouseleave',function(){mX=-9999;mY=-9999;});
+    function rep(){raf=false;var W=section.offsetWidth,H=section.offsetHeight;bubs.forEach(function(b){var bx=(b.lx/100)*W,by=(b.ly/100)*H;var dx=bx-mX,dy=by-mY;var d=Math.sqrt(dx*dx+dy*dy);var tx=0,ty=0;if(d<REPEL&&d>0){var rv=1-d/REPEL;var p=FORCE*rv*rv;tx=(dx/d)*p;ty=(dy/d)*p;}b.ox+=(tx-b.ox)*.18;b.oy+=(ty-b.oy)*.18;b.el.style.transform='translate('+b.ox.toFixed(1)+'px,'+b.oy.toFixed(1)+'px)';});}
+    (function drift(){bubs.forEach(function(b){if(Math.abs(b.ox)>.05||Math.abs(b.oy)>.05){b.ox*=.94;b.oy*=.94;b.el.style.transform='translate('+b.ox.toFixed(1)+'px,'+b.oy.toFixed(1)+'px)';}});requestAnimationFrame(drift);})();
+  }
+  ['svcHeaderBubbles','svcCtaBubbles'].forEach(seedBubbles);
+})();
+</script>
+
+  <script src="loader-nav.js"></script>
+</body>
+</html>
+
