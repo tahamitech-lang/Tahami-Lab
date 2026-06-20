@@ -1,0 +1,175 @@
+/* Mobile Navigation Styles */
+@media (max-width: 767px) {
+    /* Hide desktop navigation */
+    .desktop-nav {
+        display: none !important;
+    }
+
+    /* Show hamburger icon */
+    .hamburger-menu {
+        display: block !important;
+        cursor: pointer;
+        font-size: 30px;
+        color: #333; /* Adjust color as needed */
+        position: absolute;
+        right: 20px;
+        top: 20px;
+        z-index: 1001; /* Ensure it's above other content */
+    }
+
+    /* Mobile dropdown menu */
+    .mobile-nav-menu {
+        display: none; /* Hidden by default */
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(255, 255, 255, 0.95); /* Semi-transparent background */
+        z-index: 1000;
+        overflow-y: auto; /* Enable scrolling if menu content is long */
+        padding-top: 60px; /* Space for the logo/hamburger at the top */
+        box-sizing: border-box;
+    }
+
+    .mobile-nav-menu.open {
+        display: block;
+        animation: slideIn 0.3s forwards;
+    }
+
+    .mobile-nav-menu.closed {
+        animation: slideOut 0.3s forwards;
+    }
+
+    .mobile-nav-menu ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        text-align: center;
+    }
+
+    .mobile-nav-menu ul li {
+        margin: 20px 0;
+    }
+
+    .mobile-nav-menu ul li a {
+        text-decoration: none;
+        color: #333;
+        font-size: 24px;
+        padding: 10px 20px;
+        display: block;
+        transition: background-color 0.2s ease-in-out;
+    }
+
+    .mobile-nav-menu ul li a:hover {
+        background-color: #f0f0f0;
+    }
+
+    /* Animations */
+    @keyframes slideIn {
+        from { transform: translateX(100%); opacity: 0; }
+        to { transform: translateX(0); opacity: 1; }
+    }
+
+    @keyframes slideOut {
+        from { transform: translateX(0); opacity: 1; }
+        to { transform: translateX(100%); opacity: 0; }
+    }
+}
+
+/* General mobile responsiveness for screens below 768px */
+@media (max-width: 768px) {
+    html,
+    body {
+        width: 100%;
+        overflow-x: hidden;
+    }
+    * {
+        box-sizing: border-box;
+    }
+    img,
+    video,
+    iframe {
+        max-width: 100%;
+        height: auto;
+    }
+
+    /* Adjust main layout for smaller screens */
+    .container {
+        padding: 20px 15px; /* Adjust container padding */
+    }
+
+    .main-grid {
+        grid-template-columns: 1fr; /* Stack columns vertically */
+        gap: 20px; /* Adjust gap */
+    }
+
+    .card, .price-breakdown, .benefits-section, .cta-section {
+        padding: 20px; /* Smaller padding for cards and sections */
+        border-radius: 10px; /* Slightly smaller border-radius */
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1); /* Lighter shadow */
+    }
+
+    .card-header {
+        padding: 30px 20px;
+    }
+
+    .card-header h1 {
+        font-size: 2em; /* Adjust heading size */
+    }
+
+    .card-body h2 {
+        font-size: 1.8em;
+    }
+
+    .card-body h3 {
+        font-size: 1.1em;
+    }
+
+    .benefit-card {
+        padding: 20px;
+    }
+
+    .benefit-icon {
+        font-size: 35px;
+    }
+
+    .benefit-title {
+        font-size: 1em;
+    }
+
+    .cta-section h2 {
+        font-size: 1.8em;
+    }
+
+    .cta-btn {
+        padding: 12px 30px;
+        font-size: 1em;
+    }
+
+    /* Ensure text wraps */
+    p, li {
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+    }
+
+    /* Specific adjustments for nav to handle logo and hamburger */
+    nav .nav-container {
+        flex-wrap: wrap; /* Allow items to wrap */
+        justify-content: space-between; /* Space out logo and hamburger */
+        padding: 0 15px;
+    }
+
+    nav .logo {
+        font-size: 1.2rem; /* Smaller logo text */
+    }
+
+    nav .logo-img {
+        width: 45px; /* Smaller logo image */
+        height: 45px;
+    }
+
+    .price-breakdown {
+        position: static; /* Remove sticky positioning on mobile */
+    }
+}
