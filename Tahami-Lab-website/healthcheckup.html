@@ -589,18 +589,21 @@
     </style>
 <body>
     <!-- Navigation (matches home.html) -->
-    <nav style="background: linear-gradient(135deg, #2d970d 0%, #2d9c21 100%); padding: 1rem 0; position: fixed; width: 100%; top: 0; z-index: 1000; box-shadow: 0 4px 20px rgba(32,180,42,0.8);">
-        <div style="max-width:1200px; margin:0 auto; padding:0 2rem; display:flex; justify-content:space-between; align-items:center;">
-            <a href="index.html" style="display:flex; align-items:center; gap:0.5rem; color:white; font-size:1.5rem; font-weight:700; text-decoration:none;">
-                <img src="Lab Logo.png" alt="Lab Logo" style="width:55px; height:55px; object-fit:contain; border-radius:50%;">
-                <span>The Medicare Laboratory & Diagnostic Center</span>
+    <nav id="mainNav" style="background: linear-gradient(135deg, #2d970d 0%, #2d9c21 100%); padding: 1rem 0; position: fixed; width: 100%; top: 0; z-index: 1000; box-shadow: 0 4px 20px rgba(32,180,42,0.8);">
+        <div style="max-width:1200px; margin:0 auto; padding:0 2rem; display:flex; justify-content:space-between; align-items:center;" class="nav-container">
+            <a href="index.html" class="logo" style="display:flex; align-items:center; gap:0.5rem; color:white; font-size:1.5rem; font-weight:700; text-decoration:none;">
+                <img src="Lab%20Logo.png" alt="Lab Logo" class="logo-img" style="width:55px; height:55px; object-fit:contain; border-radius:50%;">
+                <span>The Medicare Laboratory &amp; Diagnostic Center</span>
             </a>
-            <ul style="list-style:none; display:flex; gap:2rem; align-items:center; margin:0;">
+            <ul id="navLinks" style="list-style:none; display:flex; gap:2rem; align-items:center; margin:0;">
                 <li><a href="service.html" style="color:white; text-decoration:none; font-weight:500;">Services</a></li>
                 <li><a href="index.html#about" style="color:white; text-decoration:none; font-weight:500;">About</a></li>
                 <li><a href="contact.html" style="color:white; text-decoration:none; font-weight:500;">Contact</a></li>
-                <li><a href="schedule%20your%20payment.html" style="background:linear-gradient(135deg,#4ff054,#175308); color:white; padding:0.7rem 1.5rem; border-radius:25px; font-weight:600; text-decoration:none;">Book Test</a></li>
+                <li><a href="schedule%20your%20payment.html" class="cta-btn" style="background:linear-gradient(135deg,#4ff054,#175308); color:white; padding:0.7rem 1.5rem; border-radius:25px; font-weight:600; text-decoration:none;">Order Now</a></li>
             </ul>
+            <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
         </div>
     </nav>
     <div style="height:72px;"></div>

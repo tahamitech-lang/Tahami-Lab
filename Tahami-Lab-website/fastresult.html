@@ -57,6 +57,45 @@
     </style>
 </head>
 <body>
+    <nav id="mainNav">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="Lab%20Logo.png" alt="Lab Logo" class="logo-img">
+                <span>The Medicare Laboratory &amp; Diagnostic Center</span>
+            </a>
+            <ul id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="service.html">Services</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="schedule%20your%20payment.html" class="cta-btn">Order Now</a></li>
+            </ul>
+            <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <div class="nav-drawer" id="navDrawer">
+        <a href="index.html">Home</a>
+        <a href="service.html">Services</a>
+        <a href="contact.html">Contact</a>
+        <a href="schedule%20your%20payment.html" class="cta-btn">Order Now</a>
+    </div>
+
+    <script>
+    (function(){
+      var hbg=document.getElementById('hamburger');
+      var drw=document.getElementById('navDrawer');
+      if(!hbg||!drw) return;
+      hbg.addEventListener('click',function(){
+        hbg.classList.toggle('open');
+        drw.classList.toggle('open');
+        document.body.style.overflow=drw.classList.contains('open')?'hidden':'';
+      });
+      drw.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){hbg.classList.remove('open');drw.classList.remove('open');document.body.style.overflow='';});});
+    })();
+    </script>
+
     <div id="root"></div>
 
     <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
