@@ -38,6 +38,52 @@
         gap: 20px; /* Adjust gap for stacked items */
     }
 
+    .main-grid > *,
+    .features-grid > *,
+    .services-grid > *,
+    .stats-container > *,
+    .about-container > *,
+    .contact-grid > *,
+    .benefits-grid > *,
+    .pricing-grid > *,
+    .profiles-grid > *,
+    .highlights > *,
+    .stats-grid > *,
+    .gallery > *,
+    .footer-content > * {
+        min-width: 0;
+        width: 100%;
+    }
+
+    .card,
+    .price-breakdown,
+    .comparison-section,
+    .table-wrapper,
+    .info-box {
+        max-width: 100%;
+        min-width: 0;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .table-wrapper {
+        overflow-x: auto;
+        width: 100%;
+    }
+
+    .table-wrapper table {
+        min-width: 100%;
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .comparison-section,
+    .card,
+    .price-breakdown,
+    .info-box {
+        overflow: hidden;
+    }
+
     /* Center text for headings and paragraphs */
     .hero h1,
     .hero p,

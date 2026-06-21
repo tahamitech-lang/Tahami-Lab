@@ -5,6 +5,24 @@
 //  - Pattern B (missing): inject hamburger + fullscreen drawer into the first <nav> when needed
 
 (function () {
+  function cloneButton(button) {
+    if (!button) return button;
+    var clone = button.cloneNode(true);
+    clone.id = button.id;
+    clone.className = button.className;
+    clone.type = button.type || 'button';
+    clone.setAttribute('aria-label', button.getAttribute('aria-label') || 'Toggle menu');
+    clone.setAttribute('aria-controls', button.getAttribute('aria-controls') || 'navDrawer');
+    clone.onclick = null;
+    clone.onmouseover = null;
+    clone.onmouseout = null;
+    clone.onmousedown = null;
+    clone.onmouseup = null;
+    clone.removeAttribute('onclick');
+    button.parentNode.replaceChild(clone, button);
+    return clone;
+  }
+
   function closeMenu(hamburger, drawer) {
     if (hamburger) hamburger.classList.remove('open');
     if (drawer) drawer.classList.remove('open');
@@ -37,7 +55,7 @@
   }
 
   document.addEventListener('DOMContentLoaded', function () {
-    // Pattern A
+    // Pattern A: existing button + drawer markup
     var hamburgerA = document.getElementById('hamburger');
     var drawerA = document.getElementById('navDrawer');
     if (hamburgerA && drawerA) {
@@ -55,7 +73,6 @@
       });
 
       document.addEventListener('click', function (e) {
-        // close when clicking outside drawer
         if (!drawerA.contains(e.target) && !hamburgerA.contains(e.target)) {
           closeMenu(hamburgerA, drawerA);
         }
@@ -63,40 +80,42 @@
       return;
     }
 
-    // Pattern A also for class-based names if present
-    var hamburgerB = document.querySelector('.nav-hamburger');
-    var drawerB = document.querySelector('.nav-drawer');
-    if (hamburgerB && drawerB) {
-      hamburgerB.addEventListener('click', function () {
-        toggleMenu(hamburgerB, drawerB);
+    // Pattern B: existing button or drawer markup but not both, or generic nav injection
+    var nav = document.querySelector('nav');
+    if (!nav) return;
+
+    var container = nav.querySelector('.nav-container');
+    if (container) {
+      container.style.position = container.style.position || 'relative';
+    }
+
+    var existingHamburger = nav.querySelector('#hamburger') || nav.querySelector('.nav-hamburger');
+    var existingDrawer = document.getElementById('navDrawer') || document.querySelector('.nav-drawer');
+
+    if (existingHamburger) {
+      existingHamburger = cloneButton(existingHamburger);
+    }
+
+    // If there is a button and a drawer somewhere else on page, wire them
+    if (existingHamburger && existingDrawer) {
+      existingHamburger.addEventListener('click', function () {
+        toggleMenu(existingHamburger, existingDrawer);
       });
-      drawerB.querySelectorAll('a').forEach(function (a) {
+      existingDrawer.querySelectorAll('a').forEach(function (a) {
         a.addEventListener('click', function () {
-          closeMenu(hamburgerB, drawerB);
+          closeMenu(existingHamburger, existingDrawer);
         });
       });
       document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape') closeMenu(hamburgerB, drawerB);
+        if (e.key === 'Escape') closeMenu(existingHamburger, existingDrawer);
       });
       document.addEventListener('click', function (e) {
-        if (!drawerB.contains(e.target) && !hamburgerB.contains(e.target)) {
-          closeMenu(hamburgerB, drawerB);
+        if (!existingDrawer.contains(e.target) && !existingHamburger.contains(e.target)) {
+          closeMenu(existingHamburger, existingDrawer);
         }
       });
       return;
     }
-
-    // Pattern B: inject for pages where <nav> has only <ul> and no hamburger/drawer
-    var nav = document.querySelector('nav');
-    if (!nav) return;
-
-    // If already has injected drawer, don't do again
-    if (document.getElementById('mobileInjectedDrawer')) return;
-
-    // If page already has some drawer markup, don't inject
-    if (nav.querySelector('.nav-drawer') || nav.querySelector('#navDrawer')) return;
-    if (nav.querySelector('.nav-hamburger') || nav.querySelector('#hamburger')) return;
-
 
     // Collect existing links from nav ul (if present)
     var navLinks = [];
@@ -109,7 +128,6 @@
       });
     }
 
-    // Fallback links if <ul> missing
     if (!navLinks.length) {
       navLinks = [
         { text: 'Services', href: 'service.html' },
@@ -119,57 +137,52 @@
       ];
     }
 
-    // Create hamburger button (LEFT)
-    var hamburger = document.createElement('button');
-    hamburger.type = 'button';
-    hamburger.id = 'mobileInjectedHamburger';
-    hamburger.className = 'nav-hamburger';
-    hamburger.setAttribute('aria-label', 'Toggle menu');
-    hamburger.setAttribute('aria-controls', 'mobileInjectedDrawer');
-    hamburger.style.zIndex = '1001';
+    // Reuse existing button when available, otherwise inject a new one.
+    var hamburger = existingHamburger;
+    if (!hamburger) {
+      hamburger = document.createElement('button');
+      hamburger.type = 'button';
+      hamburger.id = 'mobileInjectedHamburger';
+      hamburger.className = 'nav-hamburger';
+      hamburger.setAttribute('aria-label', 'Toggle menu');
+      hamburger.setAttribute('aria-controls', 'mobileInjectedDrawer');
+      hamburger.style.zIndex = '1001';
+      hamburger.innerHTML = '<span></span><span></span><span></span>';
+      var container = nav.querySelector('.nav-container') || nav;
+      container.style.position = container.style.position || 'relative';
+      container.insertBefore(hamburger, container.firstChild);
+    }
 
-    hamburger.innerHTML = '<span></span><span></span><span></span>';
+    // Reuse existing drawer when available, otherwise inject a new one.
+    var drawer = existingDrawer;
+    if (!drawer) {
+      drawer = document.createElement('div');
+      drawer.id = 'mobileInjectedDrawer';
+      drawer.className = 'nav-drawer';
 
-    // Create fullscreen drawer
-    var drawer = document.createElement('div');
-    drawer.id = 'mobileInjectedDrawer';
-    drawer.className = 'nav-drawer';
+      var itemsHtml = '';
+      navLinks.forEach(function (item) {
+        var label = item.text;
+        if (!label) return;
+        var isBook = label.toLowerCase().includes('book');
 
-    var itemsHtml = '';
-    navLinks.forEach(function (item) {
-      // Use About/Contact/Services casing from requirement
-      var label = item.text;
-      if (!label) return;
-      var isBook = label.toLowerCase().includes('book');
+        if (isBook) {
+          itemsHtml += '<a href="' + item.href + '" class="cta-btn">Book Test</a>';
+        } else {
+          if (label.toLowerCase().includes('service')) label = 'Services';
+          if (label.toLowerCase().includes('about')) label = 'About';
+          if (label.toLowerCase().includes('contact')) label = 'Contact';
 
-      if (isBook) {
-        itemsHtml += '<a href="' + item.href + '" class="cta-btn">Book Test</a>';
-      } else {
-        // Normalize common labels
-        if (label.toLowerCase().includes('service')) label = 'Services';
-        if (label.toLowerCase().includes('about')) label = 'About';
-        if (label.toLowerCase().includes('contact')) label = 'Contact';
+          itemsHtml += '<a href="' + item.href + '">' + label + '</a>';
+        }
+      });
 
-        itemsHtml += '<a href="' + item.href + '">' + label + '</a>';
-      }
-    });
+      drawer.innerHTML = itemsHtml;
+      document.body.appendChild(drawer);
+      drawer.style.display = 'none';
+      drawer.classList.remove('open');
+    }
 
-    drawer.innerHTML = itemsHtml;
-
-    // Insert hamburger on LEFT of nav container if possible
-    // Try: nav .nav-container exists? else insert before nav ul
-    var container = nav.querySelector('.nav-container') || nav;
-    container.style.position = container.style.position || 'relative';
-    container.insertBefore(hamburger, container.firstChild);
-
-    // Append drawer to body (for fixed positioning)
-    document.body.appendChild(drawer);
-
-    // Initialize drawer hidden
-    drawer.style.display = 'none';
-    drawer.classList.remove('open');
-
-    // Wire events
     hamburger.addEventListener('click', function (e) {
       e.stopPropagation();
       toggleMenu(hamburger, drawer);
