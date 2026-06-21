@@ -7,7 +7,7 @@
    - Pattern A (already present in `index.html`/`service.html`/`advancetech.html`): `#hamburger`, `#navDrawer`, `.nav-hamburger`, `.nav-drawer`.
    - Pattern B (current in failing pages like `womenheath.html`, `basiccheckup.html`, `healthcheckup.html`): nav uses only `<ul>`; add hamburger + drawer via script OR ensure `mobile-nav.js` can inject them.
 4. Inject hamburger + drawer automatically on pages that have `<nav>` with `<ul>` but missing hamburger/drawer. Links inside the existing `<ul>` will be reused for Service/About/Contact and Book Test.
-5. Ensure hamburger is on LEFT in mobile and drawer lists Service/About/Contact + Book Test.
+5. Ensure hamburger is on RIGHT in mobile and drawer lists Service/About/Contact + Book Test.
 6. After code changes, verify on mobile for: `womenheath.html`, `basiccheckup.html`, `healthcheckup.html`, and confirm existing pages still work.
 
 ## Steps
@@ -15,6 +15,6 @@
 - [x] Step 2: Update `mobile-nav.css` to style injected hamburger (left) and drawer fullscreen.
 - [x] Step 3: Ensure closing works on link click and outside click.
 
-- [ ] Step 4: Quick regression check on `index.html`/`service.html`/`advancetech.html`.
+- [ ] Step 4: Quick regression check on `index.html`/`service.html`/`contact.html`.
 
 
