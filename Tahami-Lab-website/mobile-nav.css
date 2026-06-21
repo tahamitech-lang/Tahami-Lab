@@ -1,173 +1,82 @@
-/* Mobile Navigation Styles */
-/* IMPORTANT: this file now supports TWO nav modes:
-   1) Existing in index.html/service.html: .nav-hamburger (id=hamburger) + #navDrawer (class nav-drawer)
-   2) Injected by mobile-nav.js: button.nav-hamburger + div.nav-drawer (id=mobileInjectedDrawer)
-*/
-
-@media (max-width: 768px) {
-    /* Hide desktop nav links when present */
-    nav ul {
-        display: none !important;
-    }
-
-    /* Show hamburger (both existing + injected) */
-    .nav-container {
-        position: relative;
-    }
-
-    .nav-hamburger {
-        display: inline-flex !important;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        gap: 5px;
-        cursor: pointer;
-        background: transparent;
-        border: none;
-        padding: 0.5rem;
-        width: 44px;
-        height: 44px;
-        position: absolute;
-        left: 12px;
-        top: 50%;
-        transform: translateY(-50%);
-        z-index: 1001;
-        box-sizing: border-box;
-    }
-
-    /* hamburger bars */
-    .nav-hamburger span {
-        display: block;
-        width: 26px;
-        height: 3px;
-        background: #fff;
-        border-radius: 2px;
-        transition: transform .3s, opacity .3s;
-    }
-
-    /* open animation for injected/existing hamburger */
-    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
-    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-
-    /* Fullscreen drawer */
-    .nav-drawer {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        z-index: 999;
-        background: rgba(10,28,8,.97);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 1.8rem;
-    }
-
-    .nav-drawer.open {
-        display: flex !important;
-        animation: fadeIn .25s ease;
-    }
-
-    .nav-drawer a {
-        color: #fff;
-        font-size: 1.4rem;
-        font-weight: 700;
-        text-decoration: none;
-    }
-
-    .nav-drawer a:hover { color: #4ff054; }
-
-    .nav-drawer .cta-btn {
-        font-size: 1.1rem;
-        padding: .85rem 2rem;
-    }
-
-    @keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
+/* Mobile navigation styles */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: .4rem;
 }
 
-/* General mobile responsiveness for screens below 768px */
+.nav-hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: #fff;
+  border-radius: 2px;
+  transition: transform .3s, opacity .3s;
+}
+
+.nav-hamburger.open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.nav-hamburger.open span:nth-child(2) {
+  opacity: 0;
+}
+.nav-hamburger.open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+.nav-drawer {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 999;
+  background: rgba(10, 28, 8, .97);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+.nav-drawer.open {
+  display: flex;
+  animation: fadeIn .25s ease;
+}
+
+.nav-drawer a {
+  color: #fff;
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.nav-drawer a:hover {
+  color: var(--secondary-color);
+}
+
+.nav-drawer .cta-btn {
+  font-size: 1.1rem;
+  padding: .8rem 2rem;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
 @media (max-width: 768px) {
-    html, body {
-        width: 100%;
-        overflow-x: hidden;
-    }
+  nav ul {
+    display: none !important;
+  }
 
-    * { box-sizing: border-box; }
-
-    img, video, iframe {
-        max-width: 100%;
-        height: auto;
-    }
-
-    .container {
-        padding: 20px 15px;
-    }
-
-    .main-grid {
-        grid-template-columns: 1fr;
-        gap: 20px;
-    }
-
-    .card, .price-breakdown, .benefits-section, .cta-section {
-        padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-    }
-
-    .card-header { padding: 30px 20px; }
-
-    .card-header h1 { font-size: 2em; }
-
-    .card-body h2 { font-size: 1.8em; }
-
-    .card-body h3 { font-size: 1.1em; }
-
-    .benefit-card { padding: 20px; }
-    .benefit-icon { font-size: 35px; }
-    .benefit-title { font-size: 1em; }
-
-    .cta-section h2 { font-size: 1.8em; }
-
-    .cta-btn { padding: 12px 30px; font-size: 1em; }
-
-    p, li {
-        word-wrap: break-word;
-        overflow-wrap: break-word;
-    }
-
-    nav {
-        background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%) !important;
-        padding: 1rem 0 !important;
-        box-shadow: var(--shadow) !important;
-    }
-
-    nav .nav-container {
-        position: relative;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        padding: 0 15px;
-    }
-
-    nav .logo {
-        font-size: 1.2rem;
-    }
-
-    nav .logo span {
-        display: inline !important;
-    }
-
-    nav .logo-img {
-        width: 45px;
-        height: 45px;
-    }
-
-    .price-breakdown {
-        position: static;
-    }
+  .nav-hamburger {
+    display: flex;
+  }
 }
 
