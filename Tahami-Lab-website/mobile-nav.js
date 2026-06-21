@@ -1,22 +1,37 @@
-(function () {
-  var hbg = document.getElementById('hamburger');
-  var drw = document.getElementById('navDrawer');
-  if (!hbg || !drw) return;
+// ===========================
+// MOBILE NAV JS
+// ===========================
 
-  function closeDrawer() {
-    hbg.classList.remove('open');
-    drw.classList.remove('open');
-    document.body.style.overflow = '';
-  }
+document.addEventListener('DOMContentLoaded', function () {
+    var hamburgerBtn = document.getElementById('hamburgerBtn');
+    var overlay = document.getElementById('mobileMenuOverlay');
+    var closeBtn = document.getElementById('mobileCloseBtn');
 
-  hbg.addEventListener('click', function () {
-    hbg.classList.toggle('open');
-    drw.classList.toggle('open');
-    document.body.style.overflow = drw.classList.contains('open') ? 'hidden' : '';
-  });
+    // Open menu
+    if (hamburgerBtn) {
+        hamburgerBtn.addEventListener('click', function () {
+            overlay.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        });
+    }
 
-  drw.querySelectorAll('a').forEach(function (a) {
-    a.addEventListener('click', closeDrawer);
-  });
-})();
+    // Close menu via X
+    if (closeBtn) {
+        closeBtn.addEventListener('click', function () {
+            closeMenu();
+        });
+    }
 
+    // Close menu when any nav link clicked
+    var links = document.querySelectorAll('.mob-link, .mob-book-btn');
+    links.forEach(function (link) {
+        link.addEventListener('click', function () {
+            closeMenu();
+        });
+    });
+
+    function closeMenu() {
+        overlay.classList.remove('open');
+        document.body.style.overflow = '';
+    }
+});
