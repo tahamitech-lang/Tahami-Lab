@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://tahami-lab.vercel.app/</loc>
+    <lastmod>2026-07-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://tahami-lab.vercel.app/images/A%20lab%20technician%20preparing%20samples%20quickly%20pic.png</image:loc>
+      <image:title>Lab technician preparing samples quickly</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://tahami-lab.vercel.app/images/about%20image%20log.png</image:loc>
+      <image:title>About lab image</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://tahami-lab.vercel.app/images/about%20image%20pic.png</image:loc>
+      <image:title>About lab photo</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://tahami-lab.vercel.app/images/Automated%20analyzer%20close-up%20pic.png</image:loc>
+      <image:title>Automated analyzer close-up</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://tahami-lab.vercel.app/images/Digital%20lab%20report%20on%20a%20tablet%20screen%20pic.png</image:loc>
+      <image:title>Digital lab report</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://tahami-lab.vercel.app/images/Home%20collection%20sample%20pickup%20by%20a%20technician%20pic.png</image:loc>
+      <image:title>Home collection sample pickup</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://tahami-lab.vercel.app/images/lab%20display%20pic.png</image:loc>
+      <image:title>Laboratory display</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://tahami-lab.vercel.app/images/Lab%20Logo.png</image:loc>
+      <image:title>Tahami Lab logo</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://tahami-lab.vercel.app/images/Lab%20technician%20reviewing%20fast%20test%20results%20pic.png</image:loc>
+      <image:title>Technician reviewing fast test results</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://tahami-lab.vercel.app/images/Lab%20workstation%20and%20digital%20report%20on%20screen%20pic.jpg</image:loc>
+      <image:title>Lab workstation and digital report</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://tahami-lab.vercel.app/images/Laboratory%20equipment%20delivering%20fast%20results%20pic.png</image:loc>
+      <image:title>Laboratory equipment delivering fast results</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://tahami-lab.vercel.app/images/Laboratory%20instrumentation%20and%20technician%20pic.png</image:loc>
+      <image:title>Laboratory instrumentation and technician</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://tahami-lab.vercel.app/images/loading%20lab.png</image:loc>
+      <image:title>Loading lab image</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://tahami-lab.vercel.app/images/Patient%20receiving%20home%20sample%20collection%20service%20pic.png</image:loc>
+      <image:title>Patient receiving home sample collection</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://tahami-lab.vercel.app/images/PCR%20machine%20with%20samples%20pic.png</image:loc>
+      <image:title>PCR machine with samples</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://tahami-lab.vercel.app/images/Professional%20home%20collection%20team%20pic.png</image:loc>
+      <image:title>Professional home collection team</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://tahami-lab.vercel.app/images/Quick%20blood%20sample%20processing%20in%20lab%20pic.png</image:loc>
+      <image:title>Quick blood sample processing</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://tahami-lab.vercel.app/images/Samples%20being%20prepared%20for%20lab%20transport%20pic.png</image:loc>
+      <image:title>Samples prepared for lab transport</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://tahami-lab.vercel.app/images/Technician%20collecting%20blood%20sample%20at%20home%20pic.png</image:loc>
+      <image:title>Technician collecting blood sample at home</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://tahami-lab.vercel.app/images/Technician%20pipetting%20samples%20pic.png</image:loc>
+      <image:title>Technician pipetting samples</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://tahami-lab.vercel.app/pages/about.html</loc>
+    <lastmod>2026-07-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://tahami-lab.vercel.app/pages/advancetech.html</loc>
+    <lastmod>2026-07-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://tahami-lab.vercel.app/pages/affordablepricing.html</loc>
+    <lastmod>2026-07-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://tahami-lab.vercel.app/pages/basiccheckup.html</loc>
+    <lastmod>2026-07-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://tahami-lab.vercel.app/pages/contact.html</loc>
+    <lastmod>2026-07-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://tahami-lab.vercel.app/pages/expertteam.html</loc>
+    <lastmod>2026-07-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://tahami-lab.vercel.app/pages/fastresult.html</loc>
+    <lastmod>2026-07-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://tahami-lab.vercel.app/pages/healthcheckup.html</loc>
+    <lastmod>2026-07-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://tahami-lab.vercel.app/pages/homecollection.html</loc>
+    <lastmod>2026-07-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://tahami-lab.vercel.app/pages/loading.html</loc>
+    <lastmod>2026-07-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://tahami-lab.vercel.app/pages/premiumhealth.html</loc>
+    <lastmod>2026-07-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://tahami-lab.vercel.app/pages/schedule%20your%20payment.html</loc>
+    <lastmod>2026-07-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://tahami-lab.vercel.app/pages/service.html</loc>
+    <lastmod>2026-07-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://tahami-lab.vercel.app/pages/womenheath.html</loc>
+    <lastmod>2026-07-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+</urlset>

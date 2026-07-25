@@ -1,0 +1,324 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fast Results — The Medicare Lab</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --primary-color: #2d970d;
+            --primary-dark: #2d9c21;
+            --secondary-color: #4ff054;
+            --accent-color: #0f550b;
+            --light-blue-bg: #e6f2ff;
+            --light-bg: #ffffff;
+            --text-dark: #1a1a1a;
+            --text-muted: #666666;
+            --card-shadow: 0 6px 20px rgba(34,197,94,0.12);
+        }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--light-bg); color: var(--text-dark); line-height:1.7; }
+        
+        /* ── NAVBAR ── */
+        nav {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(32,180,42,.8);
+            transition: background .4s, padding .4s, box-shadow .4s;
+        }
+        nav.nav-scrolled {
+            background: rgba(10,28,8,.95);
+            backdrop-filter: blur(18px);
+            padding: .65rem 0;
+            box-shadow: 0 2px 32px rgba(0,0,0,.4);
+        }
+        .nav-container { max-width:1200px; margin:0 auto; padding:0 2rem; display:flex; justify-content:space-between; align-items:center; }
+        .logo { display:flex; align-items:center; gap:0.5rem; color:white; font-size:1.35rem; font-weight:700; text-decoration:none; }
+        .logo-img { width:55px; height:55px; object-fit:contain; border-radius:50%; background: linear-gradient(135deg, var(--secondary-color), var(--accent-color)); display:flex; align-items:center; justify-content:center; color:white; font-weight:800; }
+        nav ul { list-style:none; display:flex; gap:1.5rem; align-items:center; }
+        nav ul a {
+            color: rgba(255,255,255,.9);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: .95rem;
+            transition: color .3s;
+            position: relative;
+        }
+        nav ul a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--secondary-color);
+            transition: width .3s;
+        }
+        nav ul a:hover { color: #fff; }
+        nav ul a:hover::after { width: 100%; }
+        .cta-btn {
+            background: linear-gradient(135deg, var(--secondary-color), #175308) !important;
+            color: #fff !important;
+            padding: .65rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: .9rem;
+            box-shadow: 0 4px 16px rgba(79,240,84,.45);
+            transition: transform .3s, box-shadow .3s !important;
+            border: none;
+            cursor: pointer;
+        }
+        .cta-btn:hover { transform: translateY(-2px) !important; box-shadow: 0 8px 24px rgba(79,240,84,.7) !important; }
+        .cta-btn::after { display: none !important; }
+
+        /* ── HAMBURGER ── */
+        .nav-hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: .4rem;
+        }
+        .nav-hamburger span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: #fff;
+            border-radius: 2px;
+            transition: transform .3s, opacity .3s;
+        }
+        .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+        .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+        /* ── MOBILE DRAWER ── */
+        .nav-drawer {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(10,28,8,.97);
+            backdrop-filter: blur(12px);
+            z-index: 999;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+        }
+        .nav-drawer.open { display: flex; animation: fadeIn .25s ease; }
+        .nav-drawer a { color: #fff; font-size: 1.4rem; font-weight: 700; text-decoration: none; }
+        .nav-drawer a:hover { color: var(--secondary-color); }
+        .nav-drawer .cta-btn { font-size: 1.1rem; padding: .8rem 2rem; }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        /* ── PAGE CONTENT ── */
+        .page { max-width:1100px; margin:110px auto 60px; padding:24px; }
+        .hero { display:grid; grid-template-columns: 1.2fr 0.8fr; gap:28px; align-items:center; background:linear-gradient(180deg, rgba(45,151,13,0.08), rgba(255,255,255,0)); padding:28px; border-radius:18px; }
+        .hero h1 { font-size:2.4rem; margin-bottom:16px; letter-spacing:0.3px; }
+        .hero p { color: var(--text-muted); font-size:1.05rem; line-height:1.8; }
+        .hero img { width:100%; border-radius:16px; object-fit:cover; box-shadow:0 14px 30px rgba(0,0,0,0.08); }
+        .section-title { font-size:1.7rem; margin-bottom:16px; color: var(--text-dark); }
+        .intro { max-width:760px; color: var(--text-muted); margin-bottom:24px; }
+        .highlights { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:18px; margin-top:20px; }
+        .highlight-card { background:white; border-radius:16px; padding:24px; box-shadow:var(--card-shadow); transition:transform 0.3s ease, box-shadow 0.3s ease; }
+        .highlight-card:hover { transform: translateY(-6px); box-shadow:0 18px 32px rgba(34,197,94,0.16); }
+        .highlight-card h3 { margin-bottom:12px; font-size:1.2rem; }
+        .highlight-card p { color: var(--text-muted); line-height:1.75; }
+        .stats-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:18px; margin-top:30px; }
+        .stat-box { background: #f9fff5; border-radius:16px; padding:26px; text-align:center; box-shadow:var(--card-shadow); }
+        .stat-number { font-size:2.4rem; font-weight:700; color:var(--primary-color); margin-bottom:10px; }
+        .stat-label { color:var(--text-muted); font-size:1rem; }
+        .gallery { margin-top:32px; display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:14px; }
+        .gallery img { width:100%; height:180px; object-fit:cover; border-radius:14px; box-shadow:0 12px 24px rgba(0,0,0,0.08); }
+        
+        /* ── FOOTER ── */
+        footer { background:#0f1419; color:white; padding:42px 2rem; margin-top:40px; }
+        .footer-content { max-width:1200px; margin:0 auto; display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:18px; }
+        .footer-section h4 { color: var(--secondary-color); margin-bottom:1rem; font-weight:700; font-size:.95rem; letter-spacing:.04em; text-transform:uppercase; }
+        .footer-section ul { list-style:none; padding:0; margin:0; }
+        .footer-section li { margin-bottom:0.75rem; }
+        .footer-section a { color: rgba(255,255,255,0.6); text-decoration:none; font-size:.88rem; transition: color .3s, padding-left .3s; }
+        .footer-section a:hover { color: var(--secondary-color); padding-left:5px; }
+        .footer-bottom { border-top:1px solid rgba(58,185,53,0.35); padding-top:18px; margin-top:18px; text-align:center; color: rgba(255,255,255,0.45); font-size:.83rem; max-width:1200px; margin:0 auto; }
+
+        @media (max-width: 860px) { .hero { grid-template-columns: 1fr; } }
+        @media (max-width: 768px) {
+            nav ul { display: none; }
+            .nav-hamburger { display: flex; }
+            .logo span { display: none; }
+        }
+    </style>
+    <link rel="stylesheet" href="../css/mobile-responsive.css">
+    <link rel="stylesheet" href="../css/mobile-nav.css">
+</head>
+<body>
+
+    <!-- ── NAVBAR ── -->
+    <nav id="mainNav">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">
+                <img src="../images/Lab Logo.png" alt="Lab Logo" class="logo-img">
+                <span>The Medicare Laboratory &amp; Diagnostic Center</span>
+            </a>
+            <ul id="navLinks">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../pages/service.html">Services</a></li>
+                <li><a href="../pages/contact.html">Contact</a></li>
+                <li><a href="../pages/schedule your payment.html" class="cta-btn">Order Now</a></li>
+            </ul>
+            <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ── MOBILE DRAWER ── -->
+    <div class="nav-drawer" id="navDrawer">
+        <a href="../index.html">Home</a>
+        <a href="../pages/service.html">Services</a>
+        <a href="../pages/contact.html">Contact</a>
+        <a href="../pages/schedule your payment.html" class="cta-btn">Order Now</a>
+    </div>
+
+    <!-- ── MAIN CONTENT ── -->
+    <main class="page">
+        <section class="hero">
+            <div>
+                <h1>Fast Results for Better Care</h1>
+                <p class="intro">At The Medicare Lab, we understand time is critical. Our advanced testing process is designed to deliver accurate diagnostic reports quickly, so patients and doctors can make informed decisions without delay.</p>
+                <div class="highlights">
+                    <div class="highlight-card">
+                        <h3>⏱️ Rapid Turnaround</h3>
+                        <p>Same-day and next-day report options are available for most routine lab tests, helping doctors start treatment sooner.</p>
+                    </div>
+                    <div class="highlight-card">
+                        <h3>🎯 Automated Precision</h3>
+                        <p>Modern analyzers and validated workflows reduce processing delays while maintaining the highest level of accuracy.</p>
+                    </div>
+                    <div class="highlight-card">
+                        <h3>📱 Fast Digital Delivery</h3>
+                        <p>Secure electronic results are sent quickly to patients and clinicians, cutting waiting time and improving communication.</p>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <img src="../images/Lab technician reviewing fast test results pic.png" alt="Lab technician reviewing fast test results">
+            </div>
+        </section>
+
+        <section style="margin-top: 40px;">
+            <h2 class="section-title">Why Fast Results Matter</h2>
+            <p class="intro">Quick laboratory reporting means faster diagnoses, less uncertainty and better patient outcomes. Our team optimizes every step from sample pickup to final verification so you receive reliable results when they matter most.</p>
+        </section>
+
+        <section class="stats-grid">
+            <div class="stat-box">
+                <div class="stat-number">3-6 hrs</div>
+                <div class="stat-label">Average urgent test delivery</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">99.7%</div>
+                <div class="stat-label">Quality-checked report accuracy</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">95%</div>
+                <div class="stat-label">Results delivered digitally</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">24/7</div>
+                <div class="stat-label">Support for urgent inquiries</div>
+            </div>
+        </section>
+
+        <section class="gallery" aria-label="Fast result images">
+            <img src="../images/A lab technician preparing samples quickly pic.png" alt="A lab technician preparing samples quickly">
+            <img src="../images/Digital lab report on a tablet screen pic.png" alt="Digital lab report on a tablet screen">
+            <img src="../images/Quick blood sample processing in lab pic.png" alt="Quick blood sample processing in lab">
+            <img src="../images/Laboratory equipment delivering fast results pic.png" alt="Laboratory equipment delivering fast results">
+        </section>
+    </main>
+
+    <!-- ── FOOTER ── -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>About Us</h4>
+                <ul>
+                    <li><a href="../index.html#about">Our Story</a></li>
+                    <li><a href="../pages/expertteam.html">Team</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="../pages/schedule your payment.html">Blood Tests</a></li>
+                    <li><a href="../pages/healthcheckup.html">Health Packages</a></li>
+                    <li><a href="../pages/homecollection.html">Home Collection</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact Us</h4>
+                <ul>
+                    <li><a href="tel:+92300123456">📞 +92 (300) 123-456</a></li>
+                    <li><a href="mailto:info@medicare.com">📧 info@medicare.com</a></li>
+                    <li><a href="../pages/contact.html">📍 123 Medical Street</a></li>
+                    <li><a href="../pages/contact.html">Karachi, Pakistan</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 The Medicare Laboratory &amp; Diagnostic Center. All rights reserved. | Designed by Tahami Tech for your health</p>
+        </div>
+    </footer>
+
+    <!-- ── SCRIPTS ── -->
+    <script>
+        // ── Navbar scroll effect ──
+        (function() {
+            const nav = document.getElementById('mainNav');
+            window.addEventListener('scroll', function() {
+                nav.classList.toggle('nav-scrolled', window.scrollY > 60);
+            }, { passive: true });
+        })();
+
+        // ── Hamburger / mobile drawer ──
+        (function() {
+            const hbg = document.getElementById('hamburger');
+            const drw = document.getElementById('navDrawer');
+            if (!hbg || !drw) return;
+            
+            hbg.addEventListener('click', function() {
+                hbg.classList.toggle('open');
+                drw.classList.toggle('open');
+                document.body.style.overflow = drw.classList.contains('open') ? 'hidden' : '';
+            });
+            
+            drw.querySelectorAll('a').forEach(function(a) {
+                a.addEventListener('click', function() {
+                    hbg.classList.remove('open');
+                    drw.classList.remove('open');
+                    document.body.style.overflow = '';
+                });
+            });
+        })();
+
+        // ── Dynamic footer year ──
+        document.querySelector('.footer-bottom p')?.replace(
+            /2026/g,
+            new Date().getFullYear()
+        );
+    </script>
+
+    <script src="../javascript/loader-nav.js"></script>
+    <script src="../javascript/mobile-nav.js" defer></script>
+</body>
+</html>

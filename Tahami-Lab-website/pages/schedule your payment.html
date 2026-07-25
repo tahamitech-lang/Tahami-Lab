@@ -2140,7 +2140,7 @@
         }
 
         function goHome() {
-            window.location.href = 'home.html';
+            navigateWithLoading('home.html');
         }
 
         function printConfirmation() {
@@ -2150,7 +2150,7 @@
         // Listen to full name change
         document.getElementById('fullName').addEventListener('input', updateSummary);
     </script>
-  <script src="loader-nav.js"></script>
+  <script src="../javascript/loader-nav.js"></script>
 </body>
 </html>
 

@@ -3,7 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>www.themedicarelab.com</title>
+    <!-- SEO Meta Tags -->
+<title>Tahami Lab - Diagnostic & Medical Testing Services</title>
+<meta name="description" content="Tahami Lab provides reliable diagnostic reports and medical lab services." />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<!-- Open Graph Tags (WhatsApp aur Facebook sharing ke liye) -->
+<meta property="og:title" content="Tahami Lab - Diagnostic Services" />
+<meta property="og:description" content="Reliable medical lab testing and reports." />
+<meta property="og:image" content="https://tahami-lab.vercel.app/logo.png" />
+<meta property="og:url" content="https://tahami-lab.vercel.app/" />
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -630,8 +639,8 @@ footer{background:var(--dark-bg);color:#fff;padding:55px 2rem 28px;}
   .stats-container{grid-template-columns:1fr 1fr;}
 }
 </style>
-    <link rel="stylesheet" href="mobile-responsive.css">
-    <link rel="stylesheet" href="mobile-nav.css">
+    <link rel="stylesheet" href="css/mobile-responsive.css">
+    <link rel="stylesheet" href="css/mobile-nav.css">
 </head>
 </head>
 <body>
@@ -648,14 +657,14 @@ footer{background:var(--dark-bg);color:#fff;padding:55px 2rem 28px;}
 <nav id="mainNav">
   <div class="nav-container">
     <a href="index.html" class="logo">
-      <img src="Lab%20Logo.png" alt="Lab Logo" class="logo-img">
+      <img src="images/Lab Logo.png" alt="Lab Logo" class="logo-img">
       <span>The Medicare Laboratory &amp; Diagnostic Center</span>
     </a>
     <ul id="navLinks">
-      <li><a href="service.html">Services</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="contact.html">Contact</a></li>
-      <li><a href="schedule%20your%20payment.html" class="cta-btn">Book Test</a></li>
+      <li><a href="pages/service.html">Services</a></li>
+      <li><a href="#about.html">About</a></li>
+      <li><a href="pages/contact.html">Contact</a></li>
+      <li><a href="pages/schedule-your-payment.html" class="cta-btn">Book Test</a></li>
     </ul>
      <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu">
                 <span></span><span></span><span></span>
@@ -665,10 +674,10 @@ footer{background:var(--dark-bg);color:#fff;padding:55px 2rem 28px;}
 
 <!-- mobile drawer -->
 <div class="nav-drawer" id="navDrawer">
-  <a href="service.html">Services</a>
-  <a href="#about" id="drawerAbout">About</a>
-  <a href="contact.html">Contact</a>
-  <a href="schedule%20your%20payment.html" class="cta-btn">Book Test</a>
+  <a href="pages/service.html">Services</a>
+  <a href="#about.html" id="drawerAbout">About</a>
+  <a href="pages/contact.html">Contact</a>
+  <a href="pages/schedule-your-payment.html" class="cta-btn">Book Test</a>
 </div>
 
 <!-- ══════════════════════════════════════════
@@ -684,7 +693,7 @@ footer{background:var(--dark-bg);color:#fff;padding:55px 2rem 28px;}
     <!-- new non-destructive badge -->
     <div class="hero-badge">
       <i class="fas fa-certificate"></i>
-      ISO Certified · 15+ Years of Excellence
+      Patient Trusted · 15+ Years of Excellence
     </div>
 
     <!-- typed line (above original h1) -->
@@ -700,7 +709,7 @@ footer{background:var(--dark-bg);color:#fff;padding:55px 2rem 28px;}
 
     <!-- ORIGINAL BUTTONS -->
     <div class="hero-buttons">
-      <a href="schedule%20your%20payment.html" class="btn-primary">Schedule Appointment</a>
+      <a href="pages/schedule your payment.html" class="btn-primary">Schedule Appointment</a>
       <button class="btn-secondary">Learn More</button>
     </div>
   </div>
@@ -714,7 +723,7 @@ footer{background:var(--dark-bg);color:#fff;padding:55px 2rem 28px;}
 <!-- ── TRUST MARQUEE (new, non-destructive) ── -->
 <div class="trust-bar">
   <div class="marquee-inner">
-    <span><i class="fas fa-check-circle"></i>ISO Certified Lab</span>
+    <span><i class="fas fa-check-circle"></i>Patient Trusted Lab</span>
     <span><i class="fas fa-flask"></i>Advanced Diagnostics</span>
     <span><i class="fas fa-home"></i>Free Home Collection</span>
     <span><i class="fas fa-bolt"></i>24-Hour Results</span>
@@ -722,7 +731,7 @@ footer{background:var(--dark-bg);color:#fff;padding:55px 2rem 28px;}
     <span><i class="fas fa-users"></i>Expert Medical Team</span>
     <span><i class="fas fa-heart"></i>Compassionate Care</span>
     <!-- duplicate for seamless loop -->
-    <span><i class="fas fa-check-circle"></i>ISO Certified Lab</span>
+    <span><i class="fas fa-check-circle"></i>Patient Trusted Lab</span>
     <span><i class="fas fa-flask"></i>Advanced Diagnostics</span>
     <span><i class="fas fa-home"></i>Free Home Collection</span>
     <span><i class="fas fa-bolt"></i>24-Hour Results</span>
@@ -739,31 +748,31 @@ footer{background:var(--dark-bg);color:#fff;padding:55px 2rem 28px;}
   <h2 class="section-title" data-aos="fade-up">Why Choose Us?</h2>
   <div class="features-grid">
 
-    <a href="advancetech.html" class="feature-card scroll-fade" data-aos="fade-up" data-aos-delay="0">
+    <a href="pages/advancetech.html" class="feature-card scroll-fade" data-aos="fade-up" data-aos-delay="0">
       <div class="feature-icon">🔬</div>
       <h3>Advanced Technology</h3>
       <p>Latest laboratory equipment and automated systems for accurate and fast results</p>
     </a>
 
-    <a href="expertteam.html" class="feature-card scroll-fade" data-aos="fade-up" data-aos-delay="80">
+    <a href="pages/expertteam.html" class="feature-card scroll-fade" data-aos="fade-up" data-aos-delay="80">
       <div class="feature-icon">👨‍⚕️</div>
       <h3>Expert Team</h3>
       <p>Highly qualified technicians with years of experience</p>
     </a>
 
-    <a href="fastresult.html" class="feature-card scroll-fade" data-aos="fade-up" data-aos-delay="160">
+    <a href="pages/fastresult.html" class="feature-card scroll-fade" data-aos="fade-up" data-aos-delay="160">
       <div class="feature-icon">⚡</div>
       <h3>Fast Results</h3>
       <p>Quick turnaround time with accurate and reliable diagnostic reports</p>
     </a>
 
-    <a href="affordablepricing.html" class="feature-card scroll-fade" data-aos="fade-up" data-aos-delay="240">
+    <a href="pages/affordablepricing.html" class="feature-card scroll-fade" data-aos="fade-up" data-aos-delay="240">
       <div class="feature-icon">💳</div>
       <h3>Affordable Pricing</h3>
       <p>Competitive rates with flexible payment options for all patients</p>
     </a>
 
-    <a href="homecollection.html" class="feature-card scroll-fade" data-aos="fade-up" data-aos-delay="320">
+    <a href="pages/homecollection.html" class="feature-card scroll-fade" data-aos="fade-up" data-aos-delay="320">
       <div class="feature-icon">🏠</div>
       <h3>Home Collection</h3>
       <p>Free sample collection at your doorstep for your convenience</p>
@@ -838,13 +847,13 @@ footer{background:var(--dark-bg);color:#fff;padding:55px 2rem 28px;}
       <p>Our state-of-the-art facility is equipped with the latest diagnostic equipment and staffed by highly skilled professionals who are committed to providing the best quality of service to every patient.</p>
       <p>We believe in making healthcare accessible and affordable while maintaining the highest standards of quality and accuracy in all our tests and reports.</p>
       <!-- ORIGINAL button -->
-      <a href="about.html" class="btn-primary" style="margin-top:1.5rem;display:inline-block;text-align:center;color:#fff;">Read More</a>
+      <a href="pages/about.html" class="btn-primary" style="margin-top:1.5rem;display:inline-block;text-align:center;color:#fff;">Read More</a>
     </div>
 
     <div class="story-image-wrap" data-aos="fade-left">
       <div class="story-image">
-        <a href="about%20image%20pic.png" target="_blank">
-          <img src="about%20image%20pic.png" alt="about image pic">
+        <a href="images/about%20image%20pic.png" target="_blank">
+          <img src="images/about%20image%20pic.png" alt="about image pic">
         </a>
       </div>
       <!-- floating badge — new, non-destructive -->
@@ -864,7 +873,7 @@ footer{background:var(--dark-bg);color:#fff;padding:55px 2rem 28px;}
   <div class="sec-bubbles" id="ctaBubbles"></div>
   <h2>Ready to Get Your Tests Done?</h2>
   <p>Book your appointment today and take the first step towards better health</p>
-  <a href="schedule%20your%20payment.html" class="btn-primary">Schedule Now</a>
+  <a href="pages/schedule your payment.html" class="btn-primary">Schedule Now</a>
 </section>
 
 <!-- ══════════════════════════════════════════
@@ -876,17 +885,17 @@ footer{background:var(--dark-bg);color:#fff;padding:55px 2rem 28px;}
     <div class="footer-section">
       <h4>About Us</h4>
       <ul>
-        <li><a href="index.html#about">Our Story</a></li>
-        <li><a href="expertteam.html">Team</a></li>
+        <li><a href="#about">Our Story</a></li>
+        <li><a href="pages/expertteam.html">Team</a></li>
       </ul>
     </div>
 
     <div class="footer-section">
       <h4>Services</h4>
       <ul>
-        <li><a href="schedule%20your%20payment.html">Blood Tests</a></li>
-        <li><a href="healthcheckup.html">Health Packages</a></li>
-        <li><a href="homecollection.html">Home Collection</a></li>
+        <li><a href="pages/schedule-your-payment.html">Blood Tests</a></li>
+        <li><a href="pages/healthcheckup.html">Health Packages</a></li>
+        <li><a href="pages/homecollection.html">Home Collection</a></li>
       </ul>
     </div>
 
@@ -895,8 +904,8 @@ footer{background:var(--dark-bg);color:#fff;padding:55px 2rem 28px;}
       <ul>
         <li><a href="tel:+92300123456">📞 +92 (300) 123-456</a></li>
         <li><a href="mailto:info@medicare.com">📧 info@medicare.com</a></li>
-        <li><a href="contact.html">📍 123 Medical Street</a></li>
-        <li><a href="contact.html">Karachi, Pakistan</a></li>
+        <li><a href="pages/contact.html">📍 123 Medical Street</a></li>
+        <li><a href="pages/contact.html">Karachi, Pakistan</a></li>
       </ul>
     </div>
 
@@ -1223,8 +1232,8 @@ if(fc) fc.innerHTML=fc.innerHTML.replace('2026',new Date().getFullYear());
 @media(max-width:600px){.sec-bubbles{display:none;}}
 </style>
 
-<script src="loader-nav.js"></script>
-<script src="mobile-nav.js" defer></script>
+<script src="javascript/loader-nav.js"></script>
+<script src="javascript/mobile-nav.js" defer></script>
 </body>
 </html>
 

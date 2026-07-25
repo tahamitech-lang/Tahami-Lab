@@ -286,12 +286,21 @@
   }
 
   /* ── 8. Navbar scroll + stt visibility ── */
-  document.addEventListener('DOMContentLoaded', function () {
+  function onReady(callback) {
+    if (document.readyState !== 'loading') return callback();
+    document.addEventListener('DOMContentLoaded', callback);
+  }
+
+  onReady(function () {
     var nav = document.querySelector('nav');
-    window.addEventListener('scroll', function () {
+    function refreshNavState() {
+      if (!nav) nav = document.querySelector('nav');
       if (nav) nav.classList.toggle('nav-scrolled', window.scrollY > 60);
       stt.classList.toggle('show', window.scrollY > 400);
-    }, { passive: true });
+    }
+
+    window.addEventListener('scroll', refreshNavState, { passive: true });
+    refreshNavState();
 
     /* ── 9. Smooth hash scroll ── */
     document.querySelectorAll('a[href^="#"]').forEach(function (a) {
@@ -317,6 +326,21 @@
       });
     });
 
+    function getLoadingPagePath() {
+      return window.location.pathname.includes('/pages/') ? 'loading.html' : 'pages/loading.html';
+    }
+
+    function navigateWithLoading(destination) {
+      if (!destination) return;
+      try {
+        var targetUrl = new URL(destination, window.location.href).href;
+        window.location.href = getLoadingPagePath() + '?target=' + encodeURIComponent(targetUrl);
+      } catch (_) {
+        window.location.href = getLoadingPagePath() + '?target=' + encodeURIComponent(destination);
+      }
+    }
+    window.navigateWithLoading = navigateWithLoading;
+
     /* ── 11. Global link → loading screen ── */
     document.querySelectorAll('a[href]').forEach(function (link) {
       var href = link.getAttribute('href');
@@ -338,8 +362,7 @@
 
       link.addEventListener('click', function (event) {
         event.preventDefault();
-        var destination = new URL(trimmed, window.location.href).href;
-        window.location.href = 'loading.html?target=' + encodeURIComponent(destination);
+        navigateWithLoading(trimmed);
       });
     });
 

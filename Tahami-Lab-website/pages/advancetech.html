@@ -48,21 +48,21 @@
 
         @media (max-width:768px){ .hero{flex-direction:column; align-items:flex-start} }
     </style>
-    <link rel="stylesheet" href="mobile-responsive.css">
-    <link rel="stylesheet" href="mobile-nav.css">
+    <link rel="stylesheet" href="../css/mobile-responsive.css">
+    <link rel="stylesheet" href="../css/mobile-nav.css">
     </head>
 </head>
     <nav id="mainNav">
         <div class="nav-container">
-            <a href="index.html" class="logo">
-                <img src="Lab%20Logo.png" alt="Lab Logo" class="logo-img">
+            <a href="../index.html" class="logo">
+                <img src="../images/Lab Logo.png" alt="Lab Logo" class="logo-img">
                 <span>The Medicare Laboratory &amp; Diagnostic Center</span>
             </a>
             <ul id="navLinks">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="service.html">Services</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="schedule%20your%20payment.html" class="cta-btn">Order Now</a></li>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../pages/service.html">Services</a></li>
+                <li><a href="../pages/contact.html">Contact</a></li>
+                <li><a href="../pages/schedule your payment.html" class="cta-btn">Order Now</a></li>
             </ul>
              <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu">
                 <span></span><span></span><span></span>
@@ -71,7 +71,7 @@
     </nav>
 
     <div class="nav-drawer" id="navDrawer">
-        <a href="index.html">Home</a>
+        <a href="../index.html">Home</a>
         <a href="service.html">Services</a>
         <a href="contact.html">Contact</a>
         <a href="schedule%20your%20payment.html" class="cta-btn">Order Now</a>
@@ -142,7 +142,7 @@
                 <p>We combine modern instrumentation, accredited methodologies and secure digital workflows to deliver fast, accurate and reliable diagnostic results for patients and clinicians.</p>
             </div>
             <div style="min-width:240px; max-width:320px">
-                <img src="Laboratory instrumentation and technician pic.png" alt="Laboratory instrumentation and technician" style="width:100%;border-radius:10px;object-fit:cover;box-shadow:0 6px 20px rgba(0,0,0,0.08)">
+                <img src="../images/Laboratory instrumentation and technician pic.png" alt="Laboratory instrumentation and technician" style="width:100%;border-radius:10px;object-fit:cover;box-shadow:0 6px 20px rgba(0,0,0,0.08)">
             </div>
         </section>
 
@@ -174,10 +174,10 @@
         </section>
 
         <section class="gallery" aria-label="Technology gallery">
-            <img src="Automated analyzer close-up pic.png" alt="Automated analyzer close-up">
-            <img src="Technician pipetting samples pic.png" alt="Technician pipetting samples">
-            <img src="PCR machine with samples pic.jpg" alt="PCR machine with samples">
-            <img src="Lab workstation and digital report on screen pic.jpg" alt="Lab workstation and digital report on screen">
+            <img src="../images/Automated analyzer close-up pic.png" alt="Automated analyzer close-up">
+            <img src="../images/Technician pipetting samples pic.png" alt="Technician pipetting samples">
+            <img src="../images/PCR machine with samples pic.png" alt="PCR machine with samples">
+            <img src="../images/Lab workstation and digital report on screen pic.jpg" alt="Lab workstation and digital report on screen">
         </section>
         `;
 
@@ -186,8 +186,8 @@
             React.createElement('div', {className: 'page', dangerouslySetInnerHTML: {__html: rootHtml}})
         );
     </script>
-  <script src="loader-nav.js"></script>
-  <script src="mobile-nav.js" defer></script>
+  <script src="../javascript/loader-nav.js"></script>
+  <script src="../javascript/mobile-nav.js" defer></script>
 </body>
 </html>
 
