@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://tahami-lab.vercel.app/sitemap.xml

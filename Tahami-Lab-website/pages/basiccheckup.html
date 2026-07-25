@@ -603,8 +603,9 @@
                 <li><a href="../pages/service.html" style="color:white; text-decoration:none; font-weight:500;">Services</a></li>
                 <li><a href="../index.html#about" style="color:white; text-decoration:none; font-weight:500;">About</a></li>
                 <li><a href="../pages/contact.html" style="color:white; text-decoration:none; font-weight:500;">Contact</a></li>
-                <li><a href="../pages/schedule%20your%20payment.html" class="cta-btn" style="background:linear-gradient(135deg,#4ff054,#175308); color:white; padding:0.7rem 1.5rem; border-radius:25px; font-weight:600; text-decoration:none;">Order Now</a></li>
-            </ul>
+<li>
+    <a href="#" class="cta-btn" onclick="alert('🛒 Order Now\n\nThis service is currently unavailable.\nWe are upgrading our ordering system and will be available very soon.\n\nThank you for your patience!'); return false;">Order Now</a>
+</li>            </ul>
              <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu">
                 <span></span><span></span><span></span>
             </button>
@@ -822,7 +823,43 @@
                 <div class="cta-section">
                     <h2>Ready for Your Basic Health Checkup?</h2>
                     <p>Book now and get comprehensive basic health screening with fast results and expert analysis</p>
-                    <button class="cta-btn" onclick="bookPackage()">Book Basic Checkup Now</button>
+                    <button class="cta-btn" onclick="event.preventDefault(); document.getElementById('basicCheckupPopup').style.display='flex'; document.body.style.overflow='hidden';">Book Basic Checkup Now</button>
+
+<!-- Popup Modal -->
+<div id="basicCheckupPopup" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); backdrop-filter: blur(8px); justify-content: center; align-items: center; z-index: 9999; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+    <div style="background: #ffffff; padding: 40px 50px; border-radius: 16px; max-width: 450px; width: 90%; text-align: center; box-shadow: 0 20px 60px rgba(0,0,0,0.3); animation: popIn 0.3s ease-out; border-top: 6px solid #2a7de1;">
+        <div style="font-size: 48px; margin-bottom: 10px;">🏥</div>
+        <h2 style="color: #1a1a2e; margin: 15px 0 10px; font-size: 24px; font-weight: 700;">Coming Soon</h2>
+        <p style="color: #555; font-size: 16px; line-height: 1.6; margin-bottom: 25px;">
+            Basic Checkup booking is currently unavailable. <br>We are enhancing our services and will be ready <strong>very soon</strong>.
+        </p>
+        <button onclick="document.getElementById('basicCheckupPopup').style.display='none'; document.body.style.overflow='auto';" style="background: #2a7de1; color: white; border: none; padding: 12px 40px; border-radius: 50px; font-size: 16px; font-weight: 600; cursor: pointer; transition: background 0.2s; box-shadow: 0 4px 15px rgba(42, 125, 225, 0.4);">
+            Got It
+        </button>
+    </div>
+</div>
+
+<style>
+    @keyframes popIn {
+        0% { transform: scale(0.8); opacity: 0; }
+        100% { transform: scale(1); opacity: 1; }
+    }
+</style>
+
+<script>
+    // Close popup when clicking outside
+    document.addEventListener('DOMContentLoaded', function() {
+        var popup = document.getElementById('basicCheckupPopup');
+        if (popup) {
+            popup.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    this.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        }
+    });
+</script>
                 </div>
             </div>
 
@@ -894,7 +931,7 @@
                     {name:'Blood Pressure Check',price:300}
                 ])
             });
-            navigateWithLoading('schedule%20your%20payment.html?' + params.toString());
+            navigateWithLoading('#?' + params.toString());
         }
     </script>
   <script src="../javascript/loader-nav.js"></script>
