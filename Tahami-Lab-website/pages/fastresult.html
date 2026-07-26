@@ -294,27 +294,6 @@
             }, { passive: true });
         })();
 
-        // ── Hamburger / mobile drawer ──
-        (function() {
-            const hbg = document.getElementById('hamburger');
-            const drw = document.getElementById('navDrawer');
-            if (!hbg || !drw) return;
-            
-            hbg.addEventListener('click', function() {
-                hbg.classList.toggle('open');
-                drw.classList.toggle('open');
-                document.body.style.overflow = drw.classList.contains('open') ? 'hidden' : '';
-            });
-            
-            drw.querySelectorAll('a').forEach(function(a) {
-                a.addEventListener('click', function() {
-                    hbg.classList.remove('open');
-                    drw.classList.remove('open');
-                    document.body.style.overflow = '';
-                });
-            });
-        })();
-
         // ── Dynamic footer year ──
         document.querySelector('.footer-bottom p')?.replace(
             /2026/g,

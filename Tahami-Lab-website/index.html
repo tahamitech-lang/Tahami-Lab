@@ -1029,20 +1029,16 @@ window.addEventListener('scroll',function(){
 },{ passive:true });
 stb.addEventListener('click',function(){ window.scrollTo({top:0,behavior:'smooth'}); });
 
-/* ── Hamburger / mobile drawer ── */
-var hbg=document.getElementById('hamburger');
-var drw=document.getElementById('navDrawer');
-hbg.addEventListener('click',function(){
-  hbg.classList.toggle('open');
-  drw.classList.toggle('open');
-  document.body.style.overflow=drw.classList.contains('open')?'hidden':'';
-});
+/* ── Hamburger / mobile drawer is handled by mobile-nav.js ── */
 function closeDrawer(){
-  hbg.classList.remove('open');
-  drw.classList.remove('open');
+  var hbg=document.getElementById('hamburger');
+  var drw=document.getElementById('navDrawer');
+  if(hbg) hbg.classList.remove('open');
+  if(drw) drw.classList.remove('open');
   document.body.style.overflow='';
+  document.body.style.position='';
+  document.body.classList.remove('no-scroll');
 }
-drw.querySelectorAll('a').forEach(function(a){ a.addEventListener('click',closeDrawer); });
 
 /* ── Smooth hash scroll ── */
 document.querySelectorAll('a[href^="#"]').forEach(function(a){

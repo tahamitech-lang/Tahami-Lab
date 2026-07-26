@@ -73,19 +73,6 @@
         <a href="contact.html">Contact</a>
 <a href="#" class="cta-btn" onclick="alert('This service is currently unavailable. It will be launched very soon. Thank you for your patience!'); return false;">Order Now</a>    </div>
 
-    <script>
-    (function(){
-      var hbg=document.getElementById('hamburger');
-      var drw=document.getElementById('navDrawer');
-      if(!hbg||!drw) return;
-      hbg.addEventListener('click',function(){
-        hbg.classList.toggle('open');
-        drw.classList.toggle('open');
-        document.body.style.overflow=drw.classList.contains('open')?'hidden':'';
-      });
-      drw.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){hbg.classList.remove('open');drw.classList.remove('open');document.body.style.overflow='';});});
-    })();
-    </script>
 
     <div class="container">
         <div style="height:40px"></div>

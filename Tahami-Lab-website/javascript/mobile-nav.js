@@ -17,6 +17,7 @@
     drw.classList.remove('open');
     document.body.style.overflow = '';
     document.body.style.position = '';
+    document.body.classList.remove('no-scroll');
   }
 
   // Open drawer function
@@ -25,6 +26,7 @@
     drw.classList.add('open');
     document.body.style.overflow = 'hidden';
     document.body.style.position = 'fixed';
+    document.body.classList.add('no-scroll');
   }
 
   // Toggle drawer on hamburger click
